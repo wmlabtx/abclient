@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<teleports>
+  <teleport regnum="18-502" name="Окрестности Кенджии" />
+  <teleport regnum="4-083" name="Окрестности Эринграда" />
+  <teleport regnum="8-537" name="Окрестность Фейдана" />
+  <teleport regnum="9-303" name="Окрестность Форпоста" />
+  <teleport regnum="3-312" name="Пустыня Самум-Бейт" />
+  <teleport regnum="27-286" name="Северский Тракт" />
+  <teleport regnum="12-268" name="Окрестность Октала" />
+  <teleport regnum="14-202" name="Ущелье Эль-Тэр" />
+  <teleport regnum="34-188" name="Восточные Леса" />
+</teleports>

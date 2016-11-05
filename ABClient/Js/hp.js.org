@@ -1,0 +1,41 @@
+var curHP, maxHP, intHP, curMA, maxMA, intMA, interv;
+
+function ins_HP(curh, maxh, curm, maxm, hp_int, ma_int)
+{
+    intHP = hp_int;
+    intMA = ma_int;
+    interv = setInterval("cha_HP()",1000);
+    if(curm < 0) curm = 0;
+    if(maxm <= 0) maxm = 7;
+    curHP = curh;
+    curMA = curm;
+    maxHP = maxh;
+    maxMA = maxm;
+    cha_HP();
+}
+
+function cha_HP()
+{
+    if(curHP > maxHP) curHP = maxHP;
+    if(curMA > maxMA) curMA = maxMA;
+    if(curHP >= maxHP && curMA >= maxMA) clearInterval(interv);
+    s_hp_f = Math.round(160*(curHP/maxHP));
+    s_ma_f = Math.round(160*(curMA/maxMA));
+    s_hp_s = 160 - s_hp_f;
+    s_ma_s = 160 - s_ma_f;
+    if(document.images['leftp'] && document.images['rightp'] && document.images['leftm'] && document.images['rightm']) 
+    {
+        document.images['leftp'].width = s_hp_f;
+        document.images['rightp'].width = s_hp_s;
+        document.images['leftm'].width = s_ma_f;
+        document.images['rightm'].width = s_ma_s;
+        if(document.getElementById("hbar")) 
+        {
+            if(curHP<0) curHP = 0;
+            var s = document.getElementById("hbar").innerHTML;
+            document.getElementById("hbar").innerHTML = s.substring(0, s.lastIndexOf(':')+1) + "[<font color=#bb0000><b>" + Math.round(curHP)+"</b>/<b>"+maxHP+"</b></font> | <font color=#336699><b>"+Math.round(curMA)+"</b>/<b>"+maxMA+"</b></font>]";
+        }
+    }
+    curHP = curHP+(maxHP/intHP);
+    curMA = curMA+(maxMA/intMA);
+}

@@ -1,0 +1,970 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{01222EA8-47FE-413C-A17B-1B7411BA7296}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ABClient</RootNamespace>
+    <AssemblyName>ABClient</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <StartupObject>ABClient.Program</StartupObject>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>ABClientKey.snk</AssemblyOriginatorKeyFile>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <ApplicationIcon>ABClientIcon.ico</ApplicationIcon>
+    <NoWin32Manifest>true</NoWin32Manifest>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ABForms\ClearExplorerCacheForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABForms\ClearExplorerCacheForm.designer.cs">
+      <DependentUpon>ClearExplorerCacheForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABForms\ErrorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABForms\ErrorForm.designer.cs">
+      <DependentUpon>ErrorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABForms\FormAddClan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABForms\FormAddClan.designer.cs">
+      <DependentUpon>FormAddClan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABForms\FormCompas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABForms\FormCompas.Designer.cs">
+      <DependentUpon>FormCompas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABForms\FormMainBulkSell.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABForms\FormMainFast.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABForms\FormMainInfoToolTip.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABForms\FormMainMap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABForms\FormSettingsAutoCut.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABForms\FormSettingsAutoCut.Designer.cs">
+      <DependentUpon>FormSettingsAutoCut.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABProxy\Cache.cs" />
+    <Compile Include="ABProxy\ClientChatter.cs" />
+    <Compile Include="ABProxy\CookiePack.cs" />
+    <Compile Include="ABProxy\CookiePackItem.cs" />
+    <Compile Include="ABProxy\CookiesManager.cs" />
+    <Compile Include="ABProxy\DNSCacheEntry.cs" />
+    <Compile Include="ABProxy\DNSResolver.cs" />
+    <Compile Include="ABProxy\HttpHeaderItem.cs" />
+    <Compile Include="ABProxy\HttpHeaders.cs" />
+    <Compile Include="ABProxy\HttpRequestHeaders.cs" />
+    <Compile Include="ABProxy\HttpResponseHeaders.cs" />
+    <Compile Include="ABProxy\Parser.cs" />
+    <Compile Include="ABProxy\Proxy.cs" />
+    <Compile Include="ABProxy\ServerChatter.cs" />
+    <Compile Include="ABProxy\Session.cs" />
+    <Compile Include="ABProxy\Utilities.cs" />
+    <Compile Include="AppConsts.cs" />
+    <Compile Include="AppTimer.cs" />
+    <Compile Include="AppTimerManager.cs" />
+    <Compile Include="AppVars.cs" />
+    <Compile Include="AutoAnswerMachine.cs" />
+    <Compile Include="AutoboiState.cs" />
+    <Compile Include="ChatUser.cs" />
+    <Compile Include="ChatUserList.cs" />
+    <Compile Include="DataManager.cs" />
+    <Compile Include="ExplorerHelper.cs" />
+    <Compile Include="Fight\Module.cs" />
+    <Compile Include="Fight\ModuleAbils.cs" />
+    <Compile Include="Fight\ModuleBlocks.cs" />
+    <Compile Include="Fight\ModuleCombine.cs" />
+    <Compile Include="Fight\ModuleFiz.cs" />
+    <Compile Include="Fight\ModuleMag.cs" />
+    <Compile Include="Fight\ModuleParse.cs" />
+    <Compile Include="FishTip.cs" />
+    <Compile Include="ABForms\FormMainDocumentCompleted.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABForms\FormMainHerbs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABForms\FormMainOnlineLogon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\HerbNavigator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\HerbNavigator.Designer.cs">
+      <DependentUpon>HerbNavigator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\Crypts.cs" />
+    <Compile Include="Helpers\Http.cs" />
+    <Compile Include="Helpers\NativeMethods.cs" />
+    <Compile Include="Helpers\Pack.cs" />
+    <Compile Include="HerbCell.cs" />
+    <Compile Include="InvEntry.cs" />
+    <Compile Include="KeyList.cs" />
+    <Compile Include="Key\KeyFile.cs" />
+    <Compile Include="Key\KeyFileGen.cs" />
+    <Compile Include="Key\KeyFileStatus.cs" />
+    <Compile Include="ListItemBotLevelEx.cs" />
+    <Compile Include="MyChat\MyChat.cs" />
+    <Compile Include="Contact.cs" />
+    <Compile Include="ContactsManager.cs" />
+    <Compile Include="ContactGroup.cs" />
+    <Compile Include="ContactGroupsManager.cs" />
+    <Compile Include="AppControls\CollapsibleSplitter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AppControls\ExtendedWebBrowser.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AppControls\Office2007ColorTable.cs" />
+    <Compile Include="AppControls\SplitterState.cs" />
+    <Compile Include="AppControls\SplitterVisualStyle.cs" />
+    <Compile Include="AppControls\TreeViewEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AppControls\UseClipping.cs" />
+    <Compile Include="AppControls\Office2007Render.cs" />
+    <Compile Include="AppControls\UseAntiAlias.cs" />
+    <Compile Include="AppControls\UseClearTypeGridFit.cs" />
+    <Compile Include="AppControls\WebBrowserExtendedNavigatingEventArgs.cs" />
+    <Compile Include="ExtMap\Cell.cs" />
+    <Compile Include="ExtMap\FloraPath.cs" />
+    <Compile Include="ExtMap\ListItemBotLevel.cs" />
+    <Compile Include="ExtMap\ListItemPosition.cs" />
+    <Compile Include="ExtMap\ListItemSearch.cs" />
+    <Compile Include="ExtMap\NavScriptManager.cs" />
+    <Compile Include="ExtMap\Position.cs" />
+    <Compile Include="ExtMap\Map.cs" />
+    <Compile Include="Fight\HitBlock.cs" />
+    <Compile Include="Foe.cs" />
+    <Compile Include="ABForms\FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABForms\FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABForms\FormMainAutoBoi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABForms\FormMainChat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABForms\FormMainCheckTied.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABForms\FormMainCheckVersion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABForms\FormMainContacts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABForms\FormMainCross.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABForms\FormMainDelegates.cs" />
+    <Compile Include="ABForms\FormMainDom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABForms\FormMainDownloadKey.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABForms\FormMainGameBeforeNavigate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABForms\FormMainGua.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABForms\FormMainInit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABForms\FormMainNavigator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABForms\FormMainSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABForms\FormMainSize.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABForms\FormMainStat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABForms\FormMainTabs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABForms\FormMainTicks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABForms\FormMainTimers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABForms\FormMainTray.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyForms\FormAbout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyForms\FormAbout.designer.cs">
+      <DependentUpon>FormAbout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyForms\FormAskPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyForms\FormAskPassword.designer.cs">
+      <DependentUpon>FormAskPassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyForms\FormAutoLogon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyForms\FormAutoLogon.designer.cs">
+      <DependentUpon>FormAutoLogon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyForms\FormCode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyForms\FormCode.designer.cs">
+      <DependentUpon>FormCode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyForms\FormContact.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyForms\FormContact.designer.cs">
+      <DependentUpon>FormContact.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyForms\FormEnterInt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyForms\FormEnterInt.Designer.cs">
+      <DependentUpon>FormEnterInt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyForms\FormFishAdvisor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyForms\FormFishAdvisor.Designer.cs">
+      <DependentUpon>FormFishAdvisor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyForms\FormGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyForms\FormGroup.designer.cs">
+      <DependentUpon>FormGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyForms\FormNavigator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyForms\FormNavigator.Designer.cs">
+      <DependentUpon>FormNavigator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyForms\FormNewPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyForms\FormNewPassword.designer.cs">
+      <DependentUpon>FormNewPassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyForms\FormNewTab.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyForms\FormNewTab.Designer.cs">
+      <DependentUpon>FormNewTab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyForms\FormNewTimer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyForms\FormNewTimer.Designer.cs">
+      <DependentUpon>FormNewTimer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyForms\FormNewVersion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyForms\FormNewVersion.designer.cs">
+      <DependentUpon>FormNewVersion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyForms\FormProfile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyForms\FormProfile.designer.cs">
+      <DependentUpon>FormProfile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyForms\FormProfiles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyForms\FormProfiles.designer.cs">
+      <DependentUpon>FormProfiles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyForms\FormPromptExit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyForms\FormPromptExit.Designer.cs">
+      <DependentUpon>FormPromptExit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyForms\FormSettingsGeneral.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyForms\FormSettingsGeneral.designer.cs">
+      <DependentUpon>FormSettingsGeneral.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyForms\FormSmiles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyForms\FormSmiles.Designer.cs">
+      <DependentUpon>FormSmiles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyForms\FormSostav.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyForms\FormSostav.Designer.cs">
+      <DependentUpon>FormSostav.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyForms\FormSostavMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyForms\FormSostavMain.Designer.cs">
+      <DependentUpon>FormSostavMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyForms\FormStatEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyForms\FormStatEdit.designer.cs">
+      <DependentUpon>FormStatEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AppControls\ListBoxEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MyGuamod\Recognizer.cs" />
+    <Compile Include="MyHelpers\HelperConverters.cs" />
+    <Compile Include="Helpers\Dice.cs" />
+    <Compile Include="Helpers\Russian.cs" />
+    <Compile Include="MyHelpers\HelperErrors.cs" />
+    <Compile Include="MyHelpers\HelperExterns.cs" />
+    <Compile Include="MyHelpers\HelperPacks.cs" />
+    <Compile Include="MyHelpers\HelperStrings.cs" />
+    <Compile Include="MyProfile\ConfigSelector.cs" />
+    <Compile Include="MyProfile\MyAutoAnswer.cs" />
+    <Compile Include="MyProfile\MyCure.cs" />
+    <Compile Include="MyProfile\TAutoAdv.cs" />
+    <Compile Include="MyProfile\TAutoboi.cs" />
+    <Compile Include="MyProfile\TFoeGroup.cs" />
+    <Compile Include="MyProfile\TNavigator.cs" />
+    <Compile Include="MyProfile\TPers.cs" />
+    <Compile Include="MyProfile\TSound.cs" />
+    <Compile Include="MyProfile\TSplitter.cs" />
+    <Compile Include="MyProfile\TypeItemDrop.cs" />
+    <Compile Include="MyProfile\TypeStat.cs" />
+    <Compile Include="MyProfile\TWindow.cs" />
+    <Compile Include="MyProfile\UserConfig.cs" />
+    <Compile Include="MyProfile\UserConfigConstants.cs" />
+    <Compile Include="MyProfile\UserConfigLoad.cs" />
+    <Compile Include="MyProfile\UserConfigSave.cs" />
+    <Compile Include="MyProfile\UserConfigVars.cs" />
+    <Compile Include="LoadingUrlList.cs" />
+    <Compile Include="ExtMap\ListItemCell.cs" />
+    <Compile Include="NativeMethods.cs" />
+    <Compile Include="Neuro\NeuroBase.cs" />
+    <Compile Include="Neuro\NeuroVector.cs" />
+    <Compile Include="PostFilter\AlchemyAjaxPhp.cs" />
+    <Compile Include="PostFilter\ArenaJs.cs" />
+    <Compile Include="PostFilter\BuildingJs.cs" />
+    <Compile Include="PostFilter\ButPhp.cs" />
+    <Compile Include="PostFilter\ChListJs.cs" />
+    <Compile Include="PostFilter\ChMsgJs.cs" />
+    <Compile Include="PostFilter\ChRoomPhp.cs" />
+    <Compile Include="PostFilter\ChZero.cs" />
+    <Compile Include="PostFilter\CounterJs.cs" />
+    <Compile Include="PostFilter\FightJs.cs" />
+    <Compile Include="PostFilter\Filter.cs" />
+    <Compile Include="PostFilter\FishAjaxPhp.cs" />
+    <Compile Include="PostFilter\ForumIndexJs.cs" />
+    <Compile Include="PostFilter\ForumTopicJs.cs" />
+    <Compile Include="PostFilter\ForumTopJs.cs" />
+    <Compile Include="PostFilter\GameJs.cs" />
+    <Compile Include="PostFilter\GamePhp.cs" />
+    <Compile Include="PostFilter\HpJs.cs" />
+    <Compile Include="PostFilter\HpmpJs.cs" />
+    <Compile Include="PostFilter\IndexCgi.cs" />
+    <Compile Include="PostFilter\LogsJs.cs" />
+    <Compile Include="PostFilter\MainPhpCure.cs" />
+    <Compile Include="PostFilter\MainPhp.cs" />
+    <Compile Include="PostFilter\MainPhpCityNavigation.cs" />
+    <Compile Include="PostFilter\MainPhpDrink.cs" />
+    <Compile Include="PostFilter\MainPhpDrinkPotion.cs" />
+    <Compile Include="PostFilter\MainPhpFast.cs" />
+    <Compile Include="PostFilter\MainPhpFight.cs" />
+    <Compile Include="PostFilter\MainPhpFish.cs" />
+    <Compile Include="PostFilter\MainPhpInsHp.cs" />
+    <Compile Include="PostFilter\MainPhpInv.cs" />
+    <Compile Include="PostFilter\MainPhpTied.cs" />
+    <Compile Include="PostFilter\MapActAjaxPhp.cs" />
+    <Compile Include="PostFilter\MapAjax.cs" />
+    <Compile Include="PostFilter\MapAjaxPhp.cs" />
+    <Compile Include="PostFilter\MapJs.cs" />
+    <Compile Include="PostFilter\NlPinfo.cs" />
+    <Compile Include="PostFilter\TeleportAjax.cs" />
+    <Compile Include="PostFilter\TradePhp.cs" />
+    <Compile Include="PostFilter\MainPhpWearUd.cs" />
+    <Compile Include="PostFilter\MainPhpWtime.cs" />
+    <Compile Include="PostFilter\MsgPhp.cs" />
+    <Compile Include="PostFilter\Pinfo.cs" />
+    <Compile Include="PostFilter\PinfonewJs.cs" />
+    <Compile Include="PostFilter\PvJs.cs" />
+    <Compile Include="PostFilter\SlotsJs.cs" />
+    <Compile Include="PostFilter\SvitokJs.cs" />
+    <Compile Include="PostFilter\TopJs.cs" />
+    <Compile Include="Prims.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ABForms\FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForms\FormAbout.resx">
+      <DependentUpon>FormAbout.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForms\FormCode.resx">
+      <DependentUpon>FormCode.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForms\FormContact.resx">
+      <DependentUpon>FormContact.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForms\FormEnterInt.resx">
+      <DependentUpon>FormEnterInt.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForms\FormFishAdvisor.resx">
+      <DependentUpon>FormFishAdvisor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForms\FormGroup.resx">
+      <DependentUpon>FormGroup.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForms\FormNavigator.resx">
+      <DependentUpon>FormNavigator.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForms\FormNewTab.resx">
+      <DependentUpon>FormNewTab.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForms\FormNewTimer.resx">
+      <DependentUpon>FormNewTimer.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForms\FormNewVersion.resx">
+      <DependentUpon>FormNewVersion.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForms\FormPromptExit.resx">
+      <DependentUpon>FormPromptExit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForms\FormSettingsGeneral.resx">
+      <DependentUpon>FormSettingsGeneral.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForms\FormSmiles.resx">
+      <DependentUpon>FormSmiles.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForms\FormSostav.resx">
+      <DependentUpon>FormSostav.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForms\FormSostavMain.resx">
+      <DependentUpon>FormSostavMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForms\FormStatEdit.resx">
+      <DependentUpon>FormStatEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="ABClientKey.snk" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="ScriptManager.cs" />
+    <Compile Include="MySounds\EventSounds.cs" />
+    <Compile Include="ABForms\FormMainSmiles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tabs\TabClass.cs" />
+    <Compile Include="Tabs\TabType.cs" />
+    <Compile Include="Tabs\TcHitTestFlags.cs" />
+    <Compile Include="Tabs\TcHitTestInfo.cs" />
+    <Compile Include="Things\Thing.cs" />
+    <Compile Include="Things\ThingsDb.cs" />
+    <Compile Include="TInvUd.cs" />
+    <Compile Include="TorgPair.cs" />
+    <Compile Include="TorgList.cs" />
+    <Compile Include="UnhandledExceptionManager.cs" />
+    <Compile Include="UserForBo.cs" />
+    <Compile Include="VersionClass.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ABClientIcon.ico" />
+    <None Include="Icons\15x12-herb.gif" />
+    <None Include="abmap.csv" />
+    <None Include="abneuro.dat" />
+    <EmbeddedResource Include="ABForms\ClearExplorerCacheForm.resx">
+      <DependentUpon>ClearExplorerCacheForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABForms\ErrorForm.resx">
+      <DependentUpon>ErrorForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABForms\FormAddClan.resx">
+      <DependentUpon>FormAddClan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABForms\FormCompas.resx">
+      <DependentUpon>FormCompas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABForms\FormSettingsAutoCut.resx">
+      <DependentUpon>FormSettingsAutoCut.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\HerbNavigator.resx">
+      <DependentUpon>HerbNavigator.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForms\FormAskPassword.resx">
+      <DependentUpon>FormAskPassword.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForms\FormAutoLogon.resx">
+      <DependentUpon>FormAutoLogon.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForms\FormNewPassword.resx">
+      <DependentUpon>FormNewPassword.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForms\FormProfile.resx">
+      <DependentUpon>FormProfile.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForms\FormProfiles.resx">
+      <DependentUpon>FormProfiles.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="forum_index.js" />
+    <Content Include="abthings.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="forum_topic.js" />
+    <None Include="Icons\16x16-pv04.gif" />
+    <None Include="map.js" />
+    <None Include="Icons\c175.gif" />
+    <None Include="Icons\16x16-er.png" />
+    <None Include="Icons\16x16-escilon.gif" />
+    <None Include="Icons\16x16-money.png" />
+    <None Include="Icons\16x16-silence.png" />
+    <None Include="Icons\16x16_sitehl.gif" />
+    <None Include="Icons\16x16-autoanswer.png" />
+    <None Include="Icons\c211.gif" />
+    <None Include="Icons\16x16-compas.png" />
+    <None Include="Icons\Smiles\smiles_960.gif" />
+    <None Include="Icons\Smiles\smiles_959.gif" />
+    <None Include="Icons\Smiles\smiles_958.gif" />
+    <None Include="Icons\Smiles\smiles_957.gif" />
+    <None Include="Icons\Smiles\smiles_956.gif" />
+    <None Include="Icons\Smiles\smiles_955.gif" />
+    <None Include="Icons\Smiles\smiles_954.gif" />
+    <None Include="Icons\Smiles\smiles_953.gif" />
+    <None Include="Icons\Smiles\smiles_952.gif" />
+    <None Include="Icons\Smiles\smiles_951.gif" />
+    <None Include="Icons\Smiles\smiles_950.gif" />
+    <None Include="Icons\Smiles\smiles_657.gif" />
+    <None Include="Icons\Smiles\smiles_656.gif" />
+    <None Include="Icons\Smiles\smiles_655.gif" />
+    <None Include="Icons\Smiles\smiles_654.gif" />
+    <None Include="Icons\Smiles\smiles_653.gif" />
+    <None Include="Icons\Smiles\smiles_652.gif" />
+    <None Include="Icons\Smiles\smiles_651.gif" />
+    <None Include="Icons\Smiles\smiles_650.gif" />
+    <None Include="Icons\Smiles\smiles_648.gif" />
+    <None Include="Icons\Smiles\smiles_647.gif" />
+    <None Include="Icons\Smiles\smiles_646.gif" />
+    <None Include="Icons\Smiles\smiles_645.gif" />
+    <None Include="Icons\Smiles\smiles_644.gif" />
+    <None Include="Icons\Smiles\smiles_643.gif" />
+    <None Include="Icons\Smiles\smiles_642.gif" />
+    <None Include="Icons\Smiles\smiles_641.gif" />
+    <None Include="Icons\Smiles\smiles_640.gif" />
+    <None Include="Icons\Smiles\smiles_639.gif" />
+    <None Include="Icons\Smiles\smiles_638.gif" />
+    <None Include="Icons\Smiles\smiles_637.gif" />
+    <None Include="Icons\Smiles\smiles_636.gif" />
+    <None Include="Icons\Smiles\smiles_635.gif" />
+    <None Include="Icons\Smiles\smiles_634.gif" />
+    <None Include="Icons\Smiles\smiles_633.gif" />
+    <None Include="Icons\Smiles\smiles_632.gif" />
+    <None Include="Icons\Smiles\smiles_631.gif" />
+    <None Include="Icons\Smiles\smiles_630.gif" />
+    <None Include="Icons\Smiles\smiles_629.gif" />
+    <None Include="Icons\Smiles\smiles_628.gif" />
+    <None Include="Icons\Smiles\smiles_627.gif" />
+    <None Include="Icons\Smiles\smiles_626.gif" />
+    <None Include="Icons\Smiles\smiles_625.gif" />
+    <None Include="Icons\Smiles\smiles_624.gif" />
+    <None Include="Icons\Smiles\smiles_623.gif" />
+    <None Include="Icons\Smiles\smiles_622.gif" />
+    <None Include="Icons\Smiles\smiles_621.gif" />
+    <None Include="Icons\Smiles\smiles_620.gif" />
+    <None Include="Icons\Smiles\smiles_619.gif" />
+    <None Include="Icons\Smiles\smiles_618.gif" />
+    <None Include="Icons\Smiles\smiles_617.gif" />
+    <None Include="Icons\Smiles\smiles_616.gif" />
+    <None Include="Icons\Smiles\smiles_615.gif" />
+    <None Include="Icons\Smiles\smiles_614.gif" />
+    <None Include="Icons\Smiles\smiles_613.gif" />
+    <None Include="Icons\Smiles\smiles_612.gif" />
+    <None Include="Icons\Smiles\smiles_611.gif" />
+    <None Include="Icons\Smiles\smiles_610.gif" />
+    <None Include="Icons\Smiles\smiles_609.gif" />
+    <None Include="Icons\Smiles\smiles_608.gif" />
+    <None Include="Icons\Smiles\smiles_607.gif" />
+    <None Include="Icons\Smiles\smiles_606.gif" />
+    <None Include="Icons\Smiles\smiles_605.gif" />
+    <None Include="Icons\Smiles\smiles_604.gif" />
+    <None Include="Icons\Smiles\smiles_603.gif" />
+    <None Include="Icons\Smiles\smiles_602.gif" />
+    <None Include="Icons\Smiles\smiles_601.gif" />
+    <None Include="Icons\Smiles\smiles_600.gif" />
+    <None Include="Icons\Smiles\smiles_579.gif" />
+    <None Include="Icons\Smiles\smiles_576.gif" />
+    <None Include="Icons\Smiles\smiles_575.gif" />
+    <None Include="Icons\Smiles\smiles_574.gif" />
+    <None Include="Icons\Smiles\smiles_573.gif" />
+    <None Include="Icons\Smiles\smiles_570.gif" />
+    <None Include="Icons\Smiles\smiles_568.gif" />
+    <None Include="Icons\Smiles\smiles_564.gif" />
+    <None Include="Icons\Smiles\smiles_560.gif" />
+    <None Include="Icons\Smiles\smiles_559.gif" />
+    <None Include="Icons\Smiles\smiles_558.gif" />
+    <None Include="Icons\Smiles\smiles_554.gif" />
+    <None Include="Icons\Smiles\smiles_552.gif" />
+    <None Include="Icons\Smiles\smiles_551.gif" />
+    <None Include="Icons\Smiles\smiles_477.gif" />
+    <None Include="Icons\Smiles\smiles_475.gif" />
+    <None Include="Icons\Smiles\smiles_474.gif" />
+    <None Include="Icons\Smiles\smiles_473.gif" />
+    <None Include="Icons\Smiles\smiles_472.gif" />
+    <None Include="Icons\Smiles\smiles_471.gif" />
+    <None Include="Icons\Smiles\smiles_469.gif" />
+    <None Include="Icons\Smiles\smiles_467.gif" />
+    <None Include="Icons\Smiles\smiles_459.gif" />
+    <None Include="Icons\Smiles\smiles_457.gif" />
+    <None Include="Icons\Smiles\smiles_453.gif" />
+    <None Include="Icons\Smiles\smiles_447.gif" />
+    <None Include="Icons\Smiles\smiles_442.gif" />
+    <None Include="Icons\Smiles\smiles_434.gif" />
+    <None Include="Icons\Smiles\smiles_422.gif" />
+    <None Include="Icons\Smiles\smiles_419.gif" />
+    <None Include="Icons\Smiles\smiles_417.gif" />
+    <None Include="Icons\Smiles\smiles_415.gif" />
+    <None Include="Icons\Smiles\smiles_414.gif" />
+    <None Include="Icons\Smiles\smiles_413.gif" />
+    <None Include="Icons\Smiles\smiles_411.gif" />
+    <None Include="Icons\Smiles\smiles_393.gif" />
+    <None Include="Icons\Smiles\smiles_386.gif" />
+    <None Include="Icons\Smiles\smiles_385.gif" />
+    <None Include="Icons\Smiles\smiles_382.gif" />
+    <None Include="Icons\Smiles\smiles_376.gif" />
+    <None Include="Icons\Smiles\smiles_368.gif" />
+    <None Include="Icons\Smiles\smiles_367.gif" />
+    <None Include="Icons\Smiles\smiles_366.gif" />
+    <None Include="Icons\Smiles\smiles_362.gif" />
+    <None Include="Icons\Smiles\smiles_361.gif" />
+    <None Include="Icons\Smiles\smiles_358.gif" />
+    <None Include="Icons\Smiles\smiles_357.gif" />
+    <None Include="Icons\Smiles\smiles_354.gif" />
+    <None Include="Icons\Smiles\smiles_353.gif" />
+    <None Include="Icons\Smiles\smiles_352.gif" />
+    <None Include="Icons\Smiles\smiles_351.gif" />
+    <None Include="Icons\Smiles\smiles_350.gif" />
+    <None Include="Icons\Smiles\smiles_349.gif" />
+    <None Include="Icons\Smiles\smiles_348.gif" />
+    <None Include="Icons\Smiles\smiles_347.gif" />
+    <None Include="Icons\Smiles\smiles_346.gif" />
+    <None Include="Icons\Smiles\smiles_345.gif" />
+    <None Include="Icons\Smiles\smiles_336.gif" />
+    <None Include="Icons\Smiles\smiles_324.gif" />
+    <None Include="Icons\Smiles\smiles_319.gif" />
+    <None Include="Icons\Smiles\smiles_313.gif" />
+    <None Include="Icons\Smiles\smiles_310.gif" />
+    <None Include="Icons\Smiles\smiles_297.gif" />
+    <None Include="Icons\Smiles\smiles_295.gif" />
+    <None Include="Icons\Smiles\smiles_294.gif" />
+    <None Include="Icons\Smiles\smiles_293.gif" />
+    <None Include="Icons\Smiles\smiles_289.gif" />
+    <None Include="Icons\Smiles\smiles_288.gif" />
+    <None Include="Icons\Smiles\smiles_284.gif" />
+    <None Include="Icons\Smiles\smiles_278.gif" />
+    <None Include="Icons\Smiles\smiles_277.gif" />
+    <None Include="Icons\Smiles\smiles_276.gif" />
+    <None Include="Icons\Smiles\smiles_275.gif" />
+    <None Include="Icons\Smiles\smiles_267.gif" />
+    <None Include="Icons\Smiles\smiles_255.gif" />
+    <None Include="Icons\Smiles\smiles_254.gif" />
+    <None Include="Icons\Smiles\smiles_253.gif" />
+    <None Include="Icons\Smiles\smiles_246.gif" />
+    <None Include="Icons\Smiles\smiles_243.gif" />
+    <None Include="Icons\Smiles\smiles_239.gif" />
+    <None Include="Icons\Smiles\smiles_238.gif" />
+    <None Include="Icons\Smiles\smiles_237.gif" />
+    <None Include="Icons\Smiles\smiles_221.gif" />
+    <None Include="Icons\Smiles\smiles_206.gif" />
+    <None Include="Icons\Smiles\smiles_205.gif" />
+    <None Include="Icons\Smiles\smiles_203.gif" />
+    <None Include="Icons\Smiles\smiles_202.gif" />
+    <None Include="Icons\Smiles\smiles_190.gif" />
+    <None Include="Icons\Smiles\smiles_189.gif" />
+    <None Include="Icons\Smiles\smiles_188.gif" />
+    <None Include="Icons\Smiles\smiles_186.gif" />
+    <None Include="Icons\Smiles\smiles_179.gif" />
+    <None Include="Icons\Smiles\smiles_178.gif" />
+    <None Include="Icons\Smiles\smiles_177.gif" />
+    <None Include="Icons\Smiles\smiles_175.gif" />
+    <None Include="Icons\Smiles\smiles_174.gif" />
+    <None Include="Icons\Smiles\smiles_170.gif" />
+    <None Include="Icons\Smiles\smiles_167.gif" />
+    <None Include="Icons\Smiles\smiles_166.gif" />
+    <None Include="Icons\Smiles\smiles_164.gif" />
+    <None Include="Icons\Smiles\smiles_161.gif" />
+    <None Include="Icons\Smiles\smiles_158.gif" />
+    <None Include="Icons\Smiles\smiles_156.gif" />
+    <None Include="Icons\Smiles\smiles_155.gif" />
+    <None Include="Icons\Smiles\smiles_131.gif" />
+    <None Include="Icons\Smiles\smiles_127.gif" />
+    <None Include="Icons\Smiles\smiles_126.gif" />
+    <None Include="Icons\Smiles\smiles_123.gif" />
+    <None Include="Icons\Smiles\smiles_119.gif" />
+    <None Include="Icons\Smiles\smiles_118.gif" />
+    <None Include="Icons\Smiles\smiles_114.gif" />
+    <None Include="Icons\Smiles\smiles_086.gif" />
+    <None Include="Icons\Smiles\smiles_085.gif" />
+    <None Include="Icons\Smiles\smiles_083.gif" />
+    <None Include="Icons\Smiles\smiles_082.gif" />
+    <None Include="Icons\Smiles\smiles_080.gif" />
+    <None Include="Icons\Smiles\smiles_079.gif" />
+    <None Include="Icons\Smiles\smiles_077.gif" />
+    <None Include="Icons\Smiles\smiles_073.gif" />
+    <None Include="Icons\Smiles\smiles_068.gif" />
+    <None Include="Icons\Smiles\smiles_066.gif" />
+    <None Include="Icons\Smiles\smiles_062.gif" />
+    <None Include="Icons\Smiles\smiles_059.gif" />
+    <None Include="Icons\Smiles\smiles_057.gif" />
+    <None Include="Icons\Smiles\smiles_056.gif" />
+    <None Include="Icons\Smiles\smiles_052.gif" />
+    <None Include="Icons\Smiles\smiles_049.gif" />
+    <None Include="Icons\Smiles\smiles_043.gif" />
+    <None Include="Icons\Smiles\smiles_040.gif" />
+    <None Include="Icons\Smiles\smiles_039.gif" />
+    <None Include="Icons\Smiles\smiles_038.gif" />
+    <None Include="Icons\Smiles\smiles_037.gif" />
+    <None Include="Icons\Smiles\smiles_036.gif" />
+    <None Include="Icons\Smiles\smiles_034.gif" />
+    <None Include="Icons\Smiles\smiles_033.gif" />
+    <None Include="Icons\Smiles\smiles_032.gif" />
+    <None Include="Icons\Smiles\smiles_031.gif" />
+    <None Include="Icons\Smiles\smiles_030.gif" />
+    <None Include="Icons\Smiles\smiles_029.gif" />
+    <None Include="Icons\Smiles\smiles_028.gif" />
+    <None Include="Icons\Smiles\smiles_027.gif" />
+    <None Include="Icons\Smiles\smiles_026.gif" />
+    <None Include="Icons\Smiles\smiles_025.gif" />
+    <None Include="Icons\Smiles\smiles_024.gif" />
+    <None Include="Icons\Smiles\smiles_023.gif" />
+    <None Include="Icons\Smiles\smiles_022.gif" />
+    <None Include="Icons\Smiles\smiles_021.gif" />
+    <None Include="Icons\Smiles\smiles_019.gif" />
+    <None Include="Icons\Smiles\smiles_018.gif" />
+    <None Include="Icons\Smiles\smiles_016.gif" />
+    <None Include="Icons\Smiles\smiles_015.gif" />
+    <None Include="Icons\Smiles\smiles_014.gif" />
+    <None Include="Icons\Smiles\smiles_013.gif" />
+    <None Include="Icons\Smiles\smiles_012.gif" />
+    <None Include="Icons\Smiles\smiles_011.gif" />
+    <None Include="Icons\Smiles\smiles_010.gif" />
+    <None Include="Icons\Smiles\smiles_009.gif" />
+    <None Include="Icons\Smiles\smiles_008.gif" />
+    <None Include="Icons\Smiles\smiles_007.gif" />
+    <None Include="Icons\Smiles\smiles_006.gif" />
+    <None Include="Icons\Smiles\smiles_005.gif" />
+    <None Include="Icons\Smiles\smiles_004.gif" />
+    <None Include="Icons\Smiles\smiles_003.gif" />
+    <None Include="Icons\Smiles\smiles_002.gif" />
+    <None Include="Icons\Smiles\smiles_001.gif" />
+    <None Include="Icons\Smiles\smiles_000.gif" />
+    <None Include="Icons\16x16-cif.png" />
+    <None Include="Icons\16x16-person.png" />
+    <None Include="Icons\16x16-navigator.png" />
+    <None Include="Icons\16x16-marinad.png" />
+    <None Include="Icons\16x16-lock.png" />
+    <None Include="Icons\16x16-info.png" />
+    <None Include="MySounds\sndmsg.wav">
+    </None>
+    <None Include="MySounds\refresh.wav">
+    </None>
+    <None Include="MySounds\digits.wav">
+    </None>
+    <None Include="MySounds\attack.wav">
+    </None>
+    <None Include="MySounds\alarm.wav">
+    </None>
+    <None Include="MySounds\timer.wav">
+    </None>
+    <None Include="Icons\16x6-info.gif" />
+    <None Include="Icons\15x12-tr4.png" />
+    <None Include="Icons\15x12-tr3.png" />
+    <None Include="Icons\15x12-tr2.png" />
+    <None Include="Icons\15x12-tr1.png" />
+    <None Include="Icons\16x16-private.png" />
+    <None Include="ch_list.js" />
+    <None Include="Icons\16x16-wright.png" />
+    <None Include="Icons\16x16-maximize.png" />
+    <None Include="abmapcsv.txt" />
+    <None Include="Icons\16x16-refresh.png" />
+    <None Include="Icons\16x16-copyurl.png" />
+    <None Include="Icons\16x16-close.png" />
+    <None Include="Icons\16x16-camera.png" />
+    <None Include="Icons\16x16-back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

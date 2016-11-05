@@ -1,0 +1,1054 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="ABClientIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ABClientIcon.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AddressFightLog" xml:space="preserve">
+    <value>http://www.neverlands.ru/logs.fcg?fid=</value>
+  </data>
+  <data name="AddressForum" xml:space="preserve">
+    <value>http://forum.neverlands.ru/</value>
+  </data>
+  <data name="AddressGame" xml:space="preserve">
+    <value>http://www.neverlands.ru/</value>
+  </data>
+  <data name="AddressGameRoot" xml:space="preserve">
+    <value>http://www.neverlands.ru/game.php</value>
+  </data>
+  <data name="AddressNeverlands" xml:space="preserve">
+    <value>http://www.neverlands.ru/</value>
+  </data>
+  <data name="AddressNotepad" xml:space="preserve">
+    <value>http://notepad/</value>
+  </data>
+  <data name="AddressPBots" xml:space="preserve">
+    <value>http://www.neverlands.ru/pbots.cgi?</value>
+  </data>
+  <data name="AddressPInfo" xml:space="preserve">
+    <value>http://www.neverlands.ru/pinfo.cgi?</value>
+  </data>
+  <data name="AddressPName" xml:space="preserve">
+    <value>http://www.neverlands.ru/pname.cgi?</value>
+  </data>
+  <data name="_16x16_back" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\16x16-back.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_16x16_close" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\16x16-close.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_16x16_copyurl" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\16x16-copyurl.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_16x16_refresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\16x16-refresh.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_16x16_maximize" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\16x16-maximize.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_16x16_wright" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\16x16-wright.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ch_list" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ch_list.js;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="_16x16_private" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\16x16-private.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_15x12_tr1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\15x12-tr1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_15x12_tr2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\15x12-tr2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_15x12_tr3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\15x12-tr3.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_15x12_tr4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\15x12-tr4.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_16x16_camera" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\16x16-camera.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_16x16_info" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\16x16-info.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_16x16_lock" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\16x16-lock.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_16x16_marinad" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\16x16-marinad.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_16x16_navigator" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\16x16-navigator.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_16x16_person" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\16x16-person.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_16x16_cif" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\16x16-cif.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_000" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_000.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_001" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_001.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_002" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_002.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_003" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_003.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_004" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_004.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_005" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_005.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_006" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_006.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_007" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_007.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_008" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_008.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_009" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_009.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_010" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_010.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_011" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_011.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_012" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_012.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_013" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_013.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_014" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_014.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_015" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_015.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_016" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_016.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_018" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_018.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_019" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_019.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_021" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_021.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_022" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_022.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_023" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_023.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_024" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_024.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_025" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_025.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_026" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_026.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_027" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_027.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_028" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_028.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_029" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_029.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_030" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_030.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_031" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_031.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_032" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_032.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_033" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_033.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_034" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_034.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_036" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_036.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_037" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_037.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_038" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_038.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_039" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_039.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_040" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_040.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_043" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_043.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_049" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_049.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_052" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_052.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_056" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_056.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_057" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_057.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_059" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_059.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_062" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_062.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_066" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_066.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_068" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_068.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_073" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_073.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_077" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_077.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_079" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_079.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_080" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_080.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_082" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_082.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_083" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_083.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_085" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_085.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_086" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_086.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_114" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_114.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_118" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_118.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_119" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_119.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_123" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_123.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_126" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_126.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_127" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_127.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_131" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_131.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_155" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_155.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_156" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_156.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_158" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_158.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_161" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_161.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_164" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_164.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_166" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_166.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_167" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_167.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_170" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_170.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_174" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_174.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_175" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_175.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_177" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_177.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_178" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_178.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_179" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_179.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_186" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_186.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_188" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_188.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_189" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_189.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_190" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_190.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_202" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_202.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_203" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_203.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_205" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_205.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_206" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_206.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_221" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_221.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_237" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_237.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_238" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_238.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_239" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_239.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_243" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_243.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_246" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_246.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_253" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_253.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_254" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_254.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_255" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_255.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_267" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_267.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_275" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_275.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_276" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_276.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_277" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_277.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_278" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_278.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_284" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_284.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_288" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_288.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_289" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_289.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_293" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_293.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_294" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_294.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_295" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_295.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_297" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_297.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_310" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_310.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_313" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_313.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_319" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_319.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_324" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_324.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_336" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_336.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_345" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_345.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_346" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_346.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_347" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_347.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_348" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_348.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_349" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_349.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_350" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_350.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_351" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_351.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_352" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_352.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_353" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_353.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_354" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_354.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_357" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_357.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_358" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_358.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_361" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_361.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_362" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_362.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_366" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_366.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_367" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_367.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_368" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_368.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_376" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_376.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_382" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_382.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_385" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_385.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_386" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_386.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_393" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_393.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_411" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_411.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_413" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_413.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_414" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_414.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_415" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_415.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_417" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_417.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_419" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_419.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_422" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_422.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_434" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_434.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_442" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_442.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_447" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_447.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_453" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_453.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_457" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_457.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_459" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_459.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_467" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_467.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_469" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_469.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_471" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_471.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_472" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_472.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_473" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_473.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_474" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_474.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_475" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_475.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_477" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_477.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_551" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_551.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_552" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_552.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_554" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_554.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_558" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_558.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_559" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_559.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_560" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_560.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_564" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_564.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_568" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_568.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_570" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_570.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_573" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_573.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_574" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_574.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_575" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_575.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_576" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_576.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_579" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_579.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_600" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_600.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_601" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_601.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_602" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_602.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_603" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_603.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_604" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_604.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_605" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_605.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_606" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_606.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_607" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_607.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_608" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_608.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_609" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_609.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_610" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_610.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_611" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_611.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_612" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_612.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_613" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_613.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_614" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_614.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_615" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_615.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_616" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_616.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_617" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_617.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_618" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_618.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_619" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_619.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_620" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_620.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_621" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_621.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_622" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_622.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_623" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_623.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_624" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_624.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_625" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_625.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_626" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_626.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_627" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_627.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_628" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_628.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_629" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_629.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_630" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_630.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_631" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_631.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_632" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_632.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_633" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_633.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_634" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_634.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_635" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_635.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_636" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_636.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_637" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_637.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_638" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_638.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_639" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_639.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_640" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_640.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_641" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_641.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_642" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_642.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_643" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_643.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_644" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_644.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_645" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_645.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_646" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_646.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_647" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_647.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_648" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_648.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_650" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_650.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_651" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_651.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_652" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_652.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_653" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_653.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_654" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_654.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_655" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_655.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_656" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_656.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_657" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_657.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_950" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_950.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_951" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_951.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_952" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_952.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_953" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_953.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_954" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_954.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_955" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_955.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_956" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_956.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_957" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_957.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_958" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_958.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_959" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_959.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="smiles_960" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\Smiles\smiles_960.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_16x16_compas" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\16x16-compas.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="c211" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\c211.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_16x16_autoanswer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\16x16-autoanswer.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_16x16_sitehl" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\16x16_sitehl.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_16x16_silence" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\16x16-silence.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_16x16_money" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\16x16-money.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_16x16_escilon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\16x16-escilon.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_16x16_er" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\16x16-er.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="c175" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\c175.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="abneuro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\abneuro.dat;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="NameFileMap" xml:space="preserve">
+    <value>abmap.csv</value>
+  </data>
+  <data name="NameDirTemp" xml:space="preserve">
+    <value>temp</value>
+  </data>
+  <data name="_16x16_pv04" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\16x16-pv04.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MessageProxyInitError" xml:space="preserve">
+    <value>Ошибка запуска внутренних служб. Продолжение программы невозможно.</value>
+  </data>
+  <data name="_15x12_herb" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\15x12-herb.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="map" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\map.js;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="i_svi_001" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\i_svi_001.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="i_svi_002" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\i_svi_002.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="i_svi_213" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\i_svi_213.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="i_w27_41" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\i_w27_41.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="i_w27_52" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\i_w27_52.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="i_w27_53" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\i_w27_53.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="i_w28_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\i_w28_24.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="i_w28_25" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\i_w28_25.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="i_w28_26" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\i_w28_26.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="injury0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\injury0.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="injury1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\injury1.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="injury2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\injury2.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="injury3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\injury3.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="injury4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\injury4.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="json2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\PostFilter\json2.js;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="_16x16_marinad1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\16x16-marinad.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_16x16_waitopen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\16x16-waitopen.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_16x16_opennevid" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\16x16-opennevid.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="i_svi_000" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\i_svi_000.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="i_w28_26x1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\i_w28_26x.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AddressTodayChat" xml:space="preserve">
+    <value>http://todaychat/</value>
+  </data>
+  <data name="_16x16_walkers" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\16x16-walkers.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_16x16_wwalkers" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\16x16-wwalkers.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="i_svi_205" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\i_svi_205.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_16x16_perenap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\16x16-perenap.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_16x16_shading" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\16x16-shading.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_16x16_fastcancel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\16x16-fastcancel.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mapnav" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\mapnav.js;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="_16x16_fury" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\16x16-fury.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="spells" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\spells.txt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="arena_v04" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\arena_v04.js;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="i_w61_101" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Icons\i_w61_101.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+</root>

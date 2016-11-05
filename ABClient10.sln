@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABClient", "ABClient\ABClient.csproj", "{01222EA8-47FE-413C-A17B-1B7411BA7296}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{01222EA8-47FE-413C-A17B-1B7411BA7296}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01222EA8-47FE-413C-A17B-1B7411BA7296}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01222EA8-47FE-413C-A17B-1B7411BA7296}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01222EA8-47FE-413C-A17B-1B7411BA7296}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		CodeStyleEnforcer_RulesLocation = 0
+		CodeStyleEnforcer_Active = -1
+	EndGlobalSection
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+	GlobalSection(VaultVsipSolution-v2) = preSolution
+		VaultHost = http://muradpc/vaultservice/
+		VaultRepositoryID = 2
+		VaultRepositoryGUID = 4e9541f6-0b0a-4e7a-a837-662e3c5a7a69
+		ProjectCount = 1
+		ProjectRelativeDiskPath1 = ABClient\ABClient.csproj
+	EndGlobalSection
+EndGlobal
