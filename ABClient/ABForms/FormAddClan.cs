@@ -484,7 +484,7 @@ namespace ABClient.ABForms
                     try
                     {
                         IdleManager.AddActivity();
-                        buffer = wc.DownloadData(new Uri("http://neverstat.ru/clan_players.php?type=all"));
+                        buffer = wc.DownloadData(new Uri("http://neverok.ru//clan_players.php?type=all"));
                     }
                     catch (WebException)
                     {
@@ -515,6 +515,143 @@ namespace ABClient.ABForms
                     else
                     {
                         return;
+465
+                return;
+466
+            }
+467
+​
+468
+            var spar0 = HelperStrings.ParseArguments(params0);
+469
+            if (spar0.Length < 9)
+470
+            {
+471
+                return;
+472
+            }
+473
+​
+474
+            var firstNick = spar0[0].Trim();
+475
+            var firstSign = spar0[2];
+476
+            var firstClan = spar0[8];
+477
+​
+478
+            var listClanNicks = new List<string> { firstNick };
+479
+            if (!string.IsNullOrEmpty(firstSign))
+480
+            {
+481
+                byte[] buffer;
+482
+                using (var wc = new WebClient { Proxy = AppVars.LocalProxy })
+483
+                {
+484
+                    try
+485
+                    {
+486
+                        IdleManager.AddActivity();
+487
+                        buffer = wc.DownloadData(new Uri("http://neverok.ru//clan_players.php?type=all"));
+488
+                    }
+489
+                    catch (WebException)
+490
+                    {
+491
+                        return;
+492
+                    }
+493
+                    finally
+494
+                    {
+495
+                        IdleManager.RemoveActivity();
+496
+                    }
+497
+                }
+498
+​
+499
+                html = AppVars.Codepage.GetString(buffer);
+500
+                if (string.IsNullOrEmpty(html))
+501
+                    return;
+502
+​
+503
+                var linkClan = HelperStrings.SubString(html, firstSign + @"""><a href=""clan_players.php?clantype=", @"""");
+504
+                if (string.IsNullOrEmpty(linkClan))
+505
+                    return;
+506
+​
+507
+                try
+508
+                {
+509
+                    if (AppVars.VipFormAddClan != null)
+510
+                    {
+511
+                        var message = string.Format($"Получаем список клана [{firstClan}]...");
+512
+                        AppVars.VipFormAddClan.BeginInvoke(
+513
+                            new UpdateStatusFormAddClanDelegate(AppVars.VipFormAddClan.UpdateStatus), message);
+514
+                    }
+515
+                    else
+516
+                    {
+517
+                        return;
+518
+                    }
+519
+                }
+520
+                catch (InvalidOperationException)
+521
+                {
+522
+                }
+523
+​
+524
+                using (var wc = new WebClient { Proxy = AppVars.LocalProxy })
+525
+                {
+526
+                    try
+527
+                    {
+528
+                        IdleManager.AddActivity();
+529
+                        buffer = wc.DownloadData(new Uri($"http://neverok.ru/clan_players.php?clantype={linkClan}"));
+530
+                    }
+531
+                    catch (WebException)
+532
+                    {
+
                     }
                 }
                 catch (InvalidOperationException)
@@ -526,7 +663,7 @@ namespace ABClient.ABForms
                     try
                     {
                         IdleManager.AddActivity();
-                        buffer = wc.DownloadData(new Uri($"http://neverstat.ru/clan_players.php?clantype={linkClan}"));
+                        buffer = wc.DownloadData(new Uri($"http://neverok.ru/clan_players.php?clantype={linkClan}"));
                     }
                     catch (WebException)
                     {
