@@ -192,7 +192,6 @@
         internal static readonly string SpanEnabledVersions = "<span id=ev>";
         internal static readonly string SpanLastVersion = "<span id=lv>";
         //internal static readonly string SpanBoFreq = "<span id=boreq>";
-        internal static readonly string SpanObraz = "<span id=obraz>";
         internal static readonly string SpanClose = "</span>";
 
         public const string TagLezDoAutoboi = "LezDoAutoboi";
@@ -359,7 +358,7 @@
         //internal const string DashFormat = " - ";
 
         //internal const string AbcObrazyUrl = "http://abclient.1gb.ru/abcobrazy/";
-        internal const string NeverObrazyUrl = "http://image.neverlands.ru/obrazy/";
+        //internal const string NeverObrazyUrl = "http://image.neverlands.ru/obrazy/";
         //internal const string FishPortUrl = "http://fishport/";
 
         internal const string LogsDir = "logs";

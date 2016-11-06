@@ -7,6 +7,7 @@
     {
         private static byte[] SlotsJs(byte[] array)
         {
+            /*
             var sb = new StringBuilder(Russian.Codepage.GetString(array));
             var strOldObraz = @"return '<td width='+wsize+' valign=top><img src=http://image.neverlands.ru/1x1.gif width=1 height=23><br><img src=http://image.neverlands.ru/obrazy/'+image+' border=0 width='+wsize+' height=255 alt=""'+nick+'""></td>';";
             var strNewObraz =
@@ -19,6 +20,9 @@
             sb.Replace(strOldObraz, strNewObraz);
             sb.Replace("alt=", "title=");
             return Russian.Codepage.GetBytes(sb.ToString());
+            */
+
+            return array;
         }
     }
 }
