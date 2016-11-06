@@ -11,7 +11,7 @@
 
     internal sealed partial class FormMain
     {
-        private static int _herbsCounter;
+       // private static int _herbsCounter;
 
         internal static void HerbsList(string list)
         {
@@ -35,58 +35,6 @@
                                        UpdatedInTicks = updatedInTicks
                                    };
                 AppVars.Profile.HerbCells.Add(AppVars.Profile.MapLocation, herbcell);
-            }
-
-            var sbo = string.Format("{0}/{1}/{2}/{3}/", AppVars.Profile.UserNick, AppVars.Profile.MapLocation, list, updatedInTicks.ToString(CultureInfo.InvariantCulture));
-            var sboBuffer = Encoding.UTF8.GetBytes(sbo);
-            var sboCoded = Convert.ToBase64String(sboBuffer);
-            var threadName = string.Format("Herbs #{0}", ++_herbsCounter);
-            var threadHerbs = new Thread(OnlineHerbsAsync)
-            {
-                Name = threadName
-            };
-
-            threadHerbs.Start(sboCoded);
-        }
-
-        private static void OnlineHerbsAsync(object stateInfo)
-        {
-            var sboCoded = stateInfo as string;
-            WebResponse response = null;
-            try
-            {
-                IdleManager.AddActivity();
-                var url = $"http://{CuteConsts.ABClientHostName}/{CuteConsts.ABOnlineHerbsPhp}.php";
-                var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
-                httpWebRequest.Method = "POST";
-                httpWebRequest.Proxy = AppVars.LocalProxy;
-                var postData = string.Format(
-                    CultureInfo.InvariantCulture,
-                    "data={0}",
-                    HttpUtility.UrlEncode(sboCoded));
-                var byteArray = Encoding.ASCII.GetBytes(postData);
-                httpWebRequest.ContentLength = byteArray.Length;
-                httpWebRequest.ContentType = "application/x-www-form-urlencoded";
-                var postStream = httpWebRequest.GetRequestStream();
-                postStream.Write(byteArray, 0, byteArray.Length);
-                postStream.Close();
-                response = httpWebRequest.GetResponse();
-                var receiveStream = response.GetResponseStream();
-                if (receiveStream != null)
-                {
-                    using (var readStream = new StreamReader(receiveStream, Russian.Codepage))
-                    {
-                        var stringResult = readStream.ReadToEnd();
-                    }
-                }
-            }
-            catch (WebException)
-            {
-            }
-            finally
-            {
-                response?.Close();
-                IdleManager.RemoveActivity();
             }
         }
 

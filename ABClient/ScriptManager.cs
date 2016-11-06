@@ -215,42 +215,6 @@
             }
         }
 
-        public string ObrazSubstitute(string nick, string obraz)
-        {
-            if (nick == null)
-            {
-                throw new ArgumentNullException("nick");
-            }
-
-            if (obraz == null)
-            {
-                throw new ArgumentNullException("obraz");
-            }
-
-            var myObraz = AppConsts.NeverObrazyUrl + obraz;
-            try
-            {
-                FormMain.LockOb.AcquireWriterLock(5000);
-                try
-                {
-                    var upperNick = nick.ToUpper(Helpers.Russian.Culture);
-                    if (AppVars.UserObrazes != null && AppVars.UserObrazes.ContainsKey(upperNick))
-                    {
-                        myObraz = AppConsts.AbcObrazyUrl + AppVars.UserObrazes[upperNick];
-                    }
-                }
-                finally
-                {
-                    FormMain.LockOb.ReleaseWriterLock();
-                }
-            }
-            catch (ApplicationException)
-            {
-            }
-
-            return myObraz;
-        }
-
         public string ChatFilter(string message)
         {
             return FormMain.ChatFilter(message);

@@ -23,6 +23,7 @@
 
         private static void ForceDownloadKey()
         {
+            /*
             var wc = new WebClient { Proxy = AppVars.LocalProxy };
             try
             {
@@ -41,6 +42,7 @@
             }
 
             Environment.Exit(0);
+            */
         }
 
         private static void QuiteDownloadKey()
@@ -68,6 +70,7 @@
 
         private static void DownloadKey()
         {
+            /*
             var wc = new WebClient { Proxy = AppVars.LocalProxy };
             wc.DownloadDataCompleted += DownloadKeyCompleted;
             try
@@ -82,6 +85,7 @@
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
+            */
         }
 
         private static void DownloadKeyCompleted(object sender, DownloadDataCompletedEventArgs e)

@@ -89,18 +89,14 @@
         internal static readonly string HttpPrefix = "http://";
         internal static readonly string HttpWww = "www";
         internal static readonly string NeverHostWithNoWwwAndDot = "neverlands.ru";
-        internal static readonly string ClientHostWithNoWwwAndDot = "abclient.1gb.ru";
         internal static readonly string NeverHostWithNoWww = "." + NeverHostWithNoWwwAndDot;
-        internal static readonly string ClientHost = HttpWww + "." + ClientHostWithNoWwwAndDot;
         internal static readonly string GameHost = HttpWww + NeverHostWithNoWww;
         internal static readonly string GameReferalUrl = GameHost + "/cgi-bin/go.cgi?uid=";
         internal static readonly string GameCaptchaUrl = GameHost + "/modules/code/code.php?";
         internal static readonly string GameMainUrl = GameHost + "/main.php";
         internal static readonly string ForumHost = "forum" + NeverHostWithNoWww;
         internal static readonly string GameUrl = HttpPrefix + GameHost;
-        internal static readonly string ClientUrl = HttpPrefix + ClientHost;
         internal static readonly string ExitUrl = HttpPrefix + GameHost + "/exit.php";
-        internal static readonly string KeyFileUrl = ClientUrl + "/" + KeyFile;
 
         #endregion
 
@@ -362,7 +358,7 @@
         /// </summary>
         //internal const string DashFormat = " - ";
 
-        internal const string AbcObrazyUrl = "http://abclient.1gb.ru/abcobrazy/";
+        //internal const string AbcObrazyUrl = "http://abclient.1gb.ru/abcobrazy/";
         internal const string NeverObrazyUrl = "http://image.neverlands.ru/obrazy/";
         //internal const string FishPortUrl = "http://fishport/";
 

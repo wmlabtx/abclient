@@ -20,7 +20,6 @@
             UpdateTexLog(AppConsts.ApplicationName + " начал работу");
             RestoreElements();
             Text = AppVars.AppVersion.NickProductShortVersion;
-            CheckNewVersion(false);
 
             foreach (var bookmark in Favorites.Bookmarks)
             {
