@@ -161,7 +161,7 @@
                     try
                     {
                         IdleManager.AddActivity();
-                        buffer = wc.DownloadData(new Uri("http://neverok.ru/clan_players.php?type=all"));
+                        buffer = wc.DownloadData(new Uri("http://neverstat.ru/clan_players.php?type=all"));
                     }
                     catch (WebException)
                     {
@@ -200,7 +200,7 @@
                     try
                     {
                         IdleManager.AddActivity();
-                        buffer = wc.DownloadData(new Uri($"http://neverok.ru/clan_players.php?clantype={linkClan}"));
+                        buffer = wc.DownloadData(new Uri($"http://neverstat.ru/clan_players.php?clantype={linkClan}"));
                     }
                     catch (WebException)
                     {
