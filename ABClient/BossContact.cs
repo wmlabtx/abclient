@@ -4,14 +4,12 @@ using System.Text;
 using ABClient.ABForms;
 using ABClient.MyHelpers;
 using ABClient.MyProfile;
-using System.IO;
 
 namespace ABClient
 {
     public class BossContact
     {
-        internal string Name { get; private set; }
-        private DateTime LastUpdated { get; set; }
+        internal string Name { get; }
         internal DateTime NextCheck { get; set; }
         internal DateTime LastBossUpdated { get; set; }
 
@@ -22,7 +20,6 @@ namespace ABClient
             Name = name.Trim();
             LastBossUpdated = lastBossUpdated;
             Flog = string.Empty;
-            LastUpdated = DateTime.MinValue;
             NextCheck = delayedCheck ? DateTime.Now.AddSeconds(Dice.Make(30, 90)) : DateTime.Now;
         }
 
@@ -31,7 +28,9 @@ namespace ABClient
             if (string.IsNullOrEmpty(html))
                 return;
 
-            var params0 = HelperStrings.SubString(html, "var params = [[", "],");
+            // 2/11/2017 - params -> parameters 
+            // var params0 = HelperStrings.SubString(html, "var params = [[", "],");
+            var params0 = HelperStrings.SubString(html, "var parameters = [[", "],");
             if (string.IsNullOrEmpty(params0))
                 return;
 
@@ -103,7 +102,6 @@ namespace ABClient
             {
                 ContactsManager.AddUsers(livesg1);
                 //File.WriteAllText($"x{flog}.txt", fight);
-                return;
             }
         }
 
@@ -212,7 +210,9 @@ namespace ABClient
             if (string.IsNullOrEmpty(html))
                 return "Аноним";
 
-            var params0 = HelperStrings.SubString(html, "var params = [[", "],");
+            // 2/11/2017 - params -> parameters 
+            // var params0 = HelperStrings.SubString(html, "var params = [[", "],");
+            var params0 = HelperStrings.SubString(html, "var parameters = [[", "],");
             if (string.IsNullOrEmpty(params0))
                 return "Аноним";
 
@@ -261,7 +261,7 @@ namespace ABClient
                 var seffects = effects.Split(new[] { "],[" }, StringSplitOptions.RemoveEmptyEntries);
                 for (var k = 0; k < seffects.Length; k++)
                 {
-                    var effk = seffects[k].Trim(new[] { '[', ']' });
+                    var effk = seffects[k].Trim('[', ']');
                     var seffk = effk.Split(',');
                     if (seffk.Length <= 1)
                     {

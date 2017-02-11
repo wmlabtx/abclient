@@ -99,6 +99,7 @@ namespace ABClient.PostFilter
                 if (address.Contains("/js/hp.js"))
                     return HpJs(array);
 
+                // 2/11/2017 - <SCRIPT src="/js/map.js?v=4"></SCRIPT>
                 if (address.Contains("/js/map.js"))
                     return MapJs(array);
 

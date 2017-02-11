@@ -87,7 +87,9 @@ namespace ABClient.ABForms
             }
 
             // var params = [['~Angry~',2,'nona.gif',17,'angry.gif','Форпост [Больница]',1,1394107847,'LightSoulS','Hungry and Angry','Форпост','25.12.2007'],
-            var params0 = HelperStrings.SubString(html, "var params = [[", "],");
+            // 2/11/2017 - params -> parameters 
+            // var params0 = HelperStrings.SubString(html, "var params = [[", "],");
+            var params0 = HelperStrings.SubString(html, "var parameters = [[", "],");
             if (!string.IsNullOrEmpty(params0))
             {
                 var spar0 = HelperStrings.ParseArguments(params0);

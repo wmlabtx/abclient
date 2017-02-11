@@ -24,7 +24,9 @@ namespace ABClient
             if (string.IsNullOrEmpty(html))
                 return false;
 
-            var params0 = HelperStrings.SubString(html, "var params = [[", "],");
+            // 2/11/2017 - params -> parameters 
+            // var params0 = HelperStrings.SubString(html, "var params = [[", "],");
+            var params0 = HelperStrings.SubString(html, "var parameters = [[", "],");
             if (string.IsNullOrEmpty(params0))
                 return false;
 

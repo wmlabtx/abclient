@@ -55,7 +55,9 @@ namespace ABClient.ABForms
             var ai = (AttackInfo) stateInfo;
             var nick = StripItalic(ai.TargetNick);
             var html = NeverInfo.GetPInfo(nick);
-            var params0 = HelperStrings.SubString(html, "var params = [[", "],");
+            // 2/11/2017 - params -> parameters 
+            // var params0 = HelperStrings.SubString(html, "var params = [[", "],");
+            var params0 = HelperStrings.SubString(html, "var parameters = [[", "],");
             if (string.IsNullOrEmpty(params0))
             {
                 if (AppVars.MainForm != null)

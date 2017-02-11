@@ -240,8 +240,8 @@ namespace ABClient.ABForms
                                      ImageTransparentColor = Color.Magenta,
                                      Name = Guid.NewGuid().ToString(),
                                      Size = new Size(58, 22),
-                                     Text = "Назад",
-                                     ToolTipText = "Возврат на предыдущую страницу",
+                                     Text = @"Назад",
+                                     ToolTipText = @"Возврат на предыдущую страницу",
                                      Tag = browser
                                  };
                 buttonback.Click += buttonForumBack_Click;
