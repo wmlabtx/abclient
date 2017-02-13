@@ -1,10 +1,12 @@
-Skype: wmlab.home 
+Skype: wmlab.home
+E-Mail: wmlab@hotmail.com
+Cell: +19293428881
 
-ABClient 2.33.1: 
-http://www39.zippyshare.com/v/vhmeMGlH/file.html 
+ABClient 2.33.1: http://www39.zippyshare.com/v/vhmeMGlH/file.html 
 
-Source 
-https://github.com/wmlabtx/abclient 
+Source: https://github.com/wmlabtx/abclient 
+
+Murad Ismayilov (c) 2006-2017
 
 Ч)ирвеным сволотом грулят 
 Е)греные глаза 
