@@ -198,6 +198,7 @@ namespace ABClient.MyProfile
             DoShowFastAttackFog = true;
             DoShowFastAttackZas = true;
             DoShowFastAttackTotem = true;
+            DoShowFastAttackPortal = true;            
 
             DoAutoCutWriteChat = true;
             DoStopOnDig = true;

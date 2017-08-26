@@ -2,7 +2,7 @@
 {
     internal sealed partial class UserConfig
     {
-        private const string ConstCommentOne = " Profile for ABClient, the fast client for Neverlands (http://abclient.1gb.ru/) ";
+        private const string ConstCommentOne = " Profile for ABClient, the fast client for Neverlands (https://github.com/wmlabtx/abclient/wiki/) ";
         private const string ConstCommentTwo = " Written by Murad Ismayilov, 2007-2009; email: wmlab@hotmail.com; skype: wmlab.home ";
         private const string ConstErrorConfigSaveTitle = "Ошибка сохранения профайла";
         private const string ConstErrorConfigLoadTitle = "Ошибка загрузки профайла";

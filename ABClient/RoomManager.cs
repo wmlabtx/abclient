@@ -287,6 +287,9 @@ namespace ABClient
                                 case 4:
                                     FormMain.FastAttackClosedFistAutoAttack(resultFilterProcRoom.EnemyAttack);
                                     break;
+                                case 5:
+                                    FormMain.FastAttackPortalAutoAttack(resultFilterProcRoom.EnemyAttack);
+                                    break;
                             }
 
                             return html;

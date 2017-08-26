@@ -6,7 +6,7 @@
         private static int[] _arrayTipIndexes;
         private static readonly string[] Replics =
         {
-            "Связаться с автором <b>ABClient</b> очень просто - Skype: <b>wmlab.home</b>, сайт: <b><a href='http://abclient.1gb.ru/' onclick='window.open(this.href);'>http://abclient.1gb.ru/</a></b>, E-mail: <b>wmlab@hotmail.com</b>", 
+            "Связаться с автором <b>ABClient</b> очень просто - Skype: <b>wmlab.home</b>, сайт: <b><a href='https://github.com/wmlabtx/abclient/wiki/' onclick='window.open(this.href);'>https://github.com/wmlabtx/abclient/wiki/</a></b>, E-mail: <b>wmlab@hotmail.com</b>", 
             "<b>ABClient</b> может попытаться вычислить клетки, где находится перс и его соклановцы. Надо открыть инфу перса и нажать на тулбаре кнопку [Компас]",               
             "При достижении определенной усталости клиент попытается найти в инвентаре блаж и выпить его. Настройки автопитья блажа находятся в первой закладке настроек.", 
             "<b>ABClient</b> может добавить в контакты сразу весь клан. Открываем инфу любого перса в клане и нажимаем на тулбаре кнопку [Весь клан].", 

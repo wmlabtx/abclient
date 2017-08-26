@@ -497,6 +497,11 @@ namespace ABClient.MyProfile
         internal bool DoShowFastAttackTotem { get; set; }
 
         /// <summary>
+        /// Показывать портал
+        /// </summary>
+        internal bool DoShowFastAttackPortal { get; set; }
+
+        /// <summary>
         /// Останавливаться на кладе
         /// </summary>
         internal bool DoStopOnDig { get; set; }

@@ -15,9 +15,19 @@
 
         private void FormLoad()
         {
-            //var s = HelperStrings.ParseJsString("1,300,10,0,2,\"\",\"\",\"1\",\"1948222238\",[],[800817,\"5b5ce67a064cd39446d488a22b366525\",\"БИЗОНИУС\",1387692418]");
+            try
+            {
+                if (AppVars.MainForm != null)
+                {
+                    AppVars.MainForm.BeginInvoke(
+                        new UpdateTexLogDelegate(AppVars.MainForm.UpdateTexLog),
+                        new object[] {  $"{AppConsts.ApplicationName} has been started" });
+                }
+            }
+            catch (InvalidOperationException)
+            {
+            }
 
-            UpdateTexLog(AppConsts.ApplicationName + " начал работу");
             RestoreElements();
             Text = AppVars.AppVersion.NickProductShortVersion;
 
@@ -136,6 +146,19 @@
 
         private void LogOn()
         {
+            try
+            {
+                if (AppVars.MainForm != null)
+                {
+                    AppVars.MainForm.BeginInvoke(
+                        new UpdateTexLogDelegate(AppVars.MainForm.UpdateTexLog),
+                        new object[] { "LogOn()" });
+                }
+            }
+            catch (InvalidOperationException)
+            {
+            }
+
             AppVars.NextCheckNoConnection = DateTime.Now.AddSeconds(30);
             var chat = ReadChat();
             if (chat != null)

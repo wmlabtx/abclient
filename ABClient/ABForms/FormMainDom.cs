@@ -77,7 +77,6 @@ namespace ABClient.ABForms
         {
             var success = false;
             var window = GetFrame(frame);
-            //var text = string.Empty;
             if (window != null)
             {
                 try
@@ -88,13 +87,12 @@ namespace ABClient.ABForms
                 catch (Exception)
                 {
                     success = false;
-                    //text = exception.Message;
                 }
             }
 
             if (!success)
             {
-                //UpdateGame("Перезаход из-за ошибок в браузере или структуре фреймов. " + text);
+                UpdateGame("Перезаход из-за ошибок в браузере или структуре фреймов. ");
             }
         }
 
@@ -111,18 +109,6 @@ namespace ABClient.ABForms
         internal void ReloadMainPhpInvoke()
         {
             SetMainTopInvoke("http://www.neverlands.ru/main.php");
-        }
-
-        private void ReloadMainPhpSafe()
-        {
-            if (!InvokeRequired)
-            {
-                Invoke(new MethodInvoker(ReloadMainPhpSafe));
-            }
-            else
-            {
-                SetMainTopInvoke("http://www.neverlands.ru/main.php");
-            }
         }
 
         private void WriteMessageToPrompt(string msg)

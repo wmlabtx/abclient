@@ -40,7 +40,7 @@
             // 
             this.buttonOk.AutoSize = true;
             this.buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonOk.Location = new System.Drawing.Point(51, 103);
+            this.buttonOk.Location = new System.Drawing.Point(82, 94);
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.Size = new System.Drawing.Size(121, 23);
             this.buttonOk.TabIndex = 1008;
@@ -55,15 +55,15 @@
             this.richTextBox.Location = new System.Drawing.Point(13, 13);
             this.richTextBox.Name = "richTextBox";
             this.richTextBox.ReadOnly = true;
-            this.richTextBox.Size = new System.Drawing.Size(198, 55);
+            this.richTextBox.Size = new System.Drawing.Size(262, 75);
             this.richTextBox.TabIndex = 1009;
-            this.richTextBox.Text = "Автор: Мурад Исмайлов\nE-Mail: wmlab@hotmail.com\nSkype: wmlab.home\nWeb page: abcli" +
-    "ent.1gb.ru";
+            this.richTextBox.Text = "Автор: Мурад Исмайлов\nE-Mail: wmlab@hotmail.com\nSkype: wmlab.home\nWeb page: https" +
+    "://github.com/wmlabtx/abclient/wiki/";
             // 
             // labelExpired
             // 
             this.labelExpired.AutoSize = true;
-            this.labelExpired.Location = new System.Drawing.Point(13, 75);
+            this.labelExpired.Location = new System.Drawing.Point(13, 77);
             this.labelExpired.Name = "labelExpired";
             this.labelExpired.Size = new System.Drawing.Size(35, 13);
             this.labelExpired.TabIndex = 1010;
@@ -73,7 +73,7 @@
             // 
             this.AcceptButton = this.buttonOk;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(223, 133);
+            this.ClientSize = new System.Drawing.Size(287, 126);
             this.Controls.Add(this.labelExpired);
             this.Controls.Add(this.richTextBox);
             this.Controls.Add(this.buttonOk);

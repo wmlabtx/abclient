@@ -1,9 +1,6 @@
-﻿using System.Globalization;
-using System.IO;
+﻿using System.IO;
 using System.Net;
-using System.Security.Cryptography;
 using System.Threading;
-using System.Web;
 using ABClient.ExtMap;
 using ABClient.MyHelpers;
 
@@ -770,7 +767,7 @@ namespace ABClient.ABForms
             miFastElxVosst.Enabled = miFastEnabled.Checked;
             miFastF3.Enabled = miFastEnabled.Checked;
             miFastF4.Enabled = miFastEnabled.Checked;
-            miFastF12.Enabled = miFastEnabled.Checked;
+            miFastCtrlF12.Enabled = miFastEnabled.Checked;
             miFastSvitFog.Enabled = miFastEnabled.Checked;
             miFastF9.Enabled = miFastEnabled.Checked;
             miFastF10.Enabled = miFastEnabled.Checked;
@@ -794,6 +791,11 @@ namespace ABClient.ABForms
         private void MiFastNevidPotClick(object sender, EventArgs e)
         {
             FastAttackNevidPot(AppVars.Profile.UserNick);
+        }
+
+        private void MiFastIslandPotClick(object sender, EventArgs e)
+        {
+            FastAttackIslandPot();
         }
 
         private void MiFastBlazPotClick(object sender, EventArgs e)
@@ -1068,15 +1070,6 @@ namespace ABClient.ABForms
             var dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
             dtDateTime = dtDateTime.AddSeconds(unixTimeStamp).ToLocalTime();
             return dtDateTime;
-        }
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            //_boss1.Process();
-        }
-
-        private void timer2_Tick(object sender, EventArgs e)
-        {
-            //_boss2.Process();
         }
 
         private void buttonFury_Click(object sender, EventArgs e)
@@ -1628,6 +1621,18 @@ namespace ABClient.ABForms
 
             Map.SaveAbcMap();
             WriteChatMsgSafe("Сканирование карты закончено!");
+        }
+
+        private void menuitemFatalErrorTest_Click(object sender, EventArgs e)
+        {
+            var x = new int[1];
+            var y = $"{x[2]}";
+            WriteChatMsgSafe(y);
+        }
+
+        private void menuitemReloadTopFrame_Click(object sender, EventArgs e)
+        {
+            ReloadMainFrame();
         }
     }
 }

@@ -320,7 +320,7 @@ namespace ABClient.ABForms
             }
 
             var msg =
-                @"<SPAN class=massm>&nbsp;" + "abclient" + "&nbsp;</SPAN> " +
+                @"<SPAN class=massm>&nbsp;" + "ABClient" + "&nbsp;</SPAN> " +
                 "<FONT color=#000000> " +
                 message +
                 "</FONT><BR>";
