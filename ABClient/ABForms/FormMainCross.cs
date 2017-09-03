@@ -12,9 +12,6 @@ namespace ABClient.ABForms
     using MySounds;
     using ExtMap;
 
-    /// <summary>
-    /// Главная форма.
-    /// </summary>
     internal sealed partial class FormMain
     {
         internal static void FishOverload()
@@ -466,7 +463,7 @@ namespace ABClient.ABForms
 
         internal void UpdateHttpLog(string message)
         {
-            UpdateTexLog(message);
+            // UpdateTexLog(message);
         }
 
         internal void UpdateTexLog(string message)
@@ -647,8 +644,20 @@ namespace ABClient.ABForms
             if (AppVars.MustReload)
                 return;
 
+            try
+            {
+                if (AppVars.MainForm != null)
+                {
+                    AppVars.MainForm.BeginInvoke(
+                        new UpdateTexLogDelegate(AppVars.MainForm.UpdateTexLog),
+                        new object[] { $"UpdateGame({message})" });
+                }
+            }
+            catch (InvalidOperationException)
+            {
+            }
+
             AppVars.MustReload = true;
-            UpdateTexLog(message);            
         }
 
         internal void UpdateAutoboiReset()

@@ -32,8 +32,8 @@ namespace ABClient
         private int WoundCounts { get; set; }
         internal int[] Wounds { get; private set; }
 
-        internal string[] CodeEffects { get; set; }
-        internal string[] NameEffects { get; set; }
+        private string[] CodeEffects { get; set; }
+        private string[] NameEffects { get; set; }
 
         internal bool IsMolch { get; private set; }
         internal bool IsOnline { get; private set; }
@@ -98,63 +98,34 @@ namespace ABClient
             return result;
         }
 
-        internal void Process(string html)
+        internal void Process(UserInfo userInfo)
         {
             var currentTimeStamp = DateTime.Now;
-
-            if (string.IsNullOrEmpty(html))
+            if (userInfo == null)
                 return;
 
-            // 2/11/2017 - params -> parameters 
-            // var params0 = HelperStrings.SubString(html, "var params = [[", "],");
-            var params0 = HelperStrings.SubString(html, "var parameters = [[", "],");
-            if (string.IsNullOrEmpty(params0))
-                return;
-
-            var hpmp = HelperStrings.SubString(html, "var hpmp = [", "]");
-            if (string.IsNullOrEmpty(hpmp))
-                return;
-
-            var spar1 = HelperStrings.ParseArguments(hpmp);
-            if (spar1.Length < 5)
-                return;
-
-            var stied = spar1[4];
-            int tied;
-            if (int.TryParse(stied, out tied))
-                tied = 100 - tied;
-
-            var slots = HelperStrings.SubString(html, "var slots = ['", "'];");
-            if (string.IsNullOrEmpty(slots))
-                return;
-
-            var pslots = slots.Split('@');
-            if (pslots.Length < 16)
-                return;
-
+            var tied = userInfo.Tied;
             var isKa = false;
             var sslots = new StringBuilder();
-            for (var indexSlot = 0; indexSlot < pslots.Length; indexSlot++) {
+            var pslots = new string[userInfo.SlotsCodes.Length];
+            for (var indexSlot = 0; indexSlot < userInfo.SlotsCodes.Length; indexSlot++)
+            {
+                pslots[indexSlot] = $"{userInfo.SlotsCodes[indexSlot]}:{userInfo.SlotsNames[indexSlot]}";
                 if ((indexSlot != 0) && (indexSlot != 1) && (indexSlot != 2) && (indexSlot != 3) &&
                     (indexSlot != 7) && (indexSlot != 10) &&
                     (indexSlot != 11) && (indexSlot != 12) && (indexSlot != 13) && (indexSlot != 14) &&
                     (indexSlot != 15))
                     continue;
 
-                var ps = pslots[indexSlot].Split(':');
-                if (ps.Length != 3)
-                    sslots.Append('-');
-                else {
-                    var thingImage = ps[0];
-                    if (!isKa) {
-                        var tl = ThingsDb.Find(thingImage);
-                        if (tl.Count == 0)
-                            isKa = true;
-                    }
-
-                    sslots.Append(thingImage);
+                var thingImage = userInfo.SlotsCodes[indexSlot];
+                if (!isKa)
+                {
+                    var tl = ThingsDb.Find(thingImage);
+                    if (tl.Count == 0)
+                        isKa = true;
                 }
 
+                sslots.Append(thingImage);
                 sslots.Append('@');
             }
 
@@ -163,23 +134,19 @@ namespace ABClient
 
             sslots.Length--;
 
-            var spar0 = HelperStrings.ParseArguments(params0);
-            if (spar0.Length < 9)
-                return;
-
-            var nick = spar0[0].Trim();
-            var align = spar0[1];
-            var sign = spar0[2];
-            var level = spar0[3];
-            var location = spar0[5];
+            var nick = userInfo.Nick;
+            var align = userInfo.Align;
+            var sign = userInfo.ClanSign;
+            var level = userInfo.Level;
+            var location = userInfo.Location;
             var isonline = !string.IsNullOrEmpty(location);
-            var flog = spar0[7];
+            var flog = userInfo.FightLog;
             if (flog.Equals("0", StringComparison.Ordinal))
             {
                 flog = string.Empty;
             }
 
-            var clan = spar0[8];
+            var clan = userInfo.ClanName;
 
             var woundCounts = 0;
             var wounds = new int[4];
@@ -188,33 +155,19 @@ namespace ABClient
             var nameEffects = new List<string>();
 
             // var effects = [[1,'Боевая травма (x9) (еще 23:06:17)'],[2,'Тяжелая травма (x2) (еще 07:01:22)'],[17,'Молчанка (еще 00:00:05)']];
-            var effects = HelperStrings.SubString(html, "var effects = [", "];");
             var sbeff = new StringBuilder();
-            if (!string.IsNullOrEmpty(effects))
+            if (userInfo.EffectsCodes.Length > 0)
             {
-
-                var seffects = effects.Split(new[] { "],[" }, StringSplitOptions.RemoveEmptyEntries);
-                for (var k = 0; k < seffects.Length; k++)
+                for (var k = 0; k < userInfo.EffectsCodes.Length; k++)
                 {
-                    var effk = seffects[k].Trim(new[] { '[', ']' });
-                    var seffk = effk.Split(',');
-                    if (seffk.Length <= 1)
-                    {
-                        continue;
-                    }
-
-                    var effcode = seffk[0];
-                    var effname = seffk[1].Replace("<b>", string.Empty).Replace("</b>", string.Empty);
+                    var effcode = userInfo.EffectsCodes[k];
+                    var effname = userInfo.EffectsNames[k];
                     sbeff.AppendFormat(
                         @"&nbsp;<img src=http://image.neverlands.ru/pinfo/eff_{0}.gif width=15 height=15 align=absmiddle title=""{1}"">",
                         effcode,
                         effname);
-                    var effcountstr = HelperStrings.SubString(effname, "(x", ")");                    
-                    int effcount = 0;
-                    if (!string.IsNullOrEmpty(effcountstr))
-                    {
-                        int.TryParse(effcountstr, out effcount);
-                    }
+                    int effcount;
+                    int.TryParse(userInfo.EffectsSizes[k], out effcount);
 
                     switch (effcode)
                     {
@@ -376,7 +329,7 @@ namespace ABClient
 
             // Вступление в бой
 
-            if (!_isFirst && isonline && ((string.IsNullOrEmpty(Flog) && !string.IsNullOrEmpty(flog)) || (!string.IsNullOrEmpty(Flog) && !string.IsNullOrEmpty(flog) && !Flog.Equals(flog, StringComparison.Ordinal))))
+            if (!_isFirst && isonline && (string.IsNullOrEmpty(Flog) && !string.IsNullOrEmpty(flog) || (!string.IsNullOrEmpty(Flog) && !string.IsNullOrEmpty(flog) && !Flog.Equals(flog, StringComparison.Ordinal))))
             {
                 IsBotLog = false;
                 var wc = new WebClient {Proxy = AppVars.LocalProxy};
@@ -424,7 +377,7 @@ namespace ABClient
                         {
                             var pars = livesg1.Split(',');
                             var nick1 = (pars.Length > 2) && !livesg1.StartsWith("[4")
-                                ? pars[1].Trim(new[] {'"'})
+                                ? pars[1].Trim('"')
                                 : "невидимка";
 
                             var livesg2 = HelperStrings.SubString(fight, "var lives_g2 = [", "];");
@@ -432,7 +385,7 @@ namespace ABClient
                             {
                                 pars = livesg2.Split(',');
                                 var nick2 = (pars.Length > 2) && !livesg2.StartsWith("[4")
-                                    ? pars[1].Trim(new[] {'"'})
+                                    ? pars[1].Trim('"')
                                     : "невидимка";
 
                                 if (livesg2.IndexOf(Name, StringComparison.Ordinal) == -1)
@@ -604,8 +557,7 @@ namespace ABClient
                         if (AppVars.MainForm != null)
                         {
                             AppVars.MainForm.BeginInvoke(
-                                new UpdateChatDelegate(AppVars.MainForm.UpdateChat),
-                                new object[] {message});
+                                new UpdateChatDelegate(AppVars.MainForm.UpdateChat), message);
                         }
                     }
                     catch (InvalidOperationException)
@@ -635,8 +587,7 @@ namespace ABClient
                 if (AppVars.MainForm != null)
                 {
                     AppVars.MainForm.BeginInvoke(
-                        new UpdateContactDelegate(AppVars.MainForm.UpdateContact),
-                        new object[] { this });
+                        new UpdateContactDelegate(AppVars.MainForm.UpdateContact), this);
                 }
             }
             catch (InvalidOperationException)
@@ -646,71 +597,38 @@ namespace ABClient
 
         private static string HtmlPercEntry(string nick)
         {
-            var html = NeverInfo.GetPInfo(nick);
-            if (string.IsNullOrEmpty(html))
+            var userInfo = NeverApi.GetAll(nick);
+            if (userInfo == null)
                 return "Аноним";
 
-            // 2/11/2017 - params -> parameters 
-            // var params0 = HelperStrings.SubString(html, "var params = [[", "],");
-            var params0 = HelperStrings.SubString(html, "var parameters = [[", "],");
-            if (string.IsNullOrEmpty(params0))
-                return "Аноним";
-
-            var hpmp = HelperStrings.SubString(html, "var hpmp = [", "]");
-            if (string.IsNullOrEmpty(hpmp))
-                return "Аноним";
-
-            var spar1 = HelperStrings.ParseArguments(hpmp);
-            if (spar1.Length < 5)
-                return "Аноним";
-
-            var spar0 = HelperStrings.ParseArguments(params0);
-            if (spar0.Length < 9)
-                return "Аноним";
-
-            nick = spar0[0].Trim();
-            var nnhtmlSec = nick;
-            {
-                nnhtmlSec = nnhtmlSec.Replace("+", "%2B");
-            }
-
+            nick = userInfo.Nick;
+            var nnhtmlSec = nick.Replace("+", "%2B");
             var colorNick = nick;
             switch (ContactsManager.GetClassIdOfContact(nick))
             {
-                case -1:
-                case 0:
-                    colorNick = @"<font color=""#000000"">" + colorNick + "</font>";
-                    break;
                 case 1:
                     colorNick = @"<font color=""#8A0808"">" + colorNick + "</font>";
                     break;
                 case 2:
                     colorNick = @"<font color=""#0B610B"">" + colorNick + "</font>";
                     break;
+                default:
+                    colorNick = @"<font color=""#000000"">" + colorNick + "</font>";
+                    break;
             }
 
-            var align = spar0[1];
-            var sign = spar0[2];
-            var level = spar0[3];
-            var clan = spar0[8];
+            var align = userInfo.Align;
+            var sign = userInfo.ClanSign;
+            var level = userInfo.Level;
+            var clan = userInfo.ClanName;
 
-            // var effects = [[1,'Боевая травма (x9) (еще 23:06:17)'],[2,'Тяжелая травма (x2) (еще 07:01:22)'],[17,'Молчанка (еще 00:00:05)']];
-            var effects = HelperStrings.SubString(html, "var effects = [", "];");
             var sbeff = new StringBuilder();
-            if (!string.IsNullOrEmpty(effects))
+            if (userInfo.EffectsCodes.Length > 0)
             {
-                var seffects = effects.Split(new[] { "],[" }, StringSplitOptions.RemoveEmptyEntries);
-                for (var k = 0; k < seffects.Length; k++)
+                for (var k = 0; k < userInfo.EffectsCodes.Length; k++)
                 {
-                    var effk = seffects[k].Trim(new[] { '[', ']' });
-                    var seffk = effk.Split(',');
-                    if (seffk.Length <= 1)
-                    {
-                        continue;
-                    }
-
-                    var effcode = seffk[0];
-                    var effname = seffk[1].Replace("<b>", string.Empty).Replace("</b>", string.Empty);
+                    var effcode = userInfo.EffectsCodes[k];
+                    var effname = userInfo.EffectsNames[k];
                     sbeff.AppendFormat(
                         @"&nbsp;<img src=http://image.neverlands.ru/pinfo/eff_{0}.gif width=15 height=15 align=absmiddle title=""{1}"">",
                         effcode,

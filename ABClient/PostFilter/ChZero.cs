@@ -1,6 +1,4 @@
-﻿using System.Text;
-
-namespace ABClient.PostFilter
+﻿namespace ABClient.PostFilter
 {
     internal static partial class Filter
     {

@@ -36,6 +36,10 @@ namespace ABClient.PostFilter
                     return MainPhpFastClosedHit(html);
                 case "i_w28_27.gif": // Свиток защиты
                     return MainPhpFastZas(html);
+                case "Телепорт (Остров Туротор)":
+                    return MainPhpFastIsland(html);
+                case "i_w28_86.gif":
+                    return MainPhpFastPortal(html);
                 case "Яд":
                 case "Зелье Сильной Спины":
                 case "Зелье Невидимости":
@@ -84,7 +88,7 @@ namespace ABClient.PostFilter
                 case "Тотем":
                     return MainPhpFastTotem(html);
                 default:
-                    throw new NotImplementedException(string.Format("AppVars.FastId = {0}", AppVars.FastId));
+                    throw new NotImplementedException($"AppVars.FastId = {AppVars.FastId}");
             }
         }
 
@@ -258,8 +262,7 @@ namespace ABClient.PostFilter
                 if (AppVars.MainForm != null)
                 {
                     AppVars.MainForm.BeginInvoke(
-                        new UpdateTraceDrinkPotionDelegate(AppVars.MainForm.TraceDrinkPotion),
-                        new object[] { AppVars.FastNick, AppVars.FastId });
+                        new UpdateTraceDrinkPotionDelegate(AppVars.MainForm.TraceDrinkPotion), AppVars.FastNick, AppVars.FastId);
                 }
             }
             catch (InvalidOperationException)
@@ -435,6 +438,112 @@ namespace ABClient.PostFilter
                     @"</script></body></html>");
 
                 return sb.ToString();
+            }
+
+            return null;
+        }
+
+        private static string MainPhpFastIsland(string html)
+        {
+            const string str = "Использовать Свиток Телепорта сейчас?";
+            var startIndex1 = html.IndexOf(str, StringComparison.CurrentCultureIgnoreCase);
+            if (startIndex1 != -1)
+            {
+                var num1 = html.IndexOf("='", startIndex1, StringComparison.Ordinal);
+                if (num1 != -1)
+                {
+                    var startIndex2 = num1 + 2;
+                    var num2 = html.IndexOf("'", startIndex2, StringComparison.Ordinal);
+                    if (num2 != -1)
+                    {
+                        var link = html.Substring(startIndex2, num2 - startIndex2);
+                        return BuildRedirect($"Используем {AppVars.FastId}...", link);
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        private static string MainPhpFastPortal(string html)
+        {
+            var startIndex = 0;
+            while (startIndex != -1)
+            {
+                var num1 = html.IndexOf("w28_form(", startIndex, StringComparison.OrdinalIgnoreCase);
+                if (num1 != -1)
+                {
+                    startIndex = num1 + "w28_form(".Length;
+                    var num2 = html.IndexOf(")", startIndex, StringComparison.OrdinalIgnoreCase);
+                    if (num2 != -1)
+                    {
+                        var str1 = html.Substring(startIndex, num2 - startIndex);
+                        if (!string.IsNullOrEmpty(str1))
+                        {
+                            var strArray = str1.Split(',');
+                            if (strArray.Length >= 4)
+                            {
+                                var str2 = strArray[0].Trim('\'');
+                                var str3 = strArray[1].Trim('\'');
+                                var str4 = strArray[2].Trim('\'');
+                                var str5 = strArray[3].Trim('\'');
+                                if (str4.Equals("86"))
+                                {
+                                    var stringBuilder = new StringBuilder();
+                                    var str6 = HelperErrors.Head() + "Применяем портал на ";
+                                    stringBuilder.Append(str6);
+                                    var fastNick1 = AppVars.FastNick;
+                                    stringBuilder.Append(fastNick1);
+                                    var str7 = "...";
+                                    stringBuilder.Append(str7);
+                                    var str8 = "<form action=main.php method=POST name=ff>";
+                                    stringBuilder.Append(str8);
+                                    var str9 = "<input name=post_id type=hidden value=\"";
+                                    stringBuilder.Append(str9);
+                                    int num3 = 25;
+                                    stringBuilder.Append(num3);
+                                    var str10 = "\">";
+                                    stringBuilder.Append(str10);
+                                    var str11 = "<input name=vcode type=hidden value=\"";
+                                    stringBuilder.Append(str11);
+                                    var str12 = str2;
+                                    stringBuilder.Append(str12);
+                                    var str13 = "\">";
+                                    stringBuilder.Append(str13);
+                                    var str14 = "<input name=wuid type=hidden value=\"";
+                                    stringBuilder.Append(str14);
+                                    var str15 = str3;
+                                    stringBuilder.Append(str15);
+                                    var str16 = "\">";
+                                    stringBuilder.Append(str16);
+                                    var str17 = "<input name=wsubid type=hidden value=\"";
+                                    stringBuilder.Append(str17);
+                                    var str18 = str4;
+                                    stringBuilder.Append(str18);
+                                    var str19 = "\">";
+                                    stringBuilder.Append(str19);
+                                    var str20 = "<input name=wsolid type=hidden value=\"";
+                                    stringBuilder.Append(str20);
+                                    var str21 = str5;
+                                    stringBuilder.Append(str21);
+                                    var str22 = "\">";
+                                    stringBuilder.Append(str22);
+                                    var str23 = "<input name=pnick type=hidden value=\"";
+                                    stringBuilder.Append(str23);
+                                    var fastNick2 = AppVars.FastNick;
+                                    stringBuilder.Append(fastNick2);
+                                    var str24 = "\">";
+                                    stringBuilder.Append(str24);
+                                    var str25 = "</form><script language=\"JavaScript\">document.ff.submit();</script></body></html>";
+                                    stringBuilder.Append(str25);
+                                    return stringBuilder.ToString();
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                    break;
             }
 
             return null;

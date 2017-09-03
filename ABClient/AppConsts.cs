@@ -3,7 +3,7 @@
     /// <summary>
     /// Статичный класс, содержащий константы для всего приложения.
     /// </summary>
-    internal class AppConsts
+    internal static class AppConsts
     {
         internal static readonly string ApplicationName = "ABClient";
 
@@ -172,7 +172,7 @@
             "color:black;" +
             "background-color:white;" +
             "}" +
-            ".massm { color:white; background-color:#EF6B00; }" +
+            ".massm { color:white; background-color:#003893; }" +
             ".gray { color:gray; }" +
             "</style>" +
             "</head><body>" +

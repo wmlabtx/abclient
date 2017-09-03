@@ -1445,6 +1445,8 @@ namespace ABClient.PostFilter
                         case "i_w28_25.gif": // Закрытая кулачка
                         case "i_svi_205.gif": // Закрытая нападалка
                         case "i_w28_27.gif": // Свиток защиты
+                        case "Телепорт (Остров Туротор)":
+                        case "i_w28_86.gif": // Портал
                             // Работаем со свитками
                             invHtml = MainPhpFindInv(html, "&im=0&wca=28");
                             if (!string.IsNullOrEmpty(invHtml))
@@ -1473,7 +1475,7 @@ namespace ABClient.PostFilter
                                 else
                                 {
                                     if (AppVars.MainForm != null && AppVars.FastNick != null)
-                                        AppVars.MainForm.WriteChatMsgSafe(string.Format("Используем свиток на <b>{0}</b>", AppVars.FastNick));
+                                        AppVars.MainForm.WriteChatMsgSafe($"Используем свиток на <b>{AppVars.FastNick}</b>");
 
                                     AppVars.FastCount--;
                                     if (AppVars.FastCount == 0)
@@ -1605,7 +1607,8 @@ namespace ABClient.PostFilter
                                 else
                                 {
                                     if (AppVars.MainForm != null && AppVars.FastId != null && AppVars.FastNick != null)
-                                        AppVars.MainForm.WriteChatMsgSafe(string.Format("Используем <b><font color=#610B5E>{0}</font></b> на <b>{1}</b>", AppVars.FastId, AppVars.FastNick));
+                                        AppVars.MainForm.WriteChatMsgSafe(
+                                            $"Используем <b><font color=#610B5E>{AppVars.FastId}</font></b> на <b>{AppVars.FastNick}</b>");
 
                                     AppVars.FastCount--;
                                     if (AppVars.FastCount == 0)
@@ -1649,9 +1652,7 @@ namespace ABClient.PostFilter
                                         AppVars.FastTotemMessageTime = DateTime.Now;
                                         if (AppVars.MainForm != null && AppVars.FastNick != null)
                                             AppVars.MainForm.WriteChatMsgSafe(
-                                                string.Format(
-                                                    "Используем <b><font color=#610B5E>тотемное нападение</font></b> на <b>{0}</b>",
-                                                    AppVars.FastNick));
+                                                $"Используем <b><font color=#610B5E>тотемное нападение</font></b> на <b>{AppVars.FastNick}</b>");
                                     }
 
                                     AppVars.FastCount--;
@@ -1669,7 +1670,7 @@ namespace ABClient.PostFilter
                             break;
 
                         default:
-                            throw new NotImplementedException(string.Format("AppVars.FastId = {0}", AppVars.FastId));
+                            throw new NotImplementedException($"AppVars.FastId = {AppVars.FastId}");
                     }
                 }
             }
@@ -1868,6 +1869,11 @@ namespace ABClient.PostFilter
                 }
             }
             */
+
+            if (!string.IsNullOrEmpty(html))
+            {
+                html = html.Replace("document.write(view_t())", string.Empty);
+            }
 
             end:
             if (!string.IsNullOrEmpty(html))

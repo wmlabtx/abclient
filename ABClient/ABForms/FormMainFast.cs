@@ -22,7 +22,6 @@ namespace ABClient.ABForms
                 return;
             }
 
-            //buttonFastCancel.Enabled = true;
             AppVars.FastNeed = true;
             AppVars.FastId = id;
             AppVars.FastNick = nick;
@@ -36,8 +35,6 @@ namespace ABClient.ABForms
                 BeginInvoke((MethodInvoker)(FastCancelSafe));
                 return;
             }
-
-            //buttonFastCancel.Enabled = false;
 
             AppVars.FastNeed = false;
             AppVars.FastNick = null;
@@ -54,11 +51,8 @@ namespace ABClient.ABForms
         {
             var ai = (AttackInfo) stateInfo;
             var nick = StripItalic(ai.TargetNick);
-            var html = NeverInfo.GetPInfo(nick);
-            // 2/11/2017 - params -> parameters 
-            // var params0 = HelperStrings.SubString(html, "var params = [[", "],");
-            var params0 = HelperStrings.SubString(html, "var parameters = [[", "],");
-            if (string.IsNullOrEmpty(params0))
+            var userInfo = NeverApi.GetAll(nick);
+            if (userInfo == null)
             {
                 if (AppVars.MainForm != null)
                     AppVars.MainForm.WriteChatMsgSafe("Ошибка анализа инфы атакуемого.");
@@ -66,16 +60,7 @@ namespace ABClient.ABForms
                 return;
             }
 
-            var spar0 = HelperStrings.ParseArguments(params0);
-            if (spar0.Length < 9)
-            {
-                if (AppVars.MainForm != null)
-                    AppVars.MainForm.WriteChatMsgSafe("Ошибка анализа инфы атакуемого.");
-
-                return;
-            }
-
-            var flog = spar0[7];
+            var flog = userInfo.FightLog;
             if (flog.Equals("0", StringComparison.Ordinal))
             {
                 flog = string.Empty;
@@ -90,7 +75,7 @@ namespace ABClient.ABForms
                 while (!AppVars.FastWaitEndOfBoiCancel)
                 {
                     AppVars.FastWaitEndOfBoiActive = true;
-                    html = NeverInfo.GetFlog(flog);
+                    var html = NeverApi.GetFlog(flog);
                     if (string.IsNullOrEmpty(html))
                         continue;
 
@@ -132,7 +117,8 @@ namespace ABClient.ABForms
                         if ((scans%100) == 0)
                         {
                             if (AppVars.MainForm != null)
-                                AppVars.MainForm.WriteChatMsgSafe(string.Format("Ожидание окончания боя (запросов: {0}, средн: {1}мс)", scans, swatch.ElapsedMilliseconds / scans));
+                                AppVars.MainForm.WriteChatMsgSafe(
+                                    $"Ожидание окончания боя (запросов: {scans}, средн: {swatch.ElapsedMilliseconds / scans}мс)");
                         }
                     }
                 }
@@ -234,6 +220,12 @@ namespace ABClient.ABForms
             }
         }
 
+        internal static void FastAttackPortalAutoAttack(string nick)
+        {
+            var threadAttack = new Thread(FastAttackAsync);
+            threadAttack.Start(new AttackInfo { TargetNick = nick, Weapon = "i_w28_86.gif" });
+        }
+
         internal static void FastAttackFog(string nick)
         {
             if (AppVars.MainForm != null)
@@ -264,6 +256,15 @@ namespace ABClient.ABForms
                 ReloadMainFrame();
             }
              */ 
+        }
+
+        internal static void FastAttackPortal(string nick)
+        {
+            if (AppVars.MainForm != null)
+            {
+                AppVars.MainForm.FastStartSafe("i_w28_86.gif", StripItalic(nick));
+                ReloadMainFrame();
+            }
         }
 
         internal void FastAttackOpenNevid()
@@ -306,6 +307,15 @@ namespace ABClient.ABForms
             if (AppVars.MainForm != null)
             {
                 AppVars.MainForm.FastStartSafe("Зелье Невидимости", StripItalic(nick));
+                ReloadMainFrame();
+            }
+        }
+
+        private static void FastAttackIslandPot()
+        {
+            if (AppVars.MainForm != null)
+            {
+                AppVars.MainForm.FastStartSafe("Телепорт (Остров Туротор)", AppVars.Profile.UserNick);
                 ReloadMainFrame();
             }
         }
