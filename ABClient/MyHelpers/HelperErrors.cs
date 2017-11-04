@@ -7,7 +7,6 @@
         internal static string Marker()
         {
             return @"<SPAN class=massm>&nbsp;" + AppConsts.ApplicationName + "&nbsp;</SPAN> ";
-            //return "&nbsp;";
         }
 
         internal static string Head()
@@ -33,7 +32,7 @@
                 "	  color:black;" +
                 "	  background-color:white;" +
                 "}" +
-                ".massm { color:white; background-color:#003893; }" +
+                ".massm { color:white; background-color:#EF6B00; }" +
                 ".gray { color:gray; }" +
                 "</style>" +
                 "</head><body>");

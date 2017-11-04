@@ -56,7 +56,6 @@
             this.textBoxAutoDrinkBlazTied = new System.Windows.Forms.TextBox();
             this.checkBoxDoAutoDrinkBlaz = new System.Windows.Forms.CheckBox();
             this.groupBox25 = new System.Windows.Forms.GroupBox();
-            this.checkDoShowFastAttackPortal = new System.Windows.Forms.CheckBox();
             this.checkDoShowFastAttackTotem = new System.Windows.Forms.CheckBox();
             this.checkDoShowFastAttackClosed = new System.Windows.Forms.CheckBox();
             this.checkDoShowFastAttackZas = new System.Windows.Forms.CheckBox();
@@ -294,7 +293,7 @@
             // checkboxDoPromptExit
             // 
             this.checkboxDoPromptExit.AutoSize = true;
-            this.checkboxDoPromptExit.Location = new System.Drawing.Point(293, 331);
+            this.checkboxDoPromptExit.Location = new System.Drawing.Point(293, 314);
             this.checkboxDoPromptExit.Name = "checkboxDoPromptExit";
             this.checkboxDoPromptExit.Size = new System.Drawing.Size(267, 17);
             this.checkboxDoPromptExit.TabIndex = 1010;
@@ -528,7 +527,6 @@
             // 
             // groupBox25
             // 
-            this.groupBox25.Controls.Add(this.checkDoShowFastAttackPortal);
             this.groupBox25.Controls.Add(this.checkDoShowFastAttackTotem);
             this.groupBox25.Controls.Add(this.checkDoShowFastAttackClosed);
             this.groupBox25.Controls.Add(this.checkDoShowFastAttackZas);
@@ -545,20 +543,10 @@
             this.groupBox25.Controls.Add(this.checkDoShowFastAttack);
             this.groupBox25.Location = new System.Drawing.Point(280, 13);
             this.groupBox25.Name = "groupBox25";
-            this.groupBox25.Size = new System.Drawing.Size(302, 312);
+            this.groupBox25.Size = new System.Drawing.Size(302, 291);
             this.groupBox25.TabIndex = 1019;
             this.groupBox25.TabStop = false;
             this.groupBox25.Text = "Быстрые действия";
-            // 
-            // checkDoShowFastAttackPortal
-            // 
-            this.checkDoShowFastAttackPortal.AutoSize = true;
-            this.checkDoShowFastAttackPortal.Location = new System.Drawing.Point(13, 285);
-            this.checkDoShowFastAttackPortal.Name = "checkDoShowFastAttackPortal";
-            this.checkDoShowFastAttackPortal.Size = new System.Drawing.Size(101, 17);
-            this.checkDoShowFastAttackPortal.TabIndex = 1035;
-            this.checkDoShowFastAttackPortal.Text = "Показ портала";
-            this.checkDoShowFastAttackPortal.UseVisualStyleBackColor = true;
             // 
             // checkDoShowFastAttackTotem
             // 
@@ -2727,6 +2715,5 @@
         private System.Windows.Forms.RadioButton radioSayChat;
         private System.Windows.Forms.GroupBox groupBox14;
         private System.Windows.Forms.CheckBox checkStatReset;
-        private System.Windows.Forms.CheckBox checkDoShowFastAttackPortal;
     }
 }

@@ -20,19 +20,6 @@ namespace ABClient.ABForms
     {
         private void InitGameTab()
         {
-            try
-            {
-                if (AppVars.MainForm != null)
-                {
-                    AppVars.MainForm.BeginInvoke(
-                        new UpdateTexLogDelegate(AppVars.MainForm.UpdateTexLog),
-                        new object[] { "InitGameTab()" });
-                }
-            }
-            catch (InvalidOperationException)
-            {
-            }
-
             if (tabControlLeft == null)
             {
                 return;
@@ -80,40 +67,20 @@ namespace ABClient.ABForms
             tabPage.Tag = tabClass;
             buttonGameScreen.Tag = browserGame;
 
-            /*
-            var encnick = HelperConverters.NickEncode("Мастер Создатель");
-            var url = $"http://www.neverlands.ru/pinfo.cgi?{encnick}";
+            var url = HelperConverters.AddressEncode(string.Concat("http://www.neverlands.ru/pinfo.cgi?", "Мастер Создатель"));
             browserGame.Navigate(url);
             while (browserGame != null && !browserGame.IsDisposed && browserGame.ReadyState != WebBrowserReadyState.Complete)
                 Application.DoEvents();
 
-            */
-
             if (browserGame != null && !browserGame.IsDisposed)
             {
                 browserGame.Navigate(Resources.AddressNeverlands);
-
-                try
-                {
-                    if (AppVars.MainForm != null)
-                    {
-                        AppVars.MainForm.BeginInvoke(
-                            new UpdateTexLogDelegate(AppVars.MainForm.UpdateTexLog),
-                            new object[] { $"browserGame.Navigate({Resources.AddressNeverlands})" });
-                    }
-                }
-                catch (InvalidOperationException)
-                {
-                }
-
                 while (browserGame != null && !browserGame.IsDisposed &&
                        browserGame.ReadyState != WebBrowserReadyState.Complete)
                     Application.DoEvents();
 
-                /*
                 if (browserGame != null && !browserGame.IsDisposed)
                     browserGame.Navigate(Resources.AddressNeverlands);
-                    */
             }
         }
 
@@ -183,14 +150,12 @@ namespace ABClient.ABForms
                 return;
             }
 
-            /*
             if (tourl.StartsWith("http://stat.alone.com.ua/userinfo/?name=", StringComparison.OrdinalIgnoreCase))
             {
                 var newurl = Resources.AddressPInfo + tourl.Substring("http://stat.alone.com.ua/userinfo/?name=".Length);
                 CreateNewTab(TabType.PInfo, newurl, delayed);
                 return;
             }
-            */
 
             CreateNewTab(TabType.Other, tourl, delayed);
         }
@@ -359,8 +324,8 @@ namespace ABClient.ABForms
                         ImageTransparentColor = Color.Magenta,
                         Name = Guid.NewGuid().ToString(),
                         Size = new Size(64, 22),
-                        Text = @"Компас",
-                        ToolTipText = @"Поиск положения на природе",
+                        Text = "Компас",
+                        ToolTipText = "Поиск точного положения на природе",
                         Tag = nick,
                         Enabled = true
                     };

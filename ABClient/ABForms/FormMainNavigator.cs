@@ -79,9 +79,6 @@ namespace ABClient.ABForms
             AppVars.AutoMoving = true;
             AppVars.AutoMovingDestinaton = dest;
             var path = new MapPath(AppVars.Profile.MapLocation, new[] { dest });
-            if (path.IsIslandRequired)
-                AppVars.MainForm.FastStartSafe("Телепорт (Остров Туротор)", AppVars.Profile.UserNick);
-
             AppVars.AutoMovingMapPath = path;
 
             UpdateFishOff();

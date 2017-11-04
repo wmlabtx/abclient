@@ -184,7 +184,6 @@ namespace ABClient.MyForms
             checkDoShowFastAttackFog.Checked = AppVars.Profile.DoShowFastAttackFog;
             checkDoShowFastAttackZas.Checked = AppVars.Profile.DoShowFastAttackZas;
             checkDoShowFastAttackTotem.Checked = AppVars.Profile.DoShowFastAttackTotem;
-            checkDoShowFastAttackPortal.Checked = AppVars.Profile.DoShowFastAttackPortal;
 
             checkShowOverWarning.Checked = AppVars.Profile.ShowOverWarning;
             checkDoStopOnDig.Checked = AppVars.Profile.DoStopOnDig;
@@ -399,7 +398,6 @@ namespace ABClient.MyForms
             AppVars.Profile.DoShowFastAttackFog = checkDoShowFastAttackFog.Checked;
             AppVars.Profile.DoShowFastAttackZas = checkDoShowFastAttackZas.Checked;
             AppVars.Profile.DoShowFastAttackTotem = checkDoShowFastAttackTotem.Checked;
-            AppVars.Profile.DoShowFastAttackPortal = checkDoShowFastAttackPortal.Checked;
 
             AppVars.Profile.ShowOverWarning = checkShowOverWarning.Checked;
             AppVars.Profile.DoStopOnDig = checkDoStopOnDig.Checked;

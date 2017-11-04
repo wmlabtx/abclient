@@ -55,7 +55,7 @@ namespace ABClient.MyForms
             this.linkLabel.Size = new System.Drawing.Size(316, 19);
             this.linkLabel.TabIndex = 1011;
             this.linkLabel.TabStop = true;
-            this.linkLabel.Text = "https://github.com/wmlabtx/abclient/wiki/";
+            this.linkLabel.Text = "http://abclient.1gb.ru/";
             this.linkLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.linkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel_LinkClicked);
             // 

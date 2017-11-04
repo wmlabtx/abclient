@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Net;
 using System.Threading;
+using ABClient.Helpers;
+using ABClient.MyHelpers;
 
 namespace ABClient.ABForms
 {
@@ -10,15 +13,27 @@ namespace ABClient.ABForms
             ThreadPool.QueueUserWorkItem(CheckInfoAsync, null);
         }
 
-        private static int[] GetPoisonAndWounds(UserInfo userInfo)
+        private static int[] GetPoisonAndWounds(string html)
         {
             var poisonAndWounds = new int[4];
-            if (userInfo.EffectsCodes.Length == 0)
+
+            // var effects = [[3,'<b>Средняя травма</b> (x1) (еще 02:16:49)'],[77,'<b>Новогодний бонус</b> (x1) (еще 94:24:18)']];
+
+            var streff = HelperStrings.SubString(html, "var effects = [[", "]];");
+            if (string.IsNullOrEmpty(streff))
                 return poisonAndWounds;
             
-            foreach (var elem in userInfo.EffectsCodes)
+            var par = streff.Split(new[] { "],[" }, StringSplitOptions.RemoveEmptyEntries);
+            if (par.Length == 0)
+                return poisonAndWounds;
+
+            foreach (var elem in par)
             {
-                switch (elem)
+                var pair = elem.Split(',');
+                if (pair.Length != 2)
+                    continue;
+
+                switch (pair[0])
                 {
                     case "2":
                         poisonAndWounds[3]++; // тяжелые
@@ -32,8 +47,6 @@ namespace ABClient.ABForms
                     case "24":
                         poisonAndWounds[0]++;
                         break;
-                    default:
-                        break;
                 }
             }
 
@@ -45,11 +58,11 @@ namespace ABClient.ABForms
             if (string.IsNullOrEmpty(AppVars.Profile.UserNick))
                 return;
 
-            var userInfo = NeverApi.GetAll(AppVars.Profile.UserNick);
-            if (userInfo == null) 
+            var textdata = NeverInfo.GetPInfo(AppVars.Profile.UserNick);
+            if (string.IsNullOrEmpty(textdata)) 
                 return;
             
-            var poisonAndWounds = GetPoisonAndWounds(userInfo);
+            var poisonAndWounds = GetPoisonAndWounds(textdata);
             if (
                 (poisonAndWounds[0] > AppVars.PoisonAndWounds[0]) ||
                 (poisonAndWounds[1] > AppVars.PoisonAndWounds[1]) ||

@@ -20,14 +20,24 @@ namespace ABClient
             if (result)
                 return true;
 
-            var userInfo = NeverApi.GetAll(userNick);
-            if (userInfo == null)
+            var html = NeverInfo.GetPInfo(userNick);
+            if (string.IsNullOrEmpty(html))
                 return false;
 
-            var nick = userInfo.Nick;
-            var sign = userInfo.ClanSign;
-            var level = userInfo.Level;
-            var status = $"{userInfo.ClanName}, {userInfo.ClanStatus}";
+            // 2/11/2017 - params -> parameters 
+            // var params0 = HelperStrings.SubString(html, "var params = [[", "],");
+            var params0 = HelperStrings.SubString(html, "var parameters = [[", "],");
+            if (string.IsNullOrEmpty(params0))
+                return false;
+
+            var spar0 = HelperStrings.ParseArguments(params0);
+            if (spar0.Length < 9)
+                return false;
+
+            var nick = spar0[0].Trim();
+            var sign = spar0[2];
+            var level = spar0[3];
+            var status = spar0[8] + ", " + spar0[9];
             var user = new ChatUser(nick, level, sign, status);
             UserList.Add(nick.ToLower(), user);
             return true;

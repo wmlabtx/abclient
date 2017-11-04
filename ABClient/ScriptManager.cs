@@ -617,20 +617,5 @@
             var a2 = pars[1].Trim(' ', '\'');
             return a2;
         }
-
-        public void FastAttackPortal(string nick)
-        {
-            if (AppVars.MainForm == null)
-                return;
-
-            FormMain.FastAttackPortal(nick);
-        }
-
-        public string CheckFastAttackPortal(string nick, string str)
-        {
-            if (nick.Equals(AppVars.Profile.UserNick, StringComparison.OrdinalIgnoreCase) || !AppVars.Profile.DoShowFastAttackPortal)
-                return string.Empty;
-            return str;
-        }
     }
 }

@@ -80,9 +80,7 @@
             sb.AppendLine(Environment.OSVersion.VersionString);
             sb.AppendLine(Application.StartupPath);
             sb.AppendLine();
-            sb.AppendLine(exception.Message);
-            sb.AppendLine(exception.Source);
-            sb.AppendLine(exception.StackTrace);
+            sb.AppendLine(exception.ToString());
             return sb.ToString();
         }
     }

@@ -178,7 +178,6 @@ function chatlist_build (sort_type)
     var wmlabFACU = "";
     var wmlabFAF = "";
     var wmlabFACF = "";
-    var wmlabFP = "";
     var wmlabFC = "";
     var wmlabFAP = "";
     var wmlabFAS = "";
@@ -219,7 +218,6 @@ function chatlist_build (sort_type)
         wmlabFACU = " <a class=\"activeico\" href=\"javascript:window.external.FastAttackClosedUltimate('" + login + "')\"><img src=http://image.neverlands.ru/weapon/i_w28_26.gif width=30 height=15 border=0 alt='Закрытое боевое нападение' align=absmiddle></a>";
         wmlabFAF = " <a class=\"activeico\" href=\"javascript:window.external.FastAttackFist('" + login + "')\"><img src=http://image.neverlands.ru/weapon/i_w28_24.gif width=30 height=15 border=0 alt='Кулачное нападение' align=absmiddle></a>";
         wmlabFACF = " <a class=\"activeico\" href=\"javascript:window.external.FastAttackClosedFist('" + login + "')\"><img src=http://image.neverlands.ru/weapon/i_w28_25.gif width=30 height=15 border=0 alt='Закрытое кулачное нападение' align=absmiddle></a>";
-        wmlabFP = " <a class=\"activeico\" href=\"javascript:window.external.FastAttackPortal('" + login + "')\"><img src=http://image.neverlands.ru/weapon/i_w28_86.gif width=30 height=15 border=0 alt='Телепорт' align=absmiddle></a>";
         wmlabFC = " <a class=\"activeico\" href=\"javascript:window.external.FastAttackClosed('" + login + "')\"><img src=http://image.neverlands.ru/weapon/i_svi_205.gif width=30 height=15 border=0 alt='Закрытое нападение' align=absmiddle></a>";
         wmlabFAP = " <a class=\"activeico\" href=\"javascript:window.external.FastAttackPoison('" + login + "')\"><img src=http://image.neverlands.ru/weapon/Bi_w27_41.gif width=15 height=15 border=0 alt='Яд' align=absmiddle></a>";
         wmlabFAS = " <a class=\"activeico\" href=\"javascript:window.external.FastAttackStrong('" + login + "')\"><img src=http://image.neverlands.ru/weapon/Bi_w27_52.gif width=15 height=15 border=0 alt='Зелье Сильной Спины' align=absmiddle></a>";
@@ -235,7 +233,6 @@ function chatlist_build (sort_type)
             window.external.CheckFastAttackClosedUltimate(login, wmlabFACU) +
             window.external.CheckFastAttackFist(login, wmlabFAF) +
             window.external.CheckFastAttackClosedFist(login, wmlabFACF) +
-	    window.external.CheckFastAttackPortal(login, wmlabFP) +
             window.external.CheckFastAttackClosed(login, wmlabFC) +
             window.external.CheckFastAttackPoison(login, wmlabFAP) +
             window.external.CheckFastAttackStrong(login, wmlabFAS) +
@@ -264,7 +261,6 @@ function chatlist_build (sort_type)
         wmlabFACU = " <a class=\"activeico\" href=\"javascript:window.external.FastAttackClosedUltimate('" + login + "')\"><img src=http://image.neverlands.ru/weapon/i_w28_26.gif width=30 height=15 border=0 alt='Закрытое боевое нападение' align=absmiddle></a>";
         wmlabFAF = " <a class=\"activeico\" href=\"javascript:window.external.FastAttackFist('" + login + "')\"><img src=http://image.neverlands.ru/weapon/i_w28_24.gif width=30 height=15 border=0 alt='Кулачное нападение' align=absmiddle></a>";
         wmlabFACF = " <a class=\"activeico\" href=\"javascript:window.external.FastAttackClosedFist('" + login + "')\"><img src=http://image.neverlands.ru/weapon/i_w28_25.gif width=30 height=15 border=0 alt='Закрытое кулачное нападение' align=absmiddle></a>";
-        wmlabFP = " <a class=\"activeico\" href=\"javascript:window.external.FastAttackPortal('" + login + "')\"><img src=http://image.neverlands.ru/weapon/i_w28_86.gif width=30 height=15 border=0 alt='Портал' align=absmiddle></a>";
         wmlabFC = " <a class=\"activeico\" href=\"javascript:window.external.FastAttackClosed('" + login + "')\"><img src=http://image.neverlands.ru/weapon/i_svi_205.gif width=30 height=15 border=0 alt='Закрытое нападение' align=absmiddle></a>";
         wmlabFAP = " <a class=\"activeico\" href=\"javascript:window.external.FastAttackPoison('" + login + "')\"><img src=http://image.neverlands.ru/weapon/Bi_w27_41.gif width=15 height=15 border=0 alt='Яд' align=absmiddle></a>";
         wmlabFAS = " <a class=\"activeico\" href=\"javascript:window.external.FastAttackStrong('" + login + "')\"><img src=http://image.neverlands.ru/weapon/Bi_w27_52.gif width=15 height=15 border=0 alt='Зелье Сильной Спины' align=absmiddle></a>";
@@ -280,7 +276,6 @@ function chatlist_build (sort_type)
             window.external.CheckFastAttackClosedUltimate(login, wmlabFACU) +
             window.external.CheckFastAttackFist(login, wmlabFAF) +
             window.external.CheckFastAttackClosedFist(login, wmlabFACF) +
-            window.external.CheckFastAttackPortal(login, wmlabFP) +
             window.external.CheckFastAttackClosed(login, wmlabFC) +
             window.external.CheckFastAttackPoison(login, wmlabFAP) +
             window.external.CheckFastAttackStrong(login, wmlabFAS) +
@@ -308,7 +303,6 @@ function chatlist_build (sort_type)
         wmlabFAB = " <a class=\"activeico\" href=\"javascript:window.external.FastAttackBlood('" + login + "')\"><img src=http://image.neverlands.ru/weapon/i_svi_002.gif width=14 height=11 border=0 alt='Кровавое нападение' align=absmiddle></a>";
         wmlabFAU = " <a class=\"activeico\" href=\"javascript:window.external.FastAttackUltimate('" + login + "')\"><img src=http://image.neverlands.ru/weapon/i_w28_26.gif width=14 height=11 border=0 alt='Боевое нападение' align=absmiddle></a>";
         wmlabFACU = " <a class=\"activeico\" href=\"javascript:window.external.FastAttackClosedUltimate('" + login + "')\"><img src=http://image.neverlands.ru/weapon/i_w28_26.gif width=14 height=11 border=0 alt='Закрытое боевое нападение' align=absmiddle></a>";
-        wmlabFP = " <a class=\"activeico\" href=\"javascript:window.external.FastAttackPortal('" + login + "')\"><img src=http://image.neverlands.ru/weapon/i_w28_86.gif width=30 height=15 border=0 alt='Портал' align=absmiddle></a>";
         wmlabFC = " <a class=\"activeico\" href=\"javascript:window.external.FastAttackClosed('" + login + "')\"><img src=http://image.neverlands.ru/weapon/i_svi_205.gif width=14 height=11 border=0 alt='Закрытое нападение' align=absmiddle></a>";
         wmlabFAF = " <a class=\"activeico\" href=\"javascript:window.external.FastAttackFist('" + login + "')\"><img src=http://image.neverlands.ru/weapon/i_w28_24.gif width=14 height=11 border=0 alt='Кулачное нападение' align=absmiddle></a>";
         wmlabFACF = " <a class=\"activeico\" href=\"javascript:window.external.FastAttackClosedFist('" + login + "')\"><img src=http://image.neverlands.ru/weapon/i_w28_25.gif width=14 height=11 border=0 alt='Закрытое кулачное нападение' align=absmiddle></a>";
@@ -336,7 +330,6 @@ function chatlist_build (sort_type)
             window.external.CheckFastAttackClosedUltimate(login, wmlabFACU) +  
             window.external.CheckFastAttackFist(login, wmlabFAF) +
             window.external.CheckFastAttackClosedFist(login, wmlabFACF) +
-            window.external.CheckFastAttackPortal(login, wmlabFP) +
             window.external.CheckFastAttackClosed(login, wmlabFC) +
             window.external.CheckFastAttackPoison(login, wmlabFAP) +
             window.external.CheckFastAttackStrong(login, wmlabFAS) +

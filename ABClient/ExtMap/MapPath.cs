@@ -32,14 +32,12 @@ namespace ABClient.ExtMap
         public string NextJump { get; private set; }
         public bool IsNextTeleport { get; private set; }
         public bool IsNextCity { get; private set; }
-        public bool IsIslandRequired { get; private set; }
         public CityGateType CityGate { get; private set; }
 
         private readonly SortedDictionary<string, MapPathNode> _matrix = new SortedDictionary<string, MapPathNode>();
         private readonly SortedDictionary<string, object> _destinations = new SortedDictionary<string, object>();
         private readonly List<MapPathNode> _bestPathes = new List<MapPathNode>();
         private bool _added;
-        private readonly List<string> _islandCells = new List<string> { "11-396", "11-397", "11-398", "11-426", "11-427", "11-428", "11-456", "11-457", "11-458", "11-487", "11-488" };
 
         public MapPath(string sourceCellNumber, IList<string> destinationCellNumberList)
         {
@@ -50,14 +48,7 @@ namespace ABClient.ExtMap
 
             if (destinationCellNumberList.Count == 1 && sourceCellNumber.Equals(destinationCellNumberList[0]))
                 return;
-
-            var flag = false;
-            foreach (var destinationCellNumber in destinationCellNumberList)
-                flag = !_islandCells.Contains(sourceCellNumber) && _islandCells.Contains(destinationCellNumber);
-
-            if (flag)
-                sourceCellNumber = "11-398";
-
+            
             _matrix.Add(sourceCellNumber, new MapPathNode(sourceCellNumber));
             
             foreach (var destinationCellNumber in destinationCellNumberList)
@@ -178,7 +169,7 @@ namespace ABClient.ExtMap
             Cost = _bestPathes[index].Cost;            
             HasTeleport = _bestPathes[index].HasTeleport;
             BotLevel = _bestPathes[index].BotLevel;
-            IsIslandRequired = flag;
+
             CanUseExistingPath(sourceCellNumber, Destination);
         }
 

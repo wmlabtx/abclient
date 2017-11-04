@@ -526,9 +526,6 @@ namespace ABClient.MyProfile
                     xmlWriter.WriteStartAttribute("totem");
                     xmlWriter.WriteValue(DoShowFastAttackTotem);
                     xmlWriter.WriteEndAttribute();
-                    xmlWriter.WriteStartAttribute("portal");
-                    xmlWriter.WriteValue(DoShowFastAttackPortal);
-                    xmlWriter.WriteEndAttribute();
 
                     xmlWriter.WriteEndElement();
 

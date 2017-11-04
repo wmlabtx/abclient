@@ -708,16 +708,6 @@ namespace ABClient.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap i_w28_86 {
-            get {
-                object obj = ResourceManager.GetObject("i_w28_86", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap i_w61_101 {
             get {
                 object obj = ResourceManager.GetObject("i_w61_101", resourceCulture);

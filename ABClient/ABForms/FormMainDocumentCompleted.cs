@@ -1,23 +1,19 @@
-﻿using System;
-
-namespace ABClient.ABForms
+﻿namespace ABClient.ABForms
 {
     internal sealed partial class FormMain
     {
         private void DocumentCompleted()
         {
-            try
+            /*
+            // Оглядываемся...
+            if (AppVars.DoHerbAutoCut)
             {
-                if (AppVars.MainForm != null)
+                // ["ogl","Оглядеться","e108c4be017325666d1744fd977189f4",
+                if (PressOgl())
                 {
-                    AppVars.MainForm.BeginInvoke(
-                        new UpdateTexLogDelegate(AppVars.MainForm.UpdateTexLog),
-                        new object[] { "DocumentCompleted()" });
                 }
             }
-            catch (InvalidOperationException)
-            {
-            }
+             */ 
         }
     }
 }

@@ -198,7 +198,7 @@
             return sb.ToString();
         }
 
-        public static string NickEncode(string nick)
+        internal static string NickEncode(string nick)
         {
             if (nick == null)
                 return null;

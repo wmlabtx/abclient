@@ -69,7 +69,6 @@ namespace ABClient.ABForms
             this.cmtsToolId2 = new System.Windows.Forms.ToolStripMenuItem();
             this.cmtsToolId3 = new System.Windows.Forms.ToolStripMenuItem();
             this.cmtsToolId4 = new System.Windows.Forms.ToolStripMenuItem();
-            this.cmtsToolId5 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.cmtsDeleteContact = new System.Windows.Forms.ToolStripMenuItem();
             this.cmtsContactPrivate = new System.Windows.Forms.ToolStripMenuItem();
@@ -150,7 +149,6 @@ namespace ABClient.ABForms
             this.miAutoAttack2 = new System.Windows.Forms.ToolStripMenuItem();
             this.miAutoAttack3 = new System.Windows.Forms.ToolStripMenuItem();
             this.miAutoAttack4 = new System.Windows.Forms.ToolStripMenuItem();
-            this.miAutoAttack5 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator23 = new System.Windows.Forms.ToolStripSeparator();
             this.buttonNavigator = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
@@ -188,7 +186,6 @@ namespace ABClient.ABForms
             this.menuitemDoSearchBox = new System.Windows.Forms.ToolStripMenuItem();
             this.menuitemDoResetVisitedCells = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
-            this.сканированиеКартыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuitemFishAdvisor = new System.Windows.Forms.ToolStripMenuItem();
             this.menuitemChatAdvisor = new System.Windows.Forms.ToolStripMenuItem();
             this.menuitemGetInventory = new System.Windows.Forms.ToolStripMenuItem();
@@ -196,8 +193,6 @@ namespace ABClient.ABForms
             this.menuitemBearRoar = new System.Windows.Forms.ToolStripMenuItem();
             this.menuitemInfCookies = new System.Windows.Forms.ToolStripMenuItem();
             this.menuitemCrazy = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuitemFatalErrorTest = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuitemReloadTopFrame = new System.Windows.Forms.ToolStripMenuItem();
             this.menuitemCommands = new System.Windows.Forms.ToolStripMenuItem();
             this.menuitemClanPrivate = new System.Windows.Forms.ToolStripMenuItem();
             this.menuitemRekPrivate = new System.Windows.Forms.ToolStripMenuItem();
@@ -216,7 +211,6 @@ namespace ABClient.ABForms
             this.miFastF9 = new System.Windows.Forms.ToolStripMenuItem();
             this.miFastF10 = new System.Windows.Forms.ToolStripMenuItem();
             this.miFastF12 = new System.Windows.Forms.ToolStripMenuItem();
-            this.miFastCtrlF12 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.miWearAfter = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator20 = new System.Windows.Forms.ToolStripSeparator();
@@ -250,13 +244,15 @@ namespace ABClient.ABForms
             this.miSetGroupToolId2 = new System.Windows.Forms.ToolStripMenuItem();
             this.miSetGroupToolId3 = new System.Windows.Forms.ToolStripMenuItem();
             this.miSetGroupToolId4 = new System.Windows.Forms.ToolStripMenuItem();
-            this.miSetGroupToolId5 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator24 = new System.Windows.Forms.ToolStripSeparator();
             this.miRemoveGroup = new System.Windows.Forms.ToolStripMenuItem();
             this.timerClock = new System.Windows.Forms.Timer(this.components);
             this.timerCheckInfo = new System.Windows.Forms.Timer(this.components);
             this.timer30 = new System.Windows.Forms.Timer(this.components);
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.collapsibleSplitter = new ABClient.AppControls.CollapsibleSplitter();
+            this.сканированиеКартыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CmPerson.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.panelRight.SuspendLayout();
@@ -289,14 +285,13 @@ namespace ABClient.ABForms
             this.cmtsToolId2,
             this.cmtsToolId3,
             this.cmtsToolId4,
-            this.cmtsToolId5,
             this.toolStripSeparator9,
             this.cmtsDeleteContact,
             this.cmtsContactPrivate,
             this.toolStripSeparator19,
             this.cmtsContactQuick});
             this.CmPerson.Name = "CmPerson";
-            this.CmPerson.Size = new System.Drawing.Size(222, 286);
+            this.CmPerson.Size = new System.Drawing.Size(222, 264);
             // 
             // cmtsClassNeutral
             // 
@@ -364,13 +359,6 @@ namespace ABClient.ABForms
             this.cmtsToolId4.Size = new System.Drawing.Size(221, 22);
             this.cmtsToolId4.Text = "Закрытая кулачка";
             this.cmtsToolId4.Click += new System.EventHandler(this.CmtsToolId4Click);
-            // 
-            // cmtsToolId5
-            // 
-            this.cmtsToolId5.Name = "cmtsToolId5";
-            this.cmtsToolId5.Size = new System.Drawing.Size(221, 22);
-            this.cmtsToolId5.Text = "Портал";
-            this.cmtsToolId5.Click += new System.EventHandler(this.CmtsToolId5Click);
             // 
             // toolStripSeparator9
             // 
@@ -1255,8 +1243,7 @@ namespace ABClient.ABForms
             this.miAutoAttack1,
             this.miAutoAttack2,
             this.miAutoAttack3,
-            this.miAutoAttack4,
-            this.miAutoAttack5});
+            this.miAutoAttack4});
             this.buttonAutoAttack.Image = global::ABClient.Properties.Resources.i_svi_000;
             this.buttonAutoAttack.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonAutoAttack.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -1317,17 +1304,6 @@ namespace ABClient.ABForms
             this.miAutoAttack4.Text = "Использовать закрытые кулачки";
             this.miAutoAttack4.ToolTipText = "Использовать закрытые кулачки";
             this.miAutoAttack4.Click += new System.EventHandler(this.MiAutoAttackClick);
-            // 
-            // miAutoAttack5
-            // 
-            this.miAutoAttack5.Image = global::ABClient.Properties.Resources.i_w28_86;
-            this.miAutoAttack5.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.miAutoAttack5.Name = "miAutoAttack5";
-            this.miAutoAttack5.Size = new System.Drawing.Size(270, 28);
-            this.miAutoAttack5.Tag = "5";
-            this.miAutoAttack5.Text = "Использовать портал";
-            this.miAutoAttack5.ToolTipText = "Использовать портал";
-            this.miAutoAttack5.Click += new System.EventHandler(this.MiAutoAttackClick);
             // 
             // toolStripSeparator23
             // 
@@ -1601,9 +1577,7 @@ namespace ABClient.ABForms
             this.menuitemMainFrameInspector,
             this.menuitemBearRoar,
             this.menuitemInfCookies,
-            this.menuitemCrazy,
-            this.menuitemFatalErrorTest,
-            this.menuitemReloadTopFrame});
+            this.menuitemCrazy});
             this.menuitemTools.Name = "menuitemTools";
             this.menuitemTools.Size = new System.Drawing.Size(87, 20);
             this.menuitemTools.Text = "Инструменты";
@@ -1639,13 +1613,6 @@ namespace ABClient.ABForms
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
             this.toolStripSeparator7.Size = new System.Drawing.Size(213, 6);
-            // 
-            // сканированиеКартыToolStripMenuItem
-            // 
-            this.сканированиеКартыToolStripMenuItem.Name = "сканированиеКартыToolStripMenuItem";
-            this.сканированиеКартыToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
-            this.сканированиеКартыToolStripMenuItem.Text = "Сканирование карты";
-            this.сканированиеКартыToolStripMenuItem.Click += new System.EventHandler(this.ScanMapToolStripMenuItem_Click);
             // 
             // menuitemFishAdvisor
             // 
@@ -1696,20 +1663,6 @@ namespace ABClient.ABForms
             this.menuitemCrazy.Text = "Бредогенератор";
             this.menuitemCrazy.Click += new System.EventHandler(this.menuitemCrazy_Click);
             // 
-            // menuitemFatalErrorTest
-            // 
-            this.menuitemFatalErrorTest.Name = "menuitemFatalErrorTest";
-            this.menuitemFatalErrorTest.Size = new System.Drawing.Size(216, 22);
-            this.menuitemFatalErrorTest.Text = "Тест ошибки";
-            this.menuitemFatalErrorTest.Click += new System.EventHandler(this.menuitemFatalErrorTest_Click);
-            // 
-            // menuitemReloadTopFrame
-            // 
-            this.menuitemReloadTopFrame.Name = "menuitemReloadTopFrame";
-            this.menuitemReloadTopFrame.Size = new System.Drawing.Size(216, 22);
-            this.menuitemReloadTopFrame.Text = "Обновление фрейма";
-            this.menuitemReloadTopFrame.Click += new System.EventHandler(this.menuitemReloadTopFrame_Click);
-            // 
             // menuitemCommands
             // 
             this.menuitemCommands.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1730,7 +1683,6 @@ namespace ABClient.ABForms
             this.miFastF9,
             this.miFastF10,
             this.miFastF12,
-            this.miFastCtrlF12,
             this.toolStripSeparator11,
             this.miWearAfter,
             this.toolStripSeparator20,
@@ -1744,7 +1696,7 @@ namespace ABClient.ABForms
             // 
             this.menuitemClanPrivate.Name = "menuitemClanPrivate";
             this.menuitemClanPrivate.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.menuitemClanPrivate.Size = new System.Drawing.Size(265, 22);
+            this.menuitemClanPrivate.Size = new System.Drawing.Size(258, 22);
             this.menuitemClanPrivate.Text = "Клан-приват";
             this.menuitemClanPrivate.Click += new System.EventHandler(this.OnMenuitemClanPrivateClick);
             // 
@@ -1752,7 +1704,7 @@ namespace ABClient.ABForms
             // 
             this.menuitemRekPrivate.Name = "menuitemRekPrivate";
             this.menuitemRekPrivate.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
-            this.menuitemRekPrivate.Size = new System.Drawing.Size(265, 22);
+            this.menuitemRekPrivate.Size = new System.Drawing.Size(258, 22);
             this.menuitemRekPrivate.Text = "Рекрут-приват";
             this.menuitemRekPrivate.Click += new System.EventHandler(this.OnMenuitemRekPrivateClick);
             // 
@@ -1760,14 +1712,14 @@ namespace ABClient.ABForms
             // 
             this.menuitemMinimize.Name = "menuitemMinimize";
             this.menuitemMinimize.ShortcutKeys = System.Windows.Forms.Keys.F11;
-            this.menuitemMinimize.Size = new System.Drawing.Size(265, 22);
+            this.menuitemMinimize.Size = new System.Drawing.Size(258, 22);
             this.menuitemMinimize.Text = "Свернуть";
             this.menuitemMinimize.Click += new System.EventHandler(this.OnMenuitemMinimizeClick);
             // 
             // toolStripSeparator12
             // 
             this.toolStripSeparator12.Name = "toolStripSeparator12";
-            this.toolStripSeparator12.Size = new System.Drawing.Size(262, 6);
+            this.toolStripSeparator12.Size = new System.Drawing.Size(255, 6);
             // 
             // miFastEnabled
             // 
@@ -1775,7 +1727,7 @@ namespace ABClient.ABForms
             this.miFastEnabled.CheckOnClick = true;
             this.miFastEnabled.CheckState = System.Windows.Forms.CheckState.Checked;
             this.miFastEnabled.Name = "miFastEnabled";
-            this.miFastEnabled.Size = new System.Drawing.Size(265, 22);
+            this.miFastEnabled.Size = new System.Drawing.Size(258, 22);
             this.miFastEnabled.Text = "Быстрые команды разрешены";
             this.miFastEnabled.CheckStateChanged += new System.EventHandler(this.MiFastEnabledCheckStateChanged);
             // 
@@ -1783,7 +1735,7 @@ namespace ABClient.ABForms
             // 
             this.miFastTeleport.Name = "miFastTeleport";
             this.miFastTeleport.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.miFastTeleport.Size = new System.Drawing.Size(265, 22);
+            this.miFastTeleport.Size = new System.Drawing.Size(258, 22);
             this.miFastTeleport.Text = "Телепорт";
             this.miFastTeleport.Click += new System.EventHandler(this.MiFastTeleportClick);
             // 
@@ -1791,7 +1743,7 @@ namespace ABClient.ABForms
             // 
             this.miFastDarkTeleport.Name = "miFastDarkTeleport";
             this.miFastDarkTeleport.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F1)));
-            this.miFastDarkTeleport.Size = new System.Drawing.Size(265, 22);
+            this.miFastDarkTeleport.Size = new System.Drawing.Size(258, 22);
             this.miFastDarkTeleport.Text = "Сумеречный телепорт";
             this.miFastDarkTeleport.Click += new System.EventHandler(this.MiFastDarkTeleportClick);
             // 
@@ -1799,7 +1751,7 @@ namespace ABClient.ABForms
             // 
             this.miFastSviRass.Name = "miFastSviRass";
             this.miFastSviRass.ShortcutKeys = System.Windows.Forms.Keys.F2;
-            this.miFastSviRass.Size = new System.Drawing.Size(265, 22);
+            this.miFastSviRass.Size = new System.Drawing.Size(258, 22);
             this.miFastSviRass.Text = "Свиток обнаружения";
             this.miFastSviRass.Click += new System.EventHandler(this.MiFastSviRassClick);
             // 
@@ -1807,7 +1759,7 @@ namespace ABClient.ABForms
             // 
             this.miFastSviSelfRass.Name = "miFastSviSelfRass";
             this.miFastSviSelfRass.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F2)));
-            this.miFastSviSelfRass.Size = new System.Drawing.Size(265, 22);
+            this.miFastSviSelfRass.Size = new System.Drawing.Size(258, 22);
             this.miFastSviSelfRass.Text = "Свиток рассеивания";
             this.miFastSviSelfRass.Click += new System.EventHandler(this.MiFastSviSelfRassClick);
             // 
@@ -1815,7 +1767,7 @@ namespace ABClient.ABForms
             // 
             this.miFastF3.Name = "miFastF3";
             this.miFastF3.ShortcutKeys = System.Windows.Forms.Keys.F3;
-            this.miFastF3.Size = new System.Drawing.Size(265, 22);
+            this.miFastF3.Size = new System.Drawing.Size(258, 22);
             this.miFastF3.Text = "Эликсир мгновенного исцеления";
             this.miFastF3.Click += new System.EventHandler(this.MiFastMomentCure);
             // 
@@ -1823,7 +1775,7 @@ namespace ABClient.ABForms
             // 
             this.miFastF4.Name = "miFastF4";
             this.miFastF4.ShortcutKeys = System.Windows.Forms.Keys.F4;
-            this.miFastF4.Size = new System.Drawing.Size(265, 22);
+            this.miFastF4.Size = new System.Drawing.Size(258, 22);
             this.miFastF4.Text = "Приманка для ботов";
             this.miFastF4.Click += new System.EventHandler(this.MiFastPrimankaClick);
             // 
@@ -1831,7 +1783,7 @@ namespace ABClient.ABForms
             // 
             this.miFastElxVosst.Name = "miFastElxVosst";
             this.miFastElxVosst.ShortcutKeys = System.Windows.Forms.Keys.F7;
-            this.miFastElxVosst.Size = new System.Drawing.Size(265, 22);
+            this.miFastElxVosst.Size = new System.Drawing.Size(258, 22);
             this.miFastElxVosst.Text = "Эликсир восстановления";
             this.miFastElxVosst.Click += new System.EventHandler(this.MiFastMomentRestoreClick);
             // 
@@ -1839,7 +1791,7 @@ namespace ABClient.ABForms
             // 
             this.miFastSvitFog.Name = "miFastSvitFog";
             this.miFastSvitFog.ShortcutKeys = System.Windows.Forms.Keys.F8;
-            this.miFastSvitFog.Size = new System.Drawing.Size(265, 22);
+            this.miFastSvitFog.Size = new System.Drawing.Size(258, 22);
             this.miFastSvitFog.Text = "Свиток тумана";
             this.miFastSvitFog.Click += new System.EventHandler(this.MiFastFogClick);
             // 
@@ -1847,7 +1799,7 @@ namespace ABClient.ABForms
             // 
             this.miFastDarkFog.Name = "miFastDarkFog";
             this.miFastDarkFog.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F8)));
-            this.miFastDarkFog.Size = new System.Drawing.Size(265, 22);
+            this.miFastDarkFog.Size = new System.Drawing.Size(258, 22);
             this.miFastDarkFog.Text = "Сумеречный туман";
             this.miFastDarkFog.Click += new System.EventHandler(this.MiFastDarkFogClick);
             // 
@@ -1855,7 +1807,7 @@ namespace ABClient.ABForms
             // 
             this.miFastF9.Name = "miFastF9";
             this.miFastF9.ShortcutKeys = System.Windows.Forms.Keys.F9;
-            this.miFastF9.Size = new System.Drawing.Size(265, 22);
+            this.miFastF9.Size = new System.Drawing.Size(258, 22);
             this.miFastF9.Text = "Зелье блаженства";
             this.miFastF9.Click += new System.EventHandler(this.MiFastBlazPotClick);
             // 
@@ -1863,7 +1815,7 @@ namespace ABClient.ABForms
             // 
             this.miFastF10.Name = "miFastF10";
             this.miFastF10.ShortcutKeys = System.Windows.Forms.Keys.F10;
-            this.miFastF10.Size = new System.Drawing.Size(265, 22);
+            this.miFastF10.Size = new System.Drawing.Size(258, 22);
             this.miFastF10.Text = "Эликсир блаженства";
             this.miFastF10.Click += new System.EventHandler(this.MiFastBlazElexirClick);
             // 
@@ -1871,45 +1823,37 @@ namespace ABClient.ABForms
             // 
             this.miFastF12.Name = "miFastF12";
             this.miFastF12.ShortcutKeys = System.Windows.Forms.Keys.F12;
-            this.miFastF12.Size = new System.Drawing.Size(265, 22);
+            this.miFastF12.Size = new System.Drawing.Size(258, 22);
             this.miFastF12.Text = "Зелье Невидимости";
             this.miFastF12.Click += new System.EventHandler(this.MiFastNevidPotClick);
-            // 
-            // miFastCtrlF12
-            // 
-            this.miFastCtrlF12.Name = "miFastCtrlF12";
-            this.miFastCtrlF12.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F12)));
-            this.miFastCtrlF12.Size = new System.Drawing.Size(265, 22);
-            this.miFastCtrlF12.Text = "Телепорт (Остров Туротор)";
-            this.miFastCtrlF12.Click += new System.EventHandler(this.MiFastIslandPotClick);
             // 
             // toolStripSeparator11
             // 
             this.toolStripSeparator11.Name = "toolStripSeparator11";
-            this.toolStripSeparator11.Size = new System.Drawing.Size(262, 6);
+            this.toolStripSeparator11.Size = new System.Drawing.Size(255, 6);
             // 
             // miWearAfter
             // 
             this.miWearAfter.Name = "miWearAfter";
-            this.miWearAfter.Size = new System.Drawing.Size(265, 22);
+            this.miWearAfter.Size = new System.Drawing.Size(258, 22);
             this.miWearAfter.Text = "Одеть комплект после боя...";
             // 
             // toolStripSeparator20
             // 
             this.toolStripSeparator20.Name = "toolStripSeparator20";
-            this.toolStripSeparator20.Size = new System.Drawing.Size(262, 6);
+            this.toolStripSeparator20.Size = new System.Drawing.Size(255, 6);
             // 
             // miQuick
             // 
             this.miQuick.Name = "miQuick";
-            this.miQuick.Size = new System.Drawing.Size(265, 22);
+            this.miQuick.Size = new System.Drawing.Size(258, 22);
             this.miQuick.Text = "Быстрые действия...";
             this.miQuick.Click += new System.EventHandler(this.MiQuickClick);
             // 
             // miQuickCancel
             // 
             this.miQuickCancel.Name = "miQuickCancel";
-            this.miQuickCancel.Size = new System.Drawing.Size(265, 22);
+            this.miQuickCancel.Size = new System.Drawing.Size(258, 22);
             this.miQuickCancel.Text = "Отмена";
             this.miQuickCancel.Click += new System.EventHandler(this.MiQuickCancelClick);
             // 
@@ -2062,11 +2006,10 @@ namespace ABClient.ABForms
             this.miSetGroupToolId2,
             this.miSetGroupToolId3,
             this.miSetGroupToolId4,
-            this.miSetGroupToolId5,
             this.toolStripSeparator24,
             this.miRemoveGroup});
             this.CmGroup.Name = "CmGroup";
-            this.CmGroup.Size = new System.Drawing.Size(304, 236);
+            this.CmGroup.Size = new System.Drawing.Size(304, 214);
             // 
             // miSetGroupNeutral
             // 
@@ -2129,13 +2072,6 @@ namespace ABClient.ABForms
             this.miSetGroupToolId4.Text = "Применять ко всем закрытую кулачку";
             this.miSetGroupToolId4.Click += new System.EventHandler(this.MiSetGroupToolId4Click);
             // 
-            // miSetGroupToolId5
-            // 
-            this.miSetGroupToolId5.Name = "miSetGroupToolId5";
-            this.miSetGroupToolId5.Size = new System.Drawing.Size(303, 22);
-            this.miSetGroupToolId5.Text = "Применять ко всем портал";
-            this.miSetGroupToolId5.Click += new System.EventHandler(this.MiSetGroupToolId5Click);
-            // 
             // toolStripSeparator24
             // 
             this.toolStripSeparator24.Name = "toolStripSeparator24";
@@ -2166,6 +2102,18 @@ namespace ABClient.ABForms
             this.timer30.Interval = 34000;
             this.timer30.Tick += new System.EventHandler(this.timer30_Tick);
             // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 9973;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // timer2
+            // 
+            this.timer2.Enabled = true;
+            this.timer2.Interval = 8999;
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            // 
             // collapsibleSplitter
             // 
             this.collapsibleSplitter.BorderStyle3D = System.Windows.Forms.Border3DStyle.Flat;
@@ -2179,6 +2127,13 @@ namespace ABClient.ABForms
             this.collapsibleSplitter.TabStop = false;
             this.collapsibleSplitter.VisualStyle = ABClient.AppControls.SplitterVisualStyle.XP;
             this.collapsibleSplitter.MouseClick += new System.Windows.Forms.MouseEventHandler(this.collapsibleSplitter_MouseClick);
+            // 
+            // сканированиеКартыToolStripMenuItem
+            // 
+            this.сканированиеКартыToolStripMenuItem.Name = "сканированиеКартыToolStripMenuItem";
+            this.сканированиеКартыToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.сканированиеКартыToolStripMenuItem.Text = "Сканирование карты";
+            this.сканированиеКартыToolStripMenuItem.Click += new System.EventHandler(this.ScanMapToolStripMenuItem_Click);
             // 
             // FormMain
             // 
@@ -2317,11 +2272,10 @@ namespace ABClient.ABForms
         private System.Windows.Forms.ToolStripMenuItem miFastElxVosst;
         private System.Windows.Forms.ToolStripMenuItem miFastF3;
         private System.Windows.Forms.ToolStripMenuItem miFastF4;
-        private System.Windows.Forms.ToolStripMenuItem miFastCtrlF12;
+        private System.Windows.Forms.ToolStripMenuItem miFastF12;
         private System.Windows.Forms.ToolStripMenuItem miFastSvitFog;
         private System.Windows.Forms.ToolStripMenuItem miFastF9;
         private System.Windows.Forms.ToolStripMenuItem miFastF10;
-        private System.Windows.Forms.ToolStripMenuItem miFastF12;
         private System.Windows.Forms.ToolStripMenuItem menuitemSettingsGeneral;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator17;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
@@ -2378,6 +2332,8 @@ namespace ABClient.ABForms
         private ToolStripMenuItem menuitemBearRoar;
         private ToolStripMenuItem menuitemDoResetVisitedCells;
         private Timer timer30;
+        private Timer timer1;
+        private Timer timer2;
         private ToolStripMenuItem miFastSviSelfRass;
         private ToolStripMenuItem menuitemInfCookies;
         private ToolStripButton buttonFury;
@@ -2410,10 +2366,5 @@ namespace ABClient.ABForms
         private TabPage tabPageLog;
         private CheckBox checkDoLog;
         private ToolStripMenuItem сканированиеКартыToolStripMenuItem;
-        private ToolStripMenuItem menuitemFatalErrorTest;
-        private ToolStripMenuItem menuitemReloadTopFrame;
-        private ToolStripMenuItem miAutoAttack5;
-        private ToolStripMenuItem miSetGroupToolId5;
-        private ToolStripMenuItem cmtsToolId5;
     }
 }

@@ -254,7 +254,7 @@ namespace ABClient
                     {
                         foreach (var contact in AppVars.BossContacts)
                         {
-                            if (!string.IsNullOrEmpty(nextContactKey) && contact.Value.NextCheck >= nextCheck)
+                            if (!string.IsNullOrEmpty(nextContactKey) && (contact.Value.NextCheck >= nextCheck))
                                 continue;
 
                             nextContactKey = contact.Key;
@@ -305,11 +305,11 @@ namespace ABClient
                 return;
 
             var nick = contact.Name;
-            var userInfo = NeverApi.GetAll(nick);
+            var html = NeverInfo.GetPInfo(nick);
             if (!AppVars.Profile.Contacts.TryGetValue(nextContactKey, out contact))
                 return;
 
-            contact.Process(userInfo);
+            contact.Process(html);
         }
 
         private static void ProcessBossAsync(object state)
@@ -320,11 +320,11 @@ namespace ABClient
                 return;
 
             var nick = contact.Name;
-            var userInfo = NeverApi.GetAll(nick);
+            var html = NeverInfo.GetPInfo(nick);
             if (!AppVars.BossContacts.TryGetValue(nextContactKey, out contact))
                 return;
 
-            contact.Process(userInfo);
+            contact.Process(html);
         }
 
         private static string GetParentName(Contact contact)

@@ -47,6 +47,7 @@ namespace ABClient
             ChatUsersManager.Load();
 
             FeatureBrowserEmulation.ChangeMode();
+            //InternetExplorerBrowserEmulation.SetBrowserEmulationVersion();
 
             using (var proxy = new Proxy())
             {

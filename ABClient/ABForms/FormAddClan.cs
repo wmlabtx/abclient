@@ -451,15 +451,31 @@ namespace ABClient.ABForms
         {
             var nick = stateInfo as string;
             if (nick == null)
+            {
+                return;
+            }
+
+            var html = NeverInfo.GetPInfo(nick);
+            if (string.IsNullOrEmpty(html))
                 return;
 
-            var mainUserInfo = NeverApi.GetAll(nick);
-            if (mainUserInfo == null)
+            // 2/11/2017 - params -> parameters 
+            // var params0 = HelperStrings.SubString(html, "var params = [[", "],");
+            var params0 = HelperStrings.SubString(html, "var parameters = [[", "],");
+            if (string.IsNullOrEmpty(params0))
+            {
                 return;
+            }
 
-            var firstNick = mainUserInfo.Nick;
-            var firstSign = mainUserInfo.ClanSign;
-            var firstClan = mainUserInfo.ClanName;
+            var spar0 = HelperStrings.ParseArguments(params0);
+            if (spar0.Length < 9)
+            {
+                return;
+            }
+
+            var firstNick = spar0[0].Trim();
+            var firstSign = spar0[2];
+            var firstClan = spar0[8];
 
             var listClanNicks = new List<string> { firstNick };
             if (!string.IsNullOrEmpty(firstSign))
@@ -470,7 +486,7 @@ namespace ABClient.ABForms
                     try
                     {
                         IdleManager.AddActivity();
-                        buffer = wc.DownloadData(new Uri("http://allnl.ru/clan-players/all"));
+                        buffer = wc.DownloadData(new Uri("http://neverok.ru/clan_players.php?type=all"));
                     }
                     catch (WebException)
                     {
@@ -482,18 +498,11 @@ namespace ABClient.ABForms
                     }
                 }
 
-                var html = Encoding.UTF8.GetString(buffer);
+                html = AppVars.Codepage.GetString(buffer);
                 if (string.IsNullOrEmpty(html))
                     return;
 
-                // <img src="http://image.neverlands.ru/signs/c207.gif"> <a href="/clan-players/79">Dao Shen</a>
-                // <img src="http://image.neverlands.ru/signs/c257.gif"> <a href="/clan-players/82">Reign of Winds</a>
-
-                var linkClan = HelperStrings.SubString(
-                    html, 
-                    $"<img src=\"http://image.neverlands.ru/signs/{firstSign}\"> <a href=\"/clan-players/", 
-                    $"\">");
-
+                var linkClan = HelperStrings.SubString(html, firstSign + @"""><a href=""clan_players.php?clantype=", @"""");
                 if (string.IsNullOrEmpty(linkClan))
                     return;
 
@@ -519,7 +528,7 @@ namespace ABClient.ABForms
                     try
                     {
                         IdleManager.AddActivity();
-                        buffer = wc.DownloadData(new Uri($"http://allnl.ru/clan-players/{linkClan}"));
+                        buffer = wc.DownloadData(new Uri($"http://neverok.ru/clan_players.php?clantype={linkClan}"));
                     }
                     catch (WebException)
                     {
@@ -531,16 +540,14 @@ namespace ABClient.ABForms
                     }
                 }
 
-                html = Encoding.UTF8.GetString(buffer);
+                html = AppVars.Codepage.GetString(buffer);
                 if (string.IsNullOrEmpty(html))
                     return;
 
                 var p1 = 0;
                 while (p1 != -1)
                 {
-                    // <img src="http://image.neverlands.ru/signs/c237.gif"> Susya JE[18]
-
-                    string pat1 = $"<img src=\"http://image.neverlands.ru/signs/{firstSign}\">";
+                    const string pat1 = @" target=""_blank"">";
                     p1 = html.IndexOf(pat1, p1, StringComparison.OrdinalIgnoreCase);
                     if (p1 == -1)
                         break;
@@ -550,12 +557,12 @@ namespace ABClient.ABForms
                     if (p2 == -1)
                         continue;
 
-                    var statnick = html.Substring(p1, p2 - p1).Trim();
+                    var statnick = html.Substring(p1, p2 - p1);
                     if (statnick.Length < 64)
                         listClanNicks.Add(statnick);
                 }
             }
-            
+
             foreach (var vipNick in listClanNicks)
             {
                 try
@@ -575,22 +582,36 @@ namespace ABClient.ABForms
                 {
                 }
 
-                var userInfo = NeverApi.GetAll(vipNick);
-                if (userInfo == null)
+                html = NeverInfo.GetPInfo(vipNick);
+                if (string.IsNullOrEmpty(html))
                     continue;
 
-                var infNick = userInfo.Nick;
-                var infAlign = userInfo.Align;
-                var infSign = userInfo.ClanSign;
-                var infClan = userInfo.ClanName;
+                // 2/11/2017 - params -> parameters 
+                // var params0 = HelperStrings.SubString(html, "var params = [[", "],");
+                params0 = HelperStrings.SubString(html, "var parameters = [[", "],");
+                if (string.IsNullOrEmpty(params0))
+                {
+                    continue;
+                }
+
+                spar0 = HelperStrings.ParseArguments(params0);
+                if (spar0.Length < 9)
+                {
+                    continue;
+                }
+
+                var infNick = spar0[0].Trim();
+                var infAlign = spar0[1];
+                var infSign = spar0[2];
+                var infClan = spar0[8];
 
                 if (!infClan.Equals(firstClan))
                 {
                     continue;
                 }
 
-                var infLevel = userInfo.Level;
-                var infLocation = userInfo.Location;
+                var infLevel = spar0[3];
+                var infLocation = spar0[5];
                 if (infLocation.IndexOf('[') != -1)
                 {
                     infLocation = HelperStrings.SubString(infLocation, "[", "]");
@@ -603,26 +624,42 @@ namespace ABClient.ABForms
                 var isHeavyWound = false;
                 var isUltimateWound = false;
 
-                if (userInfo.EffectsCodes.Length > 0)
+                var effects = HelperStrings.SubString(html, "var effects = [", "];");
+                var sbeff = new StringBuilder();
+                if (!string.IsNullOrEmpty(effects))
                 {
-
-                    foreach (var elem in userInfo.EffectsCodes)
+                    var seffects = effects.Split(new[] { "],[" }, StringSplitOptions.RemoveEmptyEntries);
+                    for (var k = 0; k < seffects.Length; k++)
                     {
-                        switch (elem)
+                        var effk = seffects[k].Trim(new[] { '[', ']' });
+                        var seffk = effk.Split(',');
+                        if (seffk.Length <= 1)
                         {
-                            case "2":
-                                isHeavyWound = true; // тяжелые
-                                break;
-                            case "3":
-                                isMediumWound = true; // средние
-                                break;
-                            case "4":
-                                isLightWound = true; // легкие
-                                break;
-                            case "24":
+                            continue;
+                        }
+
+                        var effcode = seffk[0];
+                        var effname = seffk[1].Replace("<b>", String.Empty).Replace("</b>", String.Empty);
+                        sbeff.AppendFormat(
+                            @"&nbsp;<img src=http://image.neverlands.ru/pinfo/eff_{0}.gif width=15 height=15 align=absmiddle title=""{1}"">",
+                            effcode,
+                            effname);
+                        switch (effcode)
+                        {
+                            case "1":
                                 isUltimateWound = true;
                                 break;
-                            default:
+
+                            case "2":
+                                isHeavyWound = true;
+                                break;
+
+                            case "3":
+                                isMediumWound = true;
+                                break;
+
+                            case "4":
+                                isLightWound = true;
                                 break;
                         }
                     }
@@ -755,6 +792,7 @@ namespace ABClient.ABForms
                     "</b></a>[" +
                     infLevel +
                     @"]<a href='http://www.neverlands.ru/pinfo.cgi?" + infNick + "'><img src=http://image.neverlands.ru/chat/info.gif width=11 height=12 border=0 align=absmiddle></a>" +
+                    sbeff +
                     "<img src=http://image.neverlands.ru/1x1.gif width=8 height=1>" +
                     @"<span style=""font-size:10px;"">" + "добавлен в контакты" + "</span>" +
                     "</span><br>";
@@ -764,7 +802,8 @@ namespace ABClient.ABForms
                     if (AppVars.VipFormAddClan != null)
                     {
                         AppVars.VipFormAddClan.BeginInvoke(
-                            new UpdateStatusFormAddClanDelegate(AppVars.VipFormAddClan.AddCharacter), result);
+                            new UpdateStatusFormAddClanDelegate(AppVars.VipFormAddClan.AddCharacter),
+                            new object[] { result });
                     }
                     else
                     {
@@ -780,20 +819,22 @@ namespace ABClient.ABForms
                 if (AppVars.MainForm != null)
                 {
                     AppVars.MainForm.BeginInvoke(
-                        new AddContactFromBulkDelegate(AppVars.MainForm.AddContactFromBulk), nickContact);
+                        new AddContactFromBulkDelegate(AppVars.MainForm.AddContactFromBulk),
+                        new object[] { nickContact });
                 }
                 else
                 {
                     return;
                 }
-            }            
+            }
 
             try
             {
                 if (AppVars.VipFormAddClan != null)
                 {
                     AppVars.VipFormAddClan.BeginInvoke(
-                        new UpdateStatusFormAddClanDelegate(AppVars.VipFormAddClan.UpdateStatus), "Добавление в контакты завешено.");
+                        new UpdateStatusFormAddClanDelegate(AppVars.VipFormAddClan.UpdateStatus),
+                        new object[] { "Добавление в контакты завешено." });
                 }
                 else
                 {
@@ -804,7 +845,7 @@ namespace ABClient.ABForms
             {
             }
 
-            AppVars.Profile.Save();            
+            AppVars.Profile.Save();
         }
     }
 }

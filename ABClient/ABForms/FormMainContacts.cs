@@ -83,7 +83,6 @@
                 cmtsToolId2.Checked = false;
                 cmtsToolId3.Checked = false;
                 cmtsToolId4.Checked = false;
-                cmtsToolId5.Checked = false;
                 switch (contact.ToolId)
                 {
                     case 0:
@@ -101,13 +100,11 @@
                     case 4:
                         cmtsToolId4.Checked = true;
                         break;
-                    case 5:
-                        cmtsToolId5.Checked = true;
-                        break;
                     default:
                         cmtsToolId0.Checked = true;
                         break;
                 }
+
             }
         }
 
@@ -256,11 +253,6 @@
             SetContactToolId(4);
         }
 
-        private void CmtsToolId5Click(object sender, EventArgs e)
-        {
-            SetContactToolId(5);
-        }
-
         private void SetGroupClass(int classid)
         {
             var tngroup = treeContacts.SelectedNode;
@@ -341,11 +333,6 @@
         private void MiSetGroupToolId4Click(object sender, EventArgs e)
         {
             SetGroupToolId(4);
-        }
-
-        private void MiSetGroupToolId5Click(object sender, EventArgs e)
-        {
-            SetGroupToolId(5);
         }
     }
 }

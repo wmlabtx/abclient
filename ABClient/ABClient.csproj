@@ -508,10 +508,7 @@
     <Compile Include="NativeMethods.cs" />
     <Compile Include="Neuro\NeuroBase.cs" />
     <Compile Include="Neuro\NeuroVector.cs" />
-    <Compile Include="NeverApi.cs" />
-    <Compile Include="CookieAwareWebClient.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="NeverInfo.cs" />
     <Compile Include="PostFilter\ArenaJs.cs" />
     <Compile Include="PostFilter\BuildingJs.cs" />
     <Compile Include="PostFilter\ButPhp.cs" />
@@ -690,7 +687,6 @@
     <Compile Include="UnderAttack.cs" />
     <Compile Include="UnhandledExceptionManager.cs" />
     <Compile Include="UserForBo.cs" />
-    <Compile Include="UserInfo.cs" />
     <Compile Include="VersionClass.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -751,7 +747,6 @@
     <Content Include="chatusers.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Icons\i_w28_86.gif" />
     <Content Include="map.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

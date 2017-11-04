@@ -23,12 +23,22 @@ namespace ABClient
             NextCheck = delayedCheck ? DateTime.Now.AddSeconds(Dice.Make(30, 90)) : DateTime.Now;
         }
 
-        public void Process(UserInfo userInfo)
+        public void Process(string html)
         {
-            if (userInfo == null)
+            if (string.IsNullOrEmpty(html))
                 return;
 
-            var location = userInfo.Location;
+            // 2/11/2017 - params -> parameters 
+            // var params0 = HelperStrings.SubString(html, "var params = [[", "],");
+            var params0 = HelperStrings.SubString(html, "var parameters = [[", "],");
+            if (string.IsNullOrEmpty(params0))
+                return;
+
+            var spar0 = HelperStrings.ParseArguments(params0);
+            if (spar0.Length < 9)
+                return;
+
+            var location = spar0[5];
             var splocation = location.Split(new[] { " [" }, StringSplitOptions.RemoveEmptyEntries);
             if (splocation.Length == 2)
             {
@@ -37,7 +47,7 @@ namespace ABClient
             }
 
             var isonline = !string.IsNullOrEmpty(location);
-            var flog = userInfo.FightLog;
+            var flog = spar0[7];
             if (flog.Equals("0", StringComparison.Ordinal))
                 flog = string.Empty;
 
@@ -54,10 +64,12 @@ namespace ABClient
             if (string.IsNullOrEmpty(flog))
                 return;
 
-            var fight = NeverApi.GetFlog(flog);
+            var fight = NeverInfo.GetFlog(flog);
             //fight = File.ReadAllText("boss3.txt");
             if (string.IsNullOrEmpty(fight))
                 return;
+         
+            
 
             // var lives_g2 = [[3,"Королева Змей",49331,100000,2304578,1]];
 
@@ -79,21 +91,21 @@ namespace ABClient
 
             //File.WriteAllText($"x{flog}.txt", fight);
 
-            if (CheckLives(Name, flog, userInfo, location, livesg1))
+            if (CheckLives(Name, flog, html, location, livesg1))
             {
                 ContactsManager.AddUsers(livesg2);
                 //File.WriteAllText($"x{flog}.txt", fight);
                 return;
             }
 
-            if (CheckLives(Name, flog, userInfo, location, livesg2))
+            if (CheckLives(Name, flog, html, location, livesg2))
             {
                 ContactsManager.AddUsers(livesg1);
                 //File.WriteAllText($"x{flog}.txt", fight);
             }
         }
 
-        private static bool CheckLives(string nick, string flog, UserInfo userInfo, string location, string args)
+        private static bool CheckLives(string nick, string flog, string html, string location, string args)
         {
             /* 
                 var lives_g1 = [[1,"_(*Na*(_",23,1,"dshi",2810,5075,1],[1,"WAMPIRIK",23,3,"c125",1425,1425,1]];
@@ -116,7 +128,7 @@ namespace ABClient
                         var id = spar[4];
                         var name = spar[1].Trim('\"');
                         var message =
-                            $"{HtmlBossEntry(id, name)} напал на {HtmlPercEntry(userInfo)} в локации <b>{location}</b>. Возможные клетки: <i>{BossMap.GetRegNum(location)}</i>.  <a href='http://www.neverlands.ru/logs.fcg?fid={flog}' onclick='window.open(this.href);' target=_blank>Ссылка на бой</a>";
+                            $"{HtmlBossEntry(id, name)} напал на {HtmlPercEntry(nick, html)} в локации <b>{location}</b>. Возможные клетки: <i>{BossMap.GetRegNum(location)}</i>.  <a href='http://www.neverlands.ru/logs.fcg?fid={flog}' onclick='window.open(this.href);' target=_blank>Ссылка на бой</a>";
 
                         MySounds.EventSounds.PlayBear();
                         try
@@ -193,39 +205,71 @@ namespace ABClient
             return sb.ToString();
         }
 
-        private static string HtmlPercEntry(UserInfo userInfo)
+        private static string HtmlPercEntry(string nick, string html)
         {
-            if (userInfo == null)
+            if (string.IsNullOrEmpty(html))
                 return "Аноним";
 
-            var nick = userInfo.Nick;
-            var nnhtmlSec = nick.Replace("+", "%2B");
+            // 2/11/2017 - params -> parameters 
+            // var params0 = HelperStrings.SubString(html, "var params = [[", "],");
+            var params0 = HelperStrings.SubString(html, "var parameters = [[", "],");
+            if (string.IsNullOrEmpty(params0))
+                return "Аноним";
+
+            var hpmp = HelperStrings.SubString(html, "var hpmp = [", "]");
+            if (string.IsNullOrEmpty(hpmp))
+                return "Аноним";
+
+            var spar1 = HelperStrings.ParseArguments(hpmp);
+            if (spar1.Length < 5)
+                return "Аноним";
+
+            var spar0 = HelperStrings.ParseArguments(params0);
+            if (spar0.Length < 9)
+                return "Аноним";
+
+            //var nick = spar0[0].Trim();
+            var nnhtmlSec = nick;
+            {
+                nnhtmlSec = nnhtmlSec.Replace("+", "%2B");
+            }
+
             var colorNick = nick;
             switch (ContactsManager.GetClassIdOfContact(nick))
             {
+                case -1:
+                case 0:
+                    colorNick = @"<font color=""#000000"">" + colorNick + "</font>";
+                    break;
                 case 1:
                     colorNick = @"<font color=""#8A0808"">" + colorNick + "</font>";
                     break;
                 case 2:
                     colorNick = @"<font color=""#0B610B"">" + colorNick + "</font>";
                     break;
-                default:
-                    colorNick = @"<font color=""#000000"">" + colorNick + "</font>";
-                    break;
             }
 
-            var sign = userInfo.ClanSign;
-            var level = userInfo.Level;
-            var clan = userInfo.ClanName;
+            var sign = spar0[2];
+            var level = spar0[3];
+            var clan = spar0[8];
 
             // var effects = [[1,'Боевая травма (x9) (еще 23:06:17)'],[2,'Тяжелая травма (x2) (еще 07:01:22)'],[17,'Молчанка (еще 00:00:05)']];
-            if (userInfo.EffectsCodes.Length > 0)
+            var effects = HelperStrings.SubString(html, "var effects = [", "];");
+            var sbeff = new StringBuilder();
+            if (!string.IsNullOrEmpty(effects))
             {
-                var sbeff = new StringBuilder();
-                for (var k = 0; k < userInfo.EffectsCodes.Length; k++)
+                var seffects = effects.Split(new[] { "],[" }, StringSplitOptions.RemoveEmptyEntries);
+                for (var k = 0; k < seffects.Length; k++)
                 {
-                    var effcode = userInfo.EffectsCodes[k];
-                    var effname = userInfo.EffectsNames[k];
+                    var effk = seffects[k].Trim('[', ']');
+                    var seffk = effk.Split(',');
+                    if (seffk.Length <= 1)
+                    {
+                        continue;
+                    }
+
+                    var effcode = seffk[0];
+                    var effname = seffk[1].Replace("<b>", string.Empty).Replace("</b>", string.Empty);
                     sbeff.AppendFormat(
                         @"&nbsp;<img src=http://image.neverlands.ru/pinfo/eff_{0}.gif width=15 height=15 align=absmiddle title=""{1}"">",
                         effcode,

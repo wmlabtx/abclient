@@ -127,15 +127,32 @@
         {
             var nick = stateInfo as string;
             if (nick == null)
+            {
+                return;
+            }
+
+            //var wc = new WebClient { Proxy = AppVars.LocalProxy };
+            var html = NeverInfo.GetPInfo(nick);
+            if (string.IsNullOrEmpty(html))
                 return;
 
-            var mainUserInfo = NeverApi.GetAll(nick);
-            if (mainUserInfo == null)
+            // 2/11/2017 - params -> parameters 
+            // var params0 = HelperStrings.SubString(html, "var params = [[", "],");
+            var params0 = HelperStrings.SubString(html, "var parameters = [[", "],");
+            if (string.IsNullOrEmpty(params0))
+            {
                 return;
+            }
 
-            var firstNick = mainUserInfo.Nick;
-            var firstSign = mainUserInfo.ClanSign;
-            var firstClan = mainUserInfo.ClanName;
+            var spar0 = HelperStrings.ParseArguments(params0);
+            if (spar0.Length < 9)
+            {
+                return;
+            }
+
+            var firstNick = spar0[0].Trim();
+            var firstSign = spar0[2];
+            var firstClan = spar0[8];
 
             var listClanNicks = new List<string> { firstNick };
             if (!string.IsNullOrEmpty(firstClan))
@@ -146,7 +163,7 @@
                     try
                     {
                         IdleManager.AddActivity();
-                        buffer = wc.DownloadData(new Uri("http://allnl.ru/clan-players/all"));
+                        buffer = wc.DownloadData(new Uri("http://neverok.ru/clan_players.php?type=all"));
                     }
                     catch (WebException)
                     {
@@ -158,10 +175,7 @@
                     }
                 }
 
-                var html = Encoding.UTF8.GetString(buffer);
-                if (string.IsNullOrEmpty(html))
-                    return;
-
+                html = AppVars.Codepage.GetString(buffer);
                 try
                 {
                     if (AppVars.VipFormCompas != null)
@@ -179,11 +193,7 @@
                 {
                 }
 
-                var linkClan = HelperStrings.SubString(
-                    html,
-                    $"<img src=\"http://image.neverlands.ru/signs/{firstSign}\"> <a href=\"/clan-players/",
-                    $"\">{firstClan}</a>");
-
+                var linkClan = HelperStrings.SubString(html, firstSign + @"""><a href=""clan_players.php?clantype=", @"""");
                 if (string.IsNullOrEmpty(linkClan))
                     return;
 
@@ -192,7 +202,7 @@
                     try
                     {
                         IdleManager.AddActivity();
-                        buffer = wc.DownloadData(new Uri($"http://allnl.ru/clan-players/{linkClan}"));
+                        buffer = wc.DownloadData(new Uri($"http://neverok.ru/clan_players.php?clantype={linkClan}"));
                     }
                     catch (WebException)
                     {
@@ -204,14 +214,14 @@
                     }
                 }
 
-                html = Encoding.UTF8.GetString(buffer);
+                html = AppVars.Codepage.GetString(buffer);
                 if (string.IsNullOrEmpty(html))
                     return;
 
                 var p1 = 0;
                 while (p1 != -1)
                 {
-                    string pat1 = $"<img src=\"http://image.neverlands.ru/signs/{firstSign}\">";
+                    const string pat1 = @" target=""_blank"">";
                     p1 = html.IndexOf(pat1, p1, StringComparison.OrdinalIgnoreCase);
                     if (p1 == -1)
                         break;
@@ -221,7 +231,7 @@
                     if (p2 == -1)
                         continue;
 
-                    var statnick = html.Substring(p1, p2 - p1).Trim();
+                    var statnick = html.Substring(p1, p2 - p1);
                     if (statnick.Length < 64)
                         listClanNicks.Add(statnick);
                 }
@@ -246,22 +256,31 @@
                 {
                 }
 
-                var userInfo = NeverApi.GetAll(vipNick);
-                if (userInfo == null)
+                html = NeverInfo.GetPInfo(vipNick);
+                if (string.IsNullOrEmpty(html))
                     continue;
 
-                var infNick = userInfo.Nick;
-                var infAlign = userInfo.Align;
-                var infSign = userInfo.ClanSign;
-                var infClan = userInfo.ClanName;
-
-                if (!infClan.Equals(firstClan))
+                // 2/11/2017 - params -> parameters 
+                // var params0 = HelperStrings.SubString(html, "var params = [[", "],");
+                params0 = HelperStrings.SubString(html, "var parameters = [[", "],");
+                if (string.IsNullOrEmpty(params0))
                 {
                     continue;
                 }
 
-                var infLevel = userInfo.Level;
-                var infLocation = userInfo.Location;
+                spar0 = HelperStrings.ParseArguments(params0);
+                if (spar0.Length < 9)
+                {
+                    continue;
+                }
+
+                var infNick = spar0[0].Trim();
+                var infAlign = spar0[1];
+                var infSign = spar0[2];
+                var infClan = spar0[8];
+                var infLevel = spar0[3];
+                var orgLocation = spar0[5];
+                var infLocation = spar0[5];
                 if (infLocation.IndexOf('[') != -1)
                 {
                     infLocation = HelperStrings.SubString(infLocation, "[", "]");
@@ -269,36 +288,52 @@
 
                 var infIsOnline = !string.IsNullOrEmpty(infLocation);
 
+                if (!infClan.Equals(firstClan))
+                {
+                    continue;
+                }
+
                 var isLightWound = false;
                 var isMediumWound = false;
                 var isHeavyWound = false;
                 var isUltimateWound = false;
 
+                var effects = HelperStrings.SubString(html, "var effects = [", "];");
                 var sbeff = new StringBuilder();
-                if (userInfo.EffectsCodes.Length > 0)
+                if (!string.IsNullOrEmpty(effects))
                 {
-                    for (var i = 0; i < userInfo.EffectsCodes.Length; i++)
+                    var seffects = effects.Split(new[] { "],[" }, StringSplitOptions.RemoveEmptyEntries);
+                    for (var k = 0; k < seffects.Length; k++)
                     {
+                        var effk = seffects[k].Trim(new[] { '[', ']' });
+                        var seffk = effk.Split(',');
+                        if (seffk.Length <= 1)
+                        {
+                            continue;
+                        }
+
+                        var effcode = seffk[0];
+                        var effname = seffk[1].Replace("<b>", String.Empty).Replace("</b>", String.Empty);
                         sbeff.AppendFormat(
                             @"&nbsp;<img src=http://image.neverlands.ru/pinfo/eff_{0}.gif width=15 height=15 align=absmiddle title=""{1}"">",
-                            userInfo.EffectsCodes[i],
-                            userInfo.EffectsNames[i]);
-
-                        switch (userInfo.EffectsCodes[i])
+                            effcode,
+                            effname);
+                        switch (effcode)
                         {
-                            case "2":
-                                isHeavyWound = true; // тяжелые
-                                break;
-                            case "3":
-                                isMediumWound = true; // средние
-                                break;
-                            case "4":
-                                isLightWound = true; // легкие
-                                break;
-                            case "24":
+                            case "1":
                                 isUltimateWound = true;
                                 break;
-                            default:
+
+                            case "2":
+                                isHeavyWound = true;
+                                break;
+
+                            case "3":
+                                isMediumWound = true;
+                                break;
+
+                            case "4":
+                                isLightWound = true;
                                 break;
                         }
                     }
@@ -426,14 +461,13 @@
                 if (infIsOnline)
                 {
                     // Окрестности Форпоста [Окрестность Форпоста, Биржа]"
-                    var orgLocation = userInfo.Location;
+
                     if (!orgLocation.StartsWith("Форпост", StringComparison.OrdinalIgnoreCase) &&
                         !orgLocation.StartsWith("Октал", StringComparison.OrdinalIgnoreCase) &&
                         !orgLocation.StartsWith("Деревня", StringComparison.OrdinalIgnoreCase) &&
                         !orgLocation.StartsWith("Тюрьма", StringComparison.OrdinalIgnoreCase) &&
                         !orgLocation.StartsWith("Окрестности Форпоста [Окрестность Форпоста, Биржа]", StringComparison.OrdinalIgnoreCase) &&
-                        !orgLocation.StartsWith("Окрестность Форпоста [Сырьевая Биржа]", StringComparison.OrdinalIgnoreCase) &&
-                        !orgLocation.StartsWith("Окрестности Форпоста [Плавильная мастерская]", StringComparison.OrdinalIgnoreCase))                      
+                        !orgLocation.StartsWith("Окрестность Форпоста [Сырьевая Биржа]", StringComparison.OrdinalIgnoreCase))                      
                     {
                         //var matrixNick = string.Format(":{0}:", vipNick);
                         var arrayPossibleLocations = new List<string>();
@@ -482,6 +516,32 @@
                                 cellIndex++;
 
                                 arrayPossibleLocations.Add(cellKey);
+                                /*
+                                var position = Map.InvPosition[cellKey];
+                                var cm = Convert.ToChar(38);
+                                var url = string.Format("http://www.neverlands.ru/ch.php?lo=1&r={0}_{1}_{2}", cm, position.X, position.Y);
+                                try
+                                {
+                                    var httpWebRequest = (HttpWebRequest) WebRequest.Create(url);
+                                    httpWebRequest.Method = "GET";
+                                    httpWebRequest.Proxy = AppVars.LocalProxy;
+                                    var cookies = CookiesManager.Obtain("www.neverlands.ru");
+                                    httpWebRequest.Headers.Add("Cookie", cookies);
+                                    var resp = httpWebRequest.GetResponse();
+                                    var webstream = resp.GetResponseStream();
+                                    var reader = new StreamReader(webstream, AppVars.Codepage);
+                                    var responseFromServer = reader.ReadToEnd();
+                                    if (responseFromServer.IndexOf(matrixNick, StringComparison.OrdinalIgnoreCase) != -1)
+                                    {
+                                        arrayPossibleLocations.Clear();
+                                        arrayPossibleLocations.Add(cellKey);
+                                        break;
+                                    }
+                                }
+                                catch
+                                {
+                                }
+                                 */ 
                             }
                         }
 

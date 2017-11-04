@@ -499,7 +499,6 @@ namespace ABClient.MyProfile
                     DoShowFastAttackFog = (xmlReader["fog"] == null) || Convert.ToBoolean(xmlReader["fog"], CultureInfo.InvariantCulture);
                     DoShowFastAttackZas = (xmlReader["zas"] == null) || Convert.ToBoolean(xmlReader["zas"], CultureInfo.InvariantCulture);
                     DoShowFastAttackTotem = (xmlReader["totem"] == null) || Convert.ToBoolean(xmlReader["totem"], CultureInfo.InvariantCulture);
-                    DoShowFastAttackPortal = (xmlReader["portal"] == null) || Convert.ToBoolean(xmlReader["portal"], CultureInfo.InvariantCulture);
                     break;
 
                 case AppConsts.TagLezDoAutoboi:
