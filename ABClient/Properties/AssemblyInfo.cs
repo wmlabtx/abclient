@@ -32,8 +32,8 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("2.34.3.0")]
-[assembly: AssemblyFileVersion("2.34.3.0")]
+[assembly: AssemblyVersion("2.34.5.0")]
+[assembly: AssemblyFileVersion("2.34.5.0")]
 [assembly: NeutralResourcesLanguageAttribute("en-US")]
 #if DEBUG
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("ABClientTest, PublicKey=0024000004800000940000000602000000240000525341310004000001000100fd142352469cd0935e6c247028fde834f07ba30bebaeced91295324e56310052133e8b72dd6d5ced5c4a783bc44fb7fefe16eaa45f4080baecbd4423bb0704684f8ceab1b1e52eba08e77ee06ac7fee68b119c96a514d1dff00fd01e5522e08f95528fe2f0faf4fccf242bb93f9c1ab00993f25b1f601e143a3b8d43cbdb67d2")]

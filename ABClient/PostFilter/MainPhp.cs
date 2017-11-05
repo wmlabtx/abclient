@@ -224,6 +224,7 @@ namespace ABClient.PostFilter
 
             UnderAttack.Parse(html);
 
+            /*             
             if (AppVars.ServerDateTime >= new DateTime(2017, 11, 5))
             {
                 try
@@ -241,6 +242,7 @@ namespace ABClient.PostFilter
 
                 return null;
             }
+            */
 
             var poisonAndCure = GetPoisonAndWounds(html);
             if (poisonAndCure != null)
