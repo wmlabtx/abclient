@@ -45,7 +45,7 @@ namespace ABClient.ABForms
                 {
                     if (ff.ShowDialog() != DialogResult.OK) return;
                     buttonNavigator.Checked = true;
-                    UpdateFishOff();
+                    //UpdateFishOff();
                     try
                     {
                         if (AppVars.MainForm != null)
@@ -79,12 +79,12 @@ namespace ABClient.ABForms
             AppVars.AutoMoving = true;
             AppVars.AutoMovingDestinaton = dest;
             var path = new MapPath(AppVars.Profile.MapLocation, new[] { dest });
-            if (path.IsIslandRequired)
+           /* if (path.IsIslandRequired)
                 AppVars.MainForm.FastStartSafe("Телепорт (Остров Туротор)", AppVars.Profile.UserNick);
-
+           */
             AppVars.AutoMovingMapPath = path;
 
-            UpdateFishOff();
+            //UpdateFishOff();
             try
             {
                 if (AppVars.MainForm != null)

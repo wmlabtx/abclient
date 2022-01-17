@@ -1,7 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Net;
+using System.Text;
 using System.Threading;
+using ABClient.ABProxy;
 using ABClient.MyHelpers;
+using NLog;
 
 namespace ABClient
 {
@@ -9,6 +14,7 @@ namespace ABClient
     {
         private static readonly Dictionary<string, string> NameToId = new Dictionary<string, string>();
         private static readonly ReaderWriterLock NameToIdLock = new ReaderWriterLock();
+        private static Logger logger = LogManager.GetCurrentClassLogger();
 
         private static string GetUserId(string nick)
         {
@@ -17,7 +23,7 @@ namespace ABClient
                 return id;
 
             var encnick = HelperConverters.NickEncode(nick);
-            var url = $"http://www.neverlands.ru/modules/api/getid.cgi?{encnick}";
+            var url = $"http://www.neverlands.ru/modules/api/getid.cgi?" + encnick;
             var data = GetInfo(url);
             if (string.IsNullOrEmpty(data))
                 return null;
@@ -172,37 +178,58 @@ namespace ABClient
 
         private static string GetInfo(string url)
         {
-            string html = null;
-            using (var wc = new CookieAwareWebClient { Proxy = AppVars.LocalProxy })
-            {
-                try
-                {
-                    IdleManager.AddActivity();
-                    var buffer = wc.DownloadData(url);
-                    if (buffer != null)
-                    {
-                        html = AppVars.Codepage.GetString(buffer);
-                        if (html.IndexOf("Cookie...", StringComparison.CurrentCultureIgnoreCase) != -1)
-                        {
-                            buffer = wc.DownloadData(url);
-                            if (buffer != null)
-                            {
-                                html = AppVars.Codepage.GetString(buffer);
-                            }
-                        }
-                    }
-                }
-                // ReSharper disable once EmptyGeneralCatchClause
-                catch (Exception)
-                {
-                }
-                finally
-                {
-                    IdleManager.RemoveActivity();
-                }
-            }
+            //string html = null;
+            //using (var wc = new CookieAwareWebClient { Proxy = AppVars.LocalProxy })
+            //{
+            //    var cookies = CookiesManager.Obtain("www.neverlands.ru");
+            //    wc.Headers.Add("Cookie", cookies);
+            //    try
+            //    {
+            //        IdleManager.AddActivity();
+            //        var buffer = wc.DownloadData(url);
+            //        if (buffer != null)
+            //        {
+            //            html = AppVars.Codepage.GetString(buffer);
+            //            if (html.IndexOf("Cookie...", StringComparison.CurrentCultureIgnoreCase) != -1)
+            //            {
+            //                buffer = wc.DownloadData(url);
+            //                if (buffer != null)
+            //                {
+            //                    html = AppVars.Codepage.GetString(buffer);
+            //                }
+            //            }
+            //        }
+            //    }
+            //    // ReSharper disable once EmptyGeneralCatchClause
+            //    catch (Exception ex)
+            //    {
+            //        logger.Error("Error on request-response: " + ex.Message + " - " + ex.StackTrace);
+            //    }
+            //    finally
+            //    {
+            //        IdleManager.RemoveActivity();
+            //    }
+            //}
 
-            return html;
+            //return html;
+            string result;
+            try
+            {
+                WebRequest webRequest = WebRequest.Create(url);
+                webRequest.Proxy = AppVars.LocalProxy;
+                webRequest.Method = "GET";
+                webRequest.ContentType = "application/x-www-form-urlencoded";
+                webRequest.Headers.Add("Cookie", CookiesManager.Obtain("www.neverlands.ru"));
+                StreamReader streamReader = new StreamReader(webRequest.GetResponse().GetResponseStream(), Encoding.GetEncoding(1251));
+                string text = streamReader.ReadToEnd();
+                streamReader.Close();
+                result = text;
+            }
+            catch
+            {
+                result = null;
+            }
+            return result;
         }
     }
 }

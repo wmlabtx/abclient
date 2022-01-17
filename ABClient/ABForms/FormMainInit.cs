@@ -1,12 +1,22 @@
 ﻿namespace ABClient.ABForms
 {
     using System;
+    using System.Diagnostics;
+    using System.IO;
+    using System.Net.Http;
+    using System.Runtime.InteropServices;
+    using System.Text;
+    using System.Threading.Tasks;
     using System.Windows.Forms;
+    using System.Xml;
+    using ABClient.MyHelpers;
     using AppControls;
     using Forms;
+    using Newtonsoft.Json;
 
     internal sealed partial class FormMain
     {
+        
         private void InitForm()
         {
             InitSize();
@@ -15,6 +25,8 @@
 
         private void FormLoad()
         {
+
+            
             try
             {
                 if (AppVars.MainForm != null)
@@ -88,7 +100,7 @@
             
             buttonDoTexLog.Checked = AppVars.Profile.DoTexLog;
             buttonShowPerformance.Checked = AppVars.Profile.ShowPerformance;
-            buttonAutoFish.Checked = AppVars.Profile.FishAuto;
+            /*buttonAutoFish.Checked = AppVars.Profile.FishAuto;
             if (AppVars.Profile.FishAuto)
             {
                 AppVars.SwitchToPerc = true;
@@ -106,15 +118,15 @@
                 AppVars.AutoSkinCheckKnife = true;
                 AppVars.AutoSkinArmedKnife = false;
             }
-
+            */
             buttonSilence.Checked = !AppVars.Profile.Sound.Enabled;
-            statuslabelTorgAdv.Enabled = AppVars.Profile.TorgActive;
+           // statuslabelTorgAdv.Enabled = AppVars.Profile.TorgActive;
             if (AppVars.Profile.SelectedRightPanel < tabControlRight.TabCount)
             {
                 tabControlRight.SelectedIndex = AppVars.Profile.SelectedRightPanel;
             }
 
-            menuitemGuamod.Checked = AppVars.Profile.DoGuamod;
+            //menuitemGuamod.Checked = AppVars.Profile.DoGuamod;
 
             UpdateStat();
 
@@ -125,6 +137,39 @@
             }
 
             LoadTabs();
+            try
+            {
+                if (File.Exists("drinkSets.xml"))
+                {
+                    string xml;
+                    try
+                    {
+                        xml = File.ReadAllText("drinkSets.xml", Encoding.UTF8);
+                    }
+                    catch
+                    {
+                        return;
+                    }
+                    XmlDocument xmlDocument = new XmlDocument();
+                    xmlDocument.LoadXml(xml);
+                    foreach (object obj in xmlDocument.GetElementsByTagName("drinkSet"))
+                    {
+                        XmlNode xmlNode = (XmlNode)obj;
+                        if (xmlNode.Attributes != null)
+                        {
+                            string value = xmlNode.Attributes["name"].Value;
+                            string value2 = xmlNode.Attributes["composition"].Value;
+                            Class72.dictionary_4.Add(value, value2);
+                        }
+                    }
+                    Control fortBuffsCells = this.FortBuffsCells;
+                    XmlNode xmlNode2 = xmlDocument.GetElementsByTagName("fortBuffsCells")[0];
+                    fortBuffsCells.Text = (((xmlNode2 != null) ? xmlNode2.InnerText : null) ?? string.Empty);
+                }
+            }
+            catch
+            {
+            }
             UpdateLocationSafe(AppVars.Profile.MapLocation);
 
             AppVars.Tied = 0;

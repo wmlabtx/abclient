@@ -65,8 +65,9 @@ namespace ABClient.ABForms
             {
                 return null;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                logger.Error(ex.Message);
                 return null;
             }
 

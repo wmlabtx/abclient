@@ -48,6 +48,8 @@
             this.numTriggerMin = new System.Windows.Forms.NumericUpDown();
             this.radioComplect = new System.Windows.Forms.RadioButton();
             this.textComplect = new System.Windows.Forms.TextBox();
+            this.textDrinkSetName = new System.Windows.Forms.TextBox();
+            this.radioDrinkSets = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numTriggerHour)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numTriggerMin)).BeginInit();
@@ -68,7 +70,7 @@
             this.buttonOk.AutoSize = true;
             this.buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.buttonOk.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonOk.Location = new System.Drawing.Point(139, 275);
+            this.buttonOk.Location = new System.Drawing.Point(139, 313);
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.Size = new System.Drawing.Size(122, 23);
             this.buttonOk.TabIndex = 1014;
@@ -79,7 +81,7 @@
             // buttonCancel
             // 
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonCancel.Location = new System.Drawing.Point(267, 275);
+            this.buttonCancel.Location = new System.Drawing.Point(267, 313);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(85, 23);
             this.buttonCancel.TabIndex = 1015;
@@ -302,12 +304,34 @@
             this.textComplect.Size = new System.Drawing.Size(69, 21);
             this.textComplect.TabIndex = 1037;
             // 
+            // textDrinkSetName
+            // 
+            this.textDrinkSetName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.textDrinkSetName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.textDrinkSetName.Enabled = false;
+            this.textDrinkSetName.Location = new System.Drawing.Point(113, 278);
+            this.textDrinkSetName.Name = "textDrinkSetName";
+            this.textDrinkSetName.Size = new System.Drawing.Size(69, 21);
+            this.textDrinkSetName.TabIndex = 1042;
+            // 
+            // radioDrinkSets
+            // 
+            this.radioDrinkSets.AutoSize = true;
+            this.radioDrinkSets.Location = new System.Drawing.Point(12, 279);
+            this.radioDrinkSets.Name = "radioDrinkSets";
+            this.radioDrinkSets.Size = new System.Drawing.Size(86, 17);
+            this.radioDrinkSets.TabIndex = 1041;
+            this.radioDrinkSets.Text = "Автоупивка";
+            this.radioDrinkSets.UseVisualStyleBackColor = true;
+            // 
             // FormNewTimer
             // 
             this.AcceptButton = this.buttonOk;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.buttonCancel;
-            this.ClientSize = new System.Drawing.Size(369, 325);
+            this.ClientSize = new System.Drawing.Size(369, 348);
+            this.Controls.Add(this.textDrinkSetName);
+            this.Controls.Add(this.radioDrinkSets);
             this.Controls.Add(this.textComplect);
             this.Controls.Add(this.radioComplect);
             this.Controls.Add(this.numTriggerMin);
@@ -360,5 +384,7 @@
         private System.Windows.Forms.NumericUpDown numTriggerMin;
         private System.Windows.Forms.RadioButton radioComplect;
         private System.Windows.Forms.TextBox textComplect;
+        private System.Windows.Forms.TextBox textDrinkSetName;
+        private System.Windows.Forms.RadioButton radioDrinkSets;
     }
 }

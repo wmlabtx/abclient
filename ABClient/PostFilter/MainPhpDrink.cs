@@ -275,6 +275,72 @@
             return html.IndexOf(@"input type=button class=lbut value=""Умения""", StringComparison.OrdinalIgnoreCase) != -1;
         }
 
+        internal static string MainPhpFindApplyEffectLink(string html, out string vcode)
+        {
+            vcode = "";
+            /* "applyEffect":"30d93fc0d0a90c6524790e3996cef022" */
+            string pattern = "\"applyEffect\":\"";
+            int posPattern = html.IndexOf(pattern, StringComparison.OrdinalIgnoreCase);
+            if (posPattern == -1)
+                return null;
+            posPattern += pattern.Length;
+            var posEnd = html.IndexOf('"', posPattern);
+            if (posEnd == -1)
+            {
+                return null;
+            }
+
+            vcode = html.Substring(posPattern, posEnd - posPattern);
+            var link = string.Format(CultureInfo.InvariantCulture, "main.php?get_id=56&act=10&go=dep&vcode={0}", vcode);
+            return link;
+        }
+
+        internal static string MainPhpFindEnterLink(string html)
+        {
+            /* []],["dep","Войти","81446abde14e36b0be813c60b2990f43",[]]]; */
+
+            const string patternEnter = @"[""dep"",""Войти"",""";
+            var posPatternEnter = html.IndexOf(patternEnter, StringComparison.OrdinalIgnoreCase);
+            if (posPatternEnter == -1)
+            {
+                return null;
+            }
+
+            posPatternEnter += patternEnter.Length;
+            var posEnd = html.IndexOf('"', posPatternEnter);
+            if (posEnd == -1)
+            {
+                return null;
+            }
+
+            var vcode = html.Substring(posPatternEnter, posEnd - posPatternEnter);
+            var link = string.Format(CultureInfo.InvariantCulture, "main.php?get_id=56&act=10&go=dep&vcode={0}", vcode);
+            return link;
+        }
+
+        internal static string MainPhpFindExitLink(string html)
+        {
+            /* []],["dep","Войти","81446abde14e36b0be813c60b2990f43",[]]]; */
+
+            const string patternEnter = @"""up"":";
+            var posPatternEnter = html.LastIndexOf(patternEnter, StringComparison.OrdinalIgnoreCase);
+            if (posPatternEnter == -1)
+            {
+                return null;
+            }
+
+            posPatternEnter += patternEnter.Length;
+            var posEnd = html.IndexOf("};", posPatternEnter);
+            if (posEnd == -1)
+            {
+                return null;
+            }
+
+            var vcode = html.Substring(posPatternEnter, posEnd - posPatternEnter).Trim('"');
+            var link = string.Format(CultureInfo.InvariantCulture, "main.php?get_id=56&act=10&go=dep&vcode={0}", vcode);
+            return link;
+        }
+
         private static string MainPhpFindEnter(string html)
         {
             /* []],["dep","Войти","81446abde14e36b0be813c60b2990f43",[]]]; */

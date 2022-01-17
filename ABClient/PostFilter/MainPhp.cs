@@ -565,7 +565,7 @@ namespace ABClient.PostFilter
                     html.IndexOf("<font color=#CC0000><b>Приманок нет в наличии.", StringComparison.OrdinalIgnoreCase) != -1 ||
                     html.IndexOf("<font color=#CC0000><b>У Вас не хватает умения, чтобы ловить тут рыбу.", StringComparison.OrdinalIgnoreCase) != -1)
                 {
-                    try
+                   /* try
                     {
                         if (AppVars.MainForm != null)
                         {
@@ -576,7 +576,7 @@ namespace ABClient.PostFilter
                     }
                     catch (InvalidOperationException)
                     {
-                    }
+                    }*/
 
                     goto end;
                 }
@@ -1832,8 +1832,13 @@ namespace ABClient.PostFilter
                 }
             }
 
+            if (AppVars.MainForm.IsTurotorTopActive() && ((AppVars.DoParseRegionCells && AppVars.Profile.MapLocation == "11-398") || (AppVars.TurotorTopDestination1 != "28-462" && AppVars.Profile.MapLocation == "28-462")))
+            {
+                string string_ = (string.IsNullOrEmpty(AppVars.TurotorTopDestination2) || HelperStrings.Remaining()) ? AppVars.TurotorTopDestination1 : AppVars.TurotorTopDestination2;
+                AppVars.MainForm.MoveToSafe(string_);
+            }
             // Переключаем на полный инвентарь
-            
+
             /*
             if (MainPhpIsInv(html))
             {

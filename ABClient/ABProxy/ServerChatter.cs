@@ -98,19 +98,7 @@
             {
                 flag2 = true;
             }
-            else
-            {
-                try
-                {
-                    if (AppVars.MainForm != null)
-                    {
-                        AppVars.MainForm.UpdateTrafficSafe(_responseData.Length);
-                    }
-                }
-                catch (InvalidOperationException)
-                {
-                }
-            }
+           
 
             if ((Headers == null) && !flag2)
             {

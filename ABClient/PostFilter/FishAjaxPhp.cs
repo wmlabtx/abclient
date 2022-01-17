@@ -25,7 +25,7 @@
                 html.IndexOf("Приманок нет в наличии.", StringComparison.OrdinalIgnoreCase) != -1 ||
                 html.IndexOf("У Вас не хватает умения, чтобы ловить тут рыбу.", StringComparison.OrdinalIgnoreCase) != -1)
             {
-                try
+                /*try
                 {
                     if (AppVars.MainForm != null)
                     {
@@ -36,7 +36,7 @@
                 }
                 catch (InvalidOperationException)
                 {
-                }
+                }*/
 
                 return array;
             }
@@ -413,7 +413,7 @@
 
             AppVars.AutoFishNV += bal;
 
-            try
+           /* try
             {
                 if (AppVars.MainForm != null)
                 {
@@ -424,7 +424,7 @@
             }
             catch (InvalidOperationException)
             {
-            }
+            }*/
 
             sbr.Append("<br>");
             if (AppVars.AutoFishNV < 0)

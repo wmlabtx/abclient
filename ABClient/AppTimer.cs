@@ -16,6 +16,8 @@ namespace ABClient
         internal string Complect = string.Empty;
         internal int Id;
         internal bool IsHerb;
+        internal bool IsIsland;
+        internal string AutoDrink = string.Empty;
 
         public override string ToString()
         {

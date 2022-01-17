@@ -2,8 +2,13 @@
 {
     using System;
     using System.Net;
+    using System.Net.Http;
+    using System.Runtime.InteropServices;
     using System.Windows.Forms;
+    using ABClient.MyHelpers;
     using MyProfile;
+    using Newtonsoft.Json;
+    using NLog;
 
     internal partial class FormProfile : Form
     {
@@ -16,10 +21,55 @@
 
         private readonly string _stringTitle;
         private bool passwordProtected;
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+        [DllImport("kernel32.dll")]
+        static extern bool SetSystemTime(ref SYSTEMTIME time);
 
+        [StructLayout(LayoutKind.Sequential)]
+        public struct SYSTEMTIME
+        {
+            public ushort Year;
+            public ushort Month;
+            public ushort DayOfWeek;
+            public ushort Day;
+            public ushort Hour;
+            public ushort Minute;
+            public ushort Second;
+            public ushort Milliseconds;
+
+            public SYSTEMTIME(DateTime dt)
+            {
+                Year = (ushort)dt.Year;
+                Month = (ushort)dt.Month;
+                DayOfWeek = (ushort)dt.DayOfWeek;
+                Day = (ushort)dt.Day;
+                Hour = (ushort)dt.Hour;
+                Minute = (ushort)dt.Minute;
+                Second = (ushort)dt.Second;
+                Milliseconds = (ushort)dt.Millisecond;
+            }
+        }
         internal FormProfile(UserConfig userConfig)
         {
             InitializeComponent();
+
+            string url = "http://worldtimeapi.org/api/timezone/Europe/moscow";
+            try
+            {
+                var client = new HttpClient();
+                var response = client.GetAsync(url);
+                string json = response.Result.Content.ToString();
+                JsonTimeClass jtc = JsonConvert.DeserializeObject<JsonTimeClass>(json);
+                var now = DateTime.Parse(jtc.datetime);
+                var systime = new SYSTEMTIME(now);
+                SetSystemTime(ref systime);
+
+            }
+            catch (Exception ex)
+            {
+                logger.Error($" Some " + ex.GetType() + " occured in " + ex.StackTrace + " message: " + ex.Message);
+            }
+
             if (userConfig == null)
             {
                 _stringTitle = ConstNewTitle;

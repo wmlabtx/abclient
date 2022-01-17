@@ -2,13 +2,18 @@
 {
     using System;
     using System.Globalization;
+    using System.Net.Http;
     using System.Text;
+    using System.Threading.Tasks;
     using MyChat;
     using MyGuamod;
     using MyHelpers;
+    using Newtonsoft.Json;
+    using NLog;
 
     internal sealed partial class FormMain
     {
+
         private void TimerCrap()
         {
             if (AppVars.MustReload || (DateTime.Now > AppVars.NextCheckNoConnection))
@@ -62,7 +67,7 @@
             {
                 if (DateTime.Now > AppVars.LastAdv)
                 {
-                    statuslabelAutoAdv.Text = @"0:00";
+                    //statuslabelAutoAdv.Text = @"0:00";
                     AppVars.LastAdv = DateTime.Now.AddSeconds(AppVars.Profile.AutoAdv.Sec);
                     if (AppVars.AdvArray == null)
                     {
@@ -87,7 +92,7 @@
                 else
                 {
                     var advdiff = AppVars.LastAdv.Subtract(DateTime.Now);
-                    statuslabelAutoAdv.Text = advdiff.Minutes + @":" + advdiff.Seconds.ToString("00");
+                    //statuslabelAutoAdv.Text = advdiff.Minutes + @":" + advdiff.Seconds.ToString("00");
                 }
             }
 
@@ -97,14 +102,14 @@
             {
                 if (DateTime.Now > AppVars.LastTorgAdv)
                 {
-                    statuslabelTorgAdv.Text = "0:00";
+                 //   statuslabelTorgAdv.Text = "0:00";
                     AppVars.LastTorgAdv = DateTime.Now.AddMinutes(AppVars.Profile.TorgAdvTime);
                     Chat.AddAnswer(AppVars.Profile.TorgMessageAdv.Replace("{таблица}", AppVars.Profile.TorgTabl));
                 }
                 else
                 {
                     var advdiff = AppVars.LastTorgAdv.Subtract(DateTime.Now);
-                    statuslabelTorgAdv.Text = advdiff.Minutes + ":" + advdiff.Seconds.ToString("00");
+                   // statuslabelTorgAdv.Text = advdiff.Minutes + ":" + advdiff.Seconds.ToString("00");
                 }
             }
 
@@ -329,23 +334,416 @@
             }
         }
 
-        private void TimerClock()
+        private string TimerClock()
         {
-            var clock = (AppVars.Profile.ServDiff == TimeSpan.MinValue) ? DateTime.Now : DateTime.Now.Subtract(AppVars.Profile.ServDiff);
-            statuslabelClock.Text =
-                clock.Hour.ToString("00") +
-                ":" +
-                clock.Minute.ToString("00") +
-                ":" +
-                clock.Second.ToString("00");
-            
-            var message = Chat.GetAnswer();
-            if (string.IsNullOrEmpty(message))
+            /* var clock = (AppVars.Profile.ServDiff == TimeSpan.MinValue) ? DateTime.Now : DateTime.Now.Subtract(AppVars.Profile.ServDiff);
+             statuslabelClock.Text =
+                 clock.Hour.ToString("00") +
+                 ":" +
+                 clock.Minute.ToString("00") +
+                 ":" +
+                 clock.Second.ToString("00");
+             */
+            try
             {
-                return;
-            }
+                var now = DateTime.Now;
+                if (now.Second == 0)
+                {
+                    if (now.Minute == 50 && (now.Hour == 0 || now.Hour == 6 || now.Hour == 12 || now.Hour == 18))
+                    {
+                        AppVars.Profile.HerbCells.Clear();
+                        //AppVars.Profile.FloraList = string.Empty;
+                    }
+                    if (this.IsTurotorTopActive() && !string.IsNullOrEmpty(AppVars.TurotorTopDestination2) && now.Minute == 0 && (now.Hour == AppVars.BeginInterval || now.Hour == AppVars.EndInterval))
+                    {
+                        this.MoveToSafe(HelperStrings.Remaining() ? AppVars.TurotorTopDestination2 : AppVars.TurotorTopDestination1);
+                    }
+                    /*if ((now.Minute == 38 && now.Hour == 18 && AppVars.StartOsadaForpost) || (now.Minute == 38 && now.Hour == 6 && AppVars.StartOsadaForpost) || (now.Minute == 38 && now.Hour == 10 && AppVars.StartOsadaForpost) || (now.Minute == 38 && now.Hour == 22 && AppVars.StartOsadaForpost) || (now.Minute == 38 && now.Hour == 14 && AppVars.StartOsadaForpost) || (now.Minute == 38 && now.Hour == 2 && AppVars.StartOsadaForpost))
+                    {
+                        AppVars.MainForm.ReloadMainPhpInvoke();
+                        AppVars.ChangeRoom = true;
+                        AppVars.CheckTPCorrect = false;
+                    }
+                    if ((now.Minute == 28 && now.Hour == 16 && AppVars.StartOsadaOktal) || (now.Minute == 28 && now.Hour == 20 && AppVars.StartOsadaOktal) || (now.Minute == 28 && now.Hour == 0 && AppVars.StartOsadaOktal) || (now.Minute == 28 && now.Hour == 4 && AppVars.StartOsadaOktal) || (now.Minute == 28 && now.Hour == 8 && AppVars.StartOsadaOktal) || (now.Minute == 28 && now.Hour == 12 && AppVars.StartOsadaOktal))
+                    {
+                        AppVars.MainForm.ReloadMainPhpInvoke();
+                        AppVars.ChangeRoom = true;
+                        AppVars.CheckTPCorrect = false;
+                    }
+                    if (((now.Minute == 39 && now.Hour == 18 && AppVars.StartOsadaForpost) || (now.Minute == 39 && now.Hour == 6 && AppVars.StartOsadaForpost) || (now.Minute == 39 && now.Hour == 10 && AppVars.StartOsadaForpost) || (now.Minute == 39 && now.Hour == 22 && AppVars.StartOsadaForpost) || (now.Minute == 39 && now.Hour == 14 && AppVars.StartOsadaForpost) || (now.Minute == 39 && now.Hour == 2 && AppVars.StartOsadaForpost)) && AppVars.ContentMainPhp.Contains("Вернуться"))
+                    {
+                        AppVars.MainForm.returnBatton();
+                    }
+                    if ((now.Minute == 38 && now.Hour == 18 && AppVars.Profile.OsadaArena) || (now.Minute == 38 && now.Hour == 6 && AppVars.Profile.OsadaArena) || (now.Minute == 38 && now.Hour == 10 && AppVars.Profile.OsadaArena) || (now.Minute == 38 && now.Hour == 22 && AppVars.Profile.OsadaArena) || (now.Minute == 38 && now.Hour == 14 && AppVars.Profile.OsadaArena) || (now.Minute == 38 && now.Hour == 2 && AppVars.Profile.OsadaArena))
+                    {
+                        AppVars.StartOsadaForpost = true;
+                        AppVars.ArenaEntry = true;
+                        AppVars.ChangeRoom = true;
+                        FormMain.ReloadMainFrame();
+                    }
+                    if (((now.Minute == 29 && now.Hour == 16 && AppVars.StartOsadaOktal) || (now.Minute == 29 && now.Hour == 20 && AppVars.StartOsadaOktal) || (now.Minute == 29 && now.Hour == 0 && AppVars.StartOsadaOktal) || (now.Minute == 29 && now.Hour == 4 && AppVars.StartOsadaOktal) || (now.Minute == 29 && now.Hour == 8 && AppVars.StartOsadaOktal) || (now.Minute == 29 && now.Hour == 12 && AppVars.StartOsadaOktal)) && AppVars.ContentMainPhp.Contains("Вернуться"))
+                    {
+                        AppVars.MainForm.returnBatton();
+                    }
+                    if ((now.Minute == 25 && now.Hour == 16 && AppVars.Profile.OsadaTP && AppVars.Profile.WatchOsadaOktal) || (now.Minute == 25 && now.Hour == 20 && AppVars.Profile.OsadaTP && AppVars.Profile.WatchOsadaOktal) || (now.Minute == 25 && now.Hour == 0 && AppVars.Profile.OsadaTP && AppVars.Profile.WatchOsadaOktal) || (now.Minute == 25 && now.Hour == 4 && AppVars.Profile.OsadaTP && AppVars.Profile.WatchOsadaOktal) || (now.Minute == 25 && now.Hour == 8 && AppVars.Profile.OsadaTP && AppVars.Profile.WatchOsadaOktal) || (now.Minute == 25 && now.Hour == 12 && AppVars.Profile.OsadaTP && AppVars.Profile.WatchOsadaOktal))
+                    {
+                        AppVars.ExtendedTPTag = 2;
+                        if (AppVars.Profile.RecoverPotion)
+                        {
+                            this.UpdateCheckPotionOff();
+                        }
+                        if (AppVars.Profile.RecoverDNV)
+                        {
+                            this.UpdateCheckDNVOff();
+                        }
+                        EventSounds.PlayTimer();
+                        AppVars.ParentDestination = AppVars.Profile.MapLocation;
+                        this.labelParentDest.Text = AppVars.ParentDestination;
+                        FormMain.ReloadMainFrame();
+                        AppVars.StartOsadaOktal = true;
+                        AppVars.ArenaEntry = true;
+                        FormMain.ReloadMainFrame();
+                        this.TeleportOktal();
+                    }
+                    if ((now.Minute == 35 && now.Hour == 2 && !AppVars.Profile.OsadaArena && AppVars.Profile.OsadaTP && !AppVars.Profile.NoArt && AppVars.Profile.WatchOsadaFPNight) || (now.Minute == 35 && now.Hour == 6 && !AppVars.Profile.OsadaArena && AppVars.Profile.OsadaTP && !AppVars.Profile.NoGos && AppVars.Profile.WatchOsadaFPNight))
+                    {
+                        EventSounds.PlayTimer();
+                        AppVars.ExtendedTPTag = 1;
+                        if (AppVars.Profile.RecoverPotion)
+                        {
+                            this.UpdateCheckPotionOff();
+                        }
+                        if (AppVars.Profile.RecoverDNV)
+                        {
+                            this.UpdateCheckDNVOff();
+                        }
+                        AppVars.ParentDestination = AppVars.Profile.MapLocation;
+                        this.labelParentDest.Text = AppVars.ParentDestination;
+                        FormMain.ReloadMainFrame();
+                        AppVars.StartOsadaForpost = true;
+                        AppVars.ArenaEntry = true;
+                        FormMain.ReloadMainFrame();
+                        this.TeleportForpost();
+                    }
+                    if ((now.Minute == 35 && now.Hour == 14 && AppVars.Profile.OsadaTP && !AppVars.Profile.OsadaArena && !AppVars.Profile.NoArt && AppVars.Profile.WatchOsadaFPDay) || (now.Minute == 35 && now.Hour == 18 && !AppVars.Profile.OsadaArena && AppVars.Profile.OsadaTP && !AppVars.Profile.NoGos && AppVars.Profile.WatchOsadaFPDay) || (now.Minute == 35 && now.Hour == 22 && !AppVars.Profile.OsadaArena && AppVars.Profile.OsadaTP && AppVars.Profile.WatchOsadaFPDay) || (now.Minute == 35 && now.Hour == 10 && !AppVars.Profile.OsadaArena && AppVars.Profile.OsadaTP && !AppVars.Profile.NoGos && AppVars.Profile.WatchOsadaFPDay))
+                    {
+                        EventSounds.PlayTimer();
+                        AppVars.ExtendedTPTag = 1;
+                        if (AppVars.Profile.RecoverPotion)
+                        {
+                            this.UpdateCheckPotionOff();
+                        }
+                        if (AppVars.Profile.RecoverDNV)
+                        {
+                            this.UpdateCheckDNVOff();
+                        }
+                        AppVars.ParentDestination = AppVars.Profile.MapLocation;
+                        this.labelParentDest.Text = AppVars.ParentDestination;
+                        FormMain.ReloadMainFrame();
+                        AppVars.StartOsadaForpost = true;
+                        AppVars.ArenaEntry = true;
+                        FormMain.ReloadMainFrame();
+                        this.TeleportForpost();
+                    }
+                    if (((now.Minute == 36 && now.Hour == 14 && AppVars.Profile.OsadaTP && !AppVars.Profile.OsadaArena && !AppVars.Profile.NoArt && AppVars.Profile.WatchOsadaFPDay) || (now.Minute == 36 && now.Hour == 18 && !AppVars.Profile.OsadaArena && AppVars.Profile.OsadaTP && !AppVars.Profile.NoGos && AppVars.Profile.WatchOsadaFPDay) || (now.Minute == 36 && now.Hour == 22 && !AppVars.Profile.OsadaArena && AppVars.Profile.OsadaTP && AppVars.Profile.WatchOsadaFPDay) || (now.Minute == 36 && now.Hour == 10 && !AppVars.Profile.OsadaArena && AppVars.Profile.OsadaTP && !AppVars.Profile.NoGos && AppVars.Profile.WatchOsadaFPDay)) && !AppVars.ContentMainPhp.Contains("view_arena();"))
+                    {
+                        this.TeleportForpost();
+                        FormMain.ReloadMainFrame();
+                    }
+                    if (((now.Minute == 37 && now.Hour == 14 && AppVars.Profile.OsadaTP && !AppVars.Profile.OsadaArena && !AppVars.Profile.NoArt && AppVars.Profile.WatchOsadaFPDay) || (now.Minute == 37 && now.Hour == 18 && !AppVars.Profile.OsadaArena && AppVars.Profile.OsadaTP && !AppVars.Profile.NoGos && AppVars.Profile.WatchOsadaFPDay) || (now.Minute == 37 && now.Hour == 22 && !AppVars.Profile.OsadaArena && AppVars.Profile.OsadaTP && AppVars.Profile.WatchOsadaFPDay) || (now.Minute == 37 && now.Hour == 10 && !AppVars.Profile.OsadaArena && AppVars.Profile.OsadaTP && !AppVars.Profile.NoGos && AppVars.Profile.WatchOsadaFPDay)) && !AppVars.ContentMainPhp.Contains("view_arena();"))
+                    {
+                        this.TeleportForpost();
+                        FormMain.ReloadMainFrame();
+                    }
+                    if (((now.Minute == 36 && now.Hour == 2 && !AppVars.Profile.OsadaArena && AppVars.Profile.OsadaTP && !AppVars.Profile.NoArt && AppVars.Profile.WatchOsadaFPNight) || (now.Minute == 36 && now.Hour == 6 && !AppVars.Profile.OsadaArena && AppVars.Profile.OsadaTP && !AppVars.Profile.NoGos && AppVars.Profile.WatchOsadaFPNight)) && !AppVars.ContentMainPhp.Contains("view_arena();"))
+                    {
+                        this.TeleportForpost();
+                        FormMain.ReloadMainFrame();
+                    }
+                    if (((now.Minute == 37 && now.Hour == 2 && !AppVars.Profile.OsadaArena && AppVars.Profile.OsadaTP && !AppVars.Profile.NoArt && AppVars.Profile.WatchOsadaFPNight) || (now.Minute == 37 && now.Hour == 6 && !AppVars.Profile.OsadaArena && AppVars.Profile.OsadaTP && !AppVars.Profile.NoGos && AppVars.Profile.WatchOsadaFPNight)) && !AppVars.ContentMainPhp.Contains("view_arena();"))
+                    {
+                        this.TeleportForpost();
+                        FormMain.ReloadMainFrame();
+                    }
+                    if (((now.Minute == 26 && now.Hour == 16 && AppVars.Profile.OsadaTP && AppVars.Profile.WatchOsadaOktal) || (now.Minute == 26 && now.Hour == 20 && AppVars.Profile.OsadaTP && AppVars.Profile.WatchOsadaOktal) || (now.Minute == 26 && now.Hour == 0 && AppVars.Profile.OsadaTP && AppVars.Profile.WatchOsadaOktal) || (now.Minute == 26 && now.Hour == 4 && AppVars.Profile.OsadaTP && AppVars.Profile.WatchOsadaOktal) || (now.Minute == 26 && now.Hour == 8 && AppVars.Profile.OsadaTP && AppVars.Profile.WatchOsadaOktal) || (now.Minute == 26 && now.Hour == 12 && AppVars.Profile.OsadaTP && AppVars.Profile.WatchOsadaOktal)) && !AppVars.ContentMainPhp.Contains("view_arena();"))
+                    {
+                        FormMain.ReloadMainFrame();
+                        this.TeleportOktal();
+                    }
+                    if (((now.Minute == 27 && now.Hour == 16 && AppVars.Profile.OsadaTP && AppVars.Profile.WatchOsadaOktal) || (now.Minute == 27 && now.Hour == 20 && AppVars.Profile.OsadaTP && AppVars.Profile.WatchOsadaOktal) || (now.Minute == 27 && now.Hour == 0 && AppVars.Profile.OsadaTP && AppVars.Profile.WatchOsadaOktal) || (now.Minute == 27 && now.Hour == 4 && AppVars.Profile.OsadaTP && AppVars.Profile.WatchOsadaOktal) || (now.Minute == 27 && now.Hour == 8 && AppVars.Profile.OsadaTP && AppVars.Profile.WatchOsadaOktal) || (now.Minute == 27 && now.Hour == 12 && AppVars.Profile.OsadaTP && AppVars.Profile.WatchOsadaOktal)) && !AppVars.ContentMainPhp.Contains("view_arena();"))
+                    {
+                        this.TeleportOktal();
+                    }
+                    if ((now.Minute == AppVars.Profile.ForpostTiming && now.Hour == 14 && !AppVars.Profile.OsadaArena && !AppVars.Profile.OsadaTP && !AppVars.Profile.NoArt && AppVars.Profile.WatchOsadaFPDay) || (now.Minute == AppVars.Profile.ForpostTiming && now.Hour == 18 && !AppVars.Profile.OsadaArena && !AppVars.Profile.OsadaTP && !AppVars.Profile.NoGos && AppVars.Profile.WatchOsadaFPDay) || (now.Minute == AppVars.Profile.ForpostTiming && now.Hour == 22 && !AppVars.Profile.OsadaTP && !AppVars.Profile.OsadaArena && !AppVars.Profile.NoArt && AppVars.Profile.WatchOsadaFPDay))
+                    {
+                        EventSounds.PlayTimer();
+                        if (AppVars.Profile.RecoverPotion)
+                        {
+                            this.UpdateCheckPotionOff();
+                        }
+                        if (AppVars.Profile.RecoverDNV)
+                        {
+                            this.UpdateCheckDNVOff();
+                        }
+                        AppVars.ParentDestination = AppVars.Profile.MapLocation;
+                        this.labelParentDest.Text = AppVars.ParentDestination;
+                        FormMain.ReloadMainFrame();
+                        AppVars.StartOsadaForpost = true;
+                        AppVars.GoOsada = true;
+                        AppVars.MainForm.MoveToSafe("8-259");
+                    }
+                    if ((now.Minute == AppVars.Profile.ForpostTiming && now.Hour == 2 && !AppVars.Profile.OsadaArena && !AppVars.Profile.OsadaTP && !AppVars.Profile.NoArt && AppVars.Profile.WatchOsadaFPNight) || (now.Minute == AppVars.Profile.ForpostTiming && now.Hour == 6 && !AppVars.Profile.OsadaArena && !AppVars.Profile.OsadaTP && !AppVars.Profile.NoGos && AppVars.Profile.WatchOsadaFPNight) || (now.Minute == AppVars.Profile.ForpostTiming && now.Hour == 10 && !AppVars.Profile.OsadaArena && !AppVars.Profile.OsadaTP && !AppVars.Profile.NoGos && AppVars.Profile.WatchOsadaFPDay))
+                    {
+                        EventSounds.PlayTimer();
+                        if (AppVars.Profile.RecoverPotion)
+                        {
+                            this.UpdateCheckPotionOff();
+                        }
+                        if (AppVars.Profile.RecoverDNV)
+                        {
+                            this.UpdateCheckDNVOff();
+                        }
+                        AppVars.ParentDestination = AppVars.Profile.MapLocation;
+                        this.labelParentDest.Text = AppVars.ParentDestination;
+                        FormMain.ReloadMainFrame();
+                        AppVars.StartOsadaForpost = true;
+                        AppVars.GoOsada = true;
+                        AppVars.MainForm.MoveToSafe("8-259");
+                    }
+                    if ((now.Minute == AppVars.Profile.OktalTiming && now.Hour == 16 && !AppVars.Profile.OsadaTP && AppVars.Profile.WatchOsadaOktal) || (now.Minute == AppVars.Profile.OktalTiming && now.Hour == 20 && !AppVars.Profile.OsadaTP && AppVars.Profile.WatchOsadaOktal) || (now.Minute == AppVars.Profile.OktalTiming && now.Hour == 0 && !AppVars.Profile.OsadaTP && AppVars.Profile.WatchOsadaOktal) || (now.Minute == AppVars.Profile.OktalTiming && now.Hour == 4 && !AppVars.Profile.OsadaTP && AppVars.Profile.WatchOsadaOktal) || (now.Minute == AppVars.Profile.OktalTiming && now.Hour == 8 && !AppVars.Profile.OsadaTP && AppVars.Profile.WatchOsadaOktal) || (now.Minute == AppVars.Profile.OktalTiming && now.Hour == 12 && !AppVars.Profile.OsadaTP && AppVars.Profile.WatchOsadaOktal))
+                    {
+                        EventSounds.PlayTimer();
+                        if (AppVars.Profile.RecoverPotion)
+                        {
+                            this.UpdateCheckPotionOff();
+                        }
+                        if (AppVars.Profile.RecoverDNV)
+                        {
+                            this.UpdateCheckDNVOff();
+                        }
+                        AppVars.ParentDestination = AppVars.Profile.MapLocation;
+                        FormMain.ReloadMainFrame();
+                        AppVars.StartOsadaOktal = true;
+                        AppVars.GoOsada = true;
+                        AppVars.MainForm.MoveToSafe("12-428");
+                    }
+                    if (now.Minute == AppVars.Profile.StartTotemMin && now.Hour == AppVars.Profile.StartTotem && AppVars.Profile.TotemUserList && AppVars.Profile.TotemOnTime)
+                    {
+                        EventSounds.PlayTimer();
+                        FormMain.ReloadMainFrame();
+                        this.UpdateZasOff();
+                        this.UpdateLokOn();
+                        this.UpdateTotemOff();
+                        AppVars.TotemFight = true;
+                        this.TotemListAction();
+                    }
+                    if (now.Minute == 0 && now.Hour == AppVars.Profile.StartTotem && AppVars.Profile.TotemFloraList && AppVars.Profile.TotemOnTime)
+                    {
+                        EventSounds.PlayTimer();
+                        FormMain.ReloadMainFrame();
+                    }
+                    if (now.Minute == 0 && now.Hour == AppVars.Profile.EndTotem && AppVars.Profile.TotemUserList && AppVars.Profile.TotemOnTime)
+                    {
+                        EventSounds.PlayTimer();
+                        FormMain.ReloadMainFrame();
+                        AppVars.TotemFight = false;
+                    }
+                    if ((now.Minute == 30 && now.Hour == 16 && AppVars.StartOsadaOktal) || (now.Minute == 30 && now.Hour == 20 && AppVars.StartOsadaOktal) || (now.Minute == 30 && now.Hour == 0 && AppVars.StartOsadaOktal) || (now.Minute == 30 && now.Hour == 4 && AppVars.StartOsadaOktal) || (now.Minute == 30 && now.Hour == 8 && AppVars.StartOsadaOktal) || (now.Minute == 30 && now.Hour == 12 && AppVars.StartOsadaOktal) || (now.Minute == 40 && now.Hour == 22 && AppVars.StartOsadaForpost) || (now.Minute == 40 && now.Hour == 14 && AppVars.StartOsadaForpost) || (now.Minute == 40 && now.Hour == 2 && AppVars.StartOsadaForpost))
+                    {
+                        AppVars.ChangeRoom = false;
+                        AppVars.StartAttackBuildings = true;
+                        AppVars.ArenaEntry = false;
+                        if (AppVars.Profile.OsadaFury && !AppVars.Profile.OsadaFuryFull)
+                        {
+                            AppVars.DoFury = true;
+                        }
+                    }
+                    if ((now.Minute == 40 && now.Hour == 18 && AppVars.StartOsadaForpost) || (now.Minute == 40 && now.Hour == 6 && AppVars.StartOsadaForpost) || (now.Minute == 40 && now.Hour == 10 && AppVars.StartOsadaForpost))
+                    {
+                        AppVars.ChangeRoom = false;
+                        AppVars.StartAttackBuildings = true;
+                        AppVars.ArenaEntry = false;
+                        if (AppVars.Profile.OsadaFury && !AppVars.Profile.OsadaFuryFull)
+                        {
+                            AppVars.DoFury = true;
+                        }
+                    }
+                    if (((now.Minute == 50 && now.Hour == 18 && AppVars.StartOsadaForpost) || (now.Minute == 50 && now.Hour == 6 && AppVars.StartOsadaForpost) || (now.Minute == 50 && now.Hour == 10 && AppVars.StartOsadaForpost)) && !AppVars.Profile.LezDoAutoboi)
+                    {
+                        AppVars.Profile.LezDoAutoboi = true;
+                    }
+                    if (((now.Minute == 40 && now.Hour == 16 && AppVars.StartOsadaOktal) || (now.Minute == 40 && now.Hour == 20 && AppVars.StartOsadaOktal) || (now.Minute == 40 && now.Hour == 0 && AppVars.StartOsadaOktal) || (now.Minute == 40 && now.Hour == 4 && AppVars.StartOsadaOktal) || (now.Minute == 40 && now.Hour == 8 && AppVars.StartOsadaOktal) || (now.Minute == 40 && now.Hour == 12 && AppVars.StartOsadaOktal) || (now.Minute == 50 && now.Hour == 22 && AppVars.StartOsadaForpost) || (now.Minute == 50 && now.Hour == 14 && AppVars.StartOsadaForpost) || (now.Minute == 50 && now.Hour == 2 && AppVars.StartOsadaForpost)) && !AppVars.Profile.LezDoAutoboi)
+                    {
+                        AppVars.Profile.LezDoAutoboi = true;
+                    }
+                }
+                if (now.Second == AppVars.Profile.OsadaRefreshSec && ((now.Minute == 29 && now.Hour == 16 && AppVars.StartOsadaOktal) || (now.Minute == 29 && now.Hour == 20 && AppVars.StartOsadaOktal) || (now.Minute == 29 && now.Hour == 0 && AppVars.StartOsadaOktal) || (now.Minute == 29 && now.Hour == 4 && AppVars.StartOsadaOktal) || (now.Minute == 29 && now.Hour == 8 && AppVars.StartOsadaOktal) || (now.Minute == 29 && now.Hour == 12 && AppVars.StartOsadaOktal)))
+                {
+                    AppVars.CheckBoxStatus = true;
+                    AppVars.MainForm.ReloadMainPhpInvoke();
+                }
+                if (now.Second == AppVars.Profile.OsadaFPSec && ((now.Minute == AppVars.Profile.OsadaFPMin && now.Hour == 18 && AppVars.StartOsadaForpost) || (now.Minute == AppVars.Profile.OsadaFPMin && now.Hour == 6 && AppVars.StartOsadaForpost) || (now.Minute == AppVars.Profile.OsadaFPMin && now.Hour == 10 && AppVars.StartOsadaForpost) || (now.Minute == AppVars.Profile.OsadaFPMin && now.Hour == 22 && AppVars.StartOsadaForpost) || (now.Minute == AppVars.Profile.OsadaFPMin && now.Hour == 14 && AppVars.StartOsadaForpost) || (now.Minute == AppVars.Profile.OsadaFPMin && now.Hour == 2 && AppVars.StartOsadaForpost)))
+                {
+                    AppVars.CheckBoxStatus = true;
+                    AppVars.MainForm.ReloadMainPhpInvoke();
+                }
+                if (now.Second == 30)
+                {
+                    if ((now.Minute == 39 && now.Hour == 18 && AppVars.StartOsadaForpost) || (now.Minute == 39 && now.Hour == 6 && AppVars.StartOsadaForpost) || (now.Minute == 39 && now.Hour == 10 && AppVars.StartOsadaForpost) || (now.Minute == 39 && now.Hour == 22 && AppVars.StartOsadaForpost) || (now.Minute == 39 && now.Hour == 14 && AppVars.StartOsadaForpost) || (now.Minute == 39 && now.Hour == 2 && AppVars.StartOsadaForpost))
+                    {
+                        AppVars.GroupArena = true;
+                        AppVars.MainForm.ReloadMainPhpInvoke();
+                    }
+                    if ((now.Minute == 29 && now.Hour == 16 && AppVars.StartOsadaOktal) || (now.Minute == 29 && now.Hour == 20 && AppVars.StartOsadaOktal) || (now.Minute == 29 && now.Hour == 0 && AppVars.StartOsadaOktal) || (now.Minute == 29 && now.Hour == 4 && AppVars.StartOsadaOktal) || (now.Minute == 29 && now.Hour == 8 && AppVars.StartOsadaOktal) || (now.Minute == 29 && now.Hour == 12 && AppVars.StartOsadaOktal))
+                    {
+                        AppVars.GroupArena = true;
+                        AppVars.MainForm.ReloadMainPhpInvoke();
+                    }
+                    if ((now.Minute == 35 && now.Hour == 2 && AppVars.Profile.OsadaTP && AppVars.Profile.WatchOsadaFPNight) || (now.Minute == 35 && now.Hour == 6 && AppVars.Profile.OsadaTP && AppVars.Profile.WatchOsadaFPNight))
+                    {
+                        AppVars.StartOsadaForpost = true;
+                        AppVars.ArenaEntry = true;
+                        if (AppVars.ContentMainPhp.Contains("Вернуться"))
+                        {
+                            AppVars.MainForm.returnBatton();
+                        }
+                    }
+                    if ((now.Minute == 35 && now.Hour == 14 && AppVars.Profile.OsadaTP && AppVars.Profile.WatchOsadaFPDay) || (now.Minute == 35 && now.Hour == 18 && AppVars.Profile.OsadaTP && AppVars.Profile.WatchOsadaFPDay) || (now.Minute == 35 && now.Hour == 22 && AppVars.Profile.OsadaTP && AppVars.Profile.WatchOsadaFPDay) || (now.Minute == 35 && now.Hour == 10 && AppVars.Profile.OsadaTP && AppVars.Profile.WatchOsadaFPDay))
+                    {
+                        AppVars.StartOsadaForpost = true;
+                        AppVars.ArenaEntry = true;
+                        if (AppVars.ContentMainPhp.Contains("Вернуться"))
+                        {
+                            AppVars.MainForm.returnBatton();
+                        }
+                    }
+                    if ((now.Minute == 25 && now.Hour == 16 && AppVars.Profile.OsadaTP && AppVars.Profile.WatchOsadaOktal) || (now.Minute == 25 && now.Hour == 20 && AppVars.Profile.OsadaTP && AppVars.Profile.WatchOsadaOktal) || (now.Minute == 25 && now.Hour == 0 && AppVars.Profile.OsadaTP && AppVars.Profile.WatchOsadaOktal) || (now.Minute == 25 && now.Hour == 4 && AppVars.Profile.OsadaTP && AppVars.Profile.WatchOsadaOktal) || (now.Minute == 25 && now.Hour == 8 && AppVars.Profile.OsadaTP && AppVars.Profile.WatchOsadaOktal) || (now.Minute == 25 && now.Hour == 12 && AppVars.Profile.OsadaTP && AppVars.Profile.WatchOsadaOktal))
+                    {
+                        AppVars.StartOsadaOktal = true;
+                        AppVars.ArenaEntry = true;
+                        if (AppVars.ContentMainPhp.Contains("Вернуться"))
+                        {
+                            AppVars.MainForm.returnBatton();
+                        }
+                    }
+                }
+                if (now.Second == 40)
+                {
+                    if (((now.Minute == 40 && now.Hour == 18 && AppVars.StartOsadaForpost) || (now.Minute == 40 && now.Hour == 6 && AppVars.StartOsadaForpost) || (now.Minute == 40 && now.Hour == 10 && AppVars.StartOsadaForpost)) && AppVars.ContentMainPhp.IndexOf(",\"Ожидаем начала боя!\"];", StringComparison.CurrentCultureIgnoreCase) != 1 && AppVars.ContentMainPhp.Contains("view_arena();"))
+                    {
+                        AppVars.OsadaFailed = true;
+                        AppVars.MainForm.ReloadMainPhpInvoke();
+                    }
+                    if (((now.Minute == 30 && now.Hour == 16 && AppVars.StartOsadaOktal) || (now.Minute == 30 && now.Hour == 20 && AppVars.StartOsadaOktal) || (now.Minute == 30 && now.Hour == 0 && AppVars.StartOsadaOktal) || (now.Minute == 30 && now.Hour == 4 && AppVars.StartOsadaOktal) || (now.Minute == 30 && now.Hour == 8 && AppVars.StartOsadaOktal) || (now.Minute == 30 && now.Hour == 12 && AppVars.StartOsadaOktal) || (now.Minute == 40 && now.Hour == 22 && AppVars.StartOsadaForpost) || (now.Minute == 40 && now.Hour == 14 && AppVars.StartOsadaForpost) || (now.Minute == 40 && now.Hour == 2 && AppVars.StartOsadaForpost)) && AppVars.ContentMainPhp.IndexOf(",\"Ожидаем начала боя!\"];", StringComparison.CurrentCultureIgnoreCase) != 1 && AppVars.ContentMainPhp.Contains("view_arena();"))
+                    {
+                        AppVars.OsadaFailed = true;
+                        AppVars.MainForm.ReloadMainPhpInvoke();
+                    }
+                }
+                if (now.Second == 20)
+                {
+                    if ((now.Minute == 38 && now.Hour == 18 && AppVars.StartOsadaForpost) || (now.Minute == 38 && now.Hour == 6 && AppVars.StartOsadaForpost) || (now.Minute == 38 && now.Hour == 10 && AppVars.StartOsadaForpost) || (now.Minute == 38 && now.Hour == 22 && AppVars.StartOsadaForpost) || (now.Minute == 38 && now.Hour == 14 && AppVars.StartOsadaForpost) || (now.Minute == 38 && now.Hour == 2 && AppVars.StartOsadaForpost))
+                    {
+                        AppVars.MainForm.ReloadMainPhpInvoke();
+                        if (AppVars.Profile.OsadaFury)
+                        {
+                            AppVars.DoFuryCheck = true;
+                        }
+                    }
+                    if ((now.Minute == 28 && now.Hour == 16 && AppVars.StartOsadaOktal) || (now.Minute == 28 && now.Hour == 20 && AppVars.StartOsadaOktal) || (now.Minute == 28 && now.Hour == 0 && AppVars.StartOsadaOktal) || (now.Minute == 28 && now.Hour == 4 && AppVars.StartOsadaOktal) || (now.Minute == 28 && now.Hour == 8 && AppVars.StartOsadaOktal) || (now.Minute == 28 && now.Hour == 12 && AppVars.StartOsadaOktal))
+                    {
+                        AppVars.MainForm.ReloadMainPhpInvoke();
+                        if (AppVars.Profile.OsadaFury)
+                        {
+                            AppVars.DoFuryCheck = true;
+                        }
+                    }
+                    if ((now.Minute == 40 && now.Hour == 18 && AppVars.StartOsadaForpost) || (now.Minute == 40 && now.Hour == 6 && AppVars.StartOsadaForpost) || (now.Minute == 40 && now.Hour == 10 && AppVars.StartOsadaForpost))
+                    {
+                        AppVars.CheckBoxStatus = false;
+                        AppVars.CheckArena = true;
+                        AppVars.MainForm.ReloadMainPhpInvoke();
+                    }
+                    if ((now.Minute == 30 && now.Hour == 16 && AppVars.StartOsadaOktal) || (now.Minute == 30 && now.Hour == 20 && AppVars.StartOsadaOktal) || (now.Minute == 30 && now.Hour == 0 && AppVars.StartOsadaOktal) || (now.Minute == 30 && now.Hour == 4 && AppVars.StartOsadaOktal) || (now.Minute == 30 && now.Hour == 8 && AppVars.StartOsadaOktal) || (now.Minute == 30 && now.Hour == 12 && AppVars.StartOsadaOktal) || (now.Minute == 40 && now.Hour == 22 && AppVars.StartOsadaForpost) || (now.Minute == 40 && now.Hour == 14 && AppVars.StartOsadaForpost) || (now.Minute == 40 && now.Hour == 2 && AppVars.StartOsadaForpost))
+                    {
+                        AppVars.CheckBoxStatus = false;
+                        AppVars.CheckArena = true;
+                        AppVars.MainForm.ReloadMainPhpInvoke();
+                    }
+                }
+                if (now.Second == 10)
+                {
+                    if ((now.Minute == 38 && now.Hour == 18 && AppVars.StartOsadaForpost) || (now.Minute == 38 && now.Hour == 6 && AppVars.StartOsadaForpost) || (now.Minute == 38 && now.Hour == 10 && AppVars.StartOsadaForpost))
+                    {
+                        AppVars.MainForm.ReloadMainPhpInvoke();
+                        AppVars.WearComplect = AppVars.Profile.GosOsadaComplect;
+                    }
+                    if ((now.Minute == 28 && now.Hour == 16 && AppVars.StartOsadaOktal) || (now.Minute == 28 && now.Hour == 20 && AppVars.StartOsadaOktal) || (now.Minute == 28 && now.Hour == 0 && AppVars.StartOsadaOktal) || (now.Minute == 28 && now.Hour == 4 && AppVars.StartOsadaOktal) || (now.Minute == 28 && now.Hour == 8 && AppVars.StartOsadaOktal) || (now.Minute == 28 && now.Hour == 12 && AppVars.StartOsadaOktal) || (now.Minute == 38 && now.Hour == 22 && AppVars.StartOsadaForpost) || (now.Minute == 38 && now.Hour == 14 && AppVars.StartOsadaForpost) || (now.Minute == 38 && now.Hour == 2 && AppVars.StartOsadaForpost))
+                    {
+                        AppVars.MainForm.ReloadMainPhpInvoke();
+                        AppVars.WearComplect = AppVars.Profile.ArtOsadaComplect;
+                    }
+                    if ((now.Minute == 10 && now.Hour == 22 && AppVars.Profile.iBCRestart) || (now.Minute == 10 && now.Hour == 6 && AppVars.Profile.iBCRestart) || (now.Minute == 10 && now.Hour == 18 && AppVars.Profile.iBCRestart) || (now.Minute == 10 && now.Hour == 14 && AppVars.Profile.iBCRestart) || (now.Minute == 10 && now.Hour == 2 && AppVars.Profile.iBCRestart))
+                    {
+                        FormMain.RestartiBC();
+                        this.FormMainClose2();
+                    }
+                    if ((now.Minute == 55 && now.Hour == 18 && !string.IsNullOrEmpty(AppVars.ParentDestination)) || (now.Minute == 55 && now.Hour == 22 && !string.IsNullOrEmpty(AppVars.ParentDestination)) || (now.Minute == 55 && ((now.Hour == 2 && !string.IsNullOrEmpty(AppVars.ParentDestination)) || (now.Minute == 55 && ((now.Hour == 6 && !string.IsNullOrEmpty(AppVars.ParentDestination)) || (now.Minute == 55 && ((now.Hour == 10 && !string.IsNullOrEmpty(AppVars.ParentDestination)) || (now.Minute == 55 && now.Hour == 14 && !string.IsNullOrEmpty(AppVars.ParentDestination)))))))))
+                    {
+                        AppVars.StartOsadaForpost = false;
+                        AppVars.OutTown = false;
+                        if (!AppVars.ParentDestination.Contains("11-") || !AppVars.ParentDestination.Contains("28-"))
+                        {
+                            if (!AppVars.GoBack)
+                            {
+                                AppVars.GoBack = true;
+                            }
+                            AppVars.MainForm.MoveToSafe("12-168");
+                        }
+                        else if (!AppVars.ParentDestination.Contains("11-") || !AppVars.ParentDestination.Contains("28-"))
+                        {
+                            if (!AppVars.GoBack)
+                            {
+                                AppVars.GoBack = true;
+                            }
+                            AppVars.MainForm.MoveToSafe(AppVars.ParentDestination);
+                        }
+                    }
+                    if ((now.Minute == 55 && now.Hour == 16 && !string.IsNullOrEmpty(AppVars.ParentDestination)) || (now.Minute == 55 && now.Hour == 20 && !string.IsNullOrEmpty(AppVars.ParentDestination)) || (now.Minute == 55 && now.Hour == 0 && !string.IsNullOrEmpty(AppVars.ParentDestination)) || (now.Minute == 55 && now.Hour == 4 && !string.IsNullOrEmpty(AppVars.ParentDestination)) || (now.Minute == 55 && now.Hour == 8 && !string.IsNullOrEmpty(AppVars.ParentDestination)) || (now.Minute == 55 && now.Hour == 12 && !string.IsNullOrEmpty(AppVars.ParentDestination)))
+                    {
+                        AppVars.StartOsadaOktal = false;
+                        AppVars.OutTown = false;
+                        if (AppVars.ParentDestination.Contains("11-") || AppVars.ParentDestination.Contains("28-"))
+                        {
+                            if (!AppVars.GoBack)
+                            {
+                                AppVars.GoBack = true;
+                            }
+                            AppVars.MainForm.MoveToSafe("12-168");
+                        }
+                        else
+                        {
+                            if (!AppVars.GoBack)
+                            {
+                                AppVars.GoBack = true;
+                            }
+                            AppVars.MainForm.MoveToSafe(AppVars.ParentDestination);
+                        }
+                    }*/
+                }
+                int second = now.Second;
+                var message = Chat.GetAnswer();
+                if (!string.IsNullOrEmpty(message))
+                {
+                    WriteMessageToChat(message);//return;
+                }
 
-            WriteMessageToChat(message);
+                return now.ToString("HH:mm:ss");
+            }
+            catch (Exception webEx) {
+                logger.Error("error message:" + webEx.Message + " occured in \n" + webEx.StackTrace);
+                return DateTime.Now.ToString("HH:mm:ss");
+            }
         }
 
         private bool CheckCrap(TimeSpan diff)

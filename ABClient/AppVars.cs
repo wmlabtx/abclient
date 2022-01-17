@@ -210,7 +210,8 @@ namespace ABClient
         internal static DateTime AutoSkinLastChecked { get; set; }
         internal static bool AutoSkinCheckRes { get; set; }
         internal static readonly Dictionary<string, double> SkinRes = new Dictionary<string, double>();
-
+        internal static Dictionary<string, string> DrinkSets = new Dictionary<string, string>();
+        internal static string DrinkSetName;
         internal static bool AutoFishCheckUd { get; set; }
 
         internal static bool AutoFishWearUd { get; set; }
@@ -390,11 +391,19 @@ namespace ABClient
         internal static string BulkSellOldName;
         internal static string BulkSellOldPrice;
         internal static string BulkSellOldScript;
+        internal static bool DoParseRegionCells { get; set; }
+        internal static bool DoSentToIsland { get; set; }
+        internal static string TurotorTopDestination1 { get; set; }
+        internal static string TurotorTopDestination2 { get; set; }
+        internal static int BeginInterval { get; set; }
 
+        internal static int EndInterval { get; set; }
         // Блокировочный таймер
 
         internal static DateTime NeverTimer = DateTime.MinValue;
+        internal static int ExtendedTPTag = 0;
 
+        internal static bool isInFort { get; set; }
         static AppVars()
         {
             MyCharsOld = new Dictionary<string, string>();

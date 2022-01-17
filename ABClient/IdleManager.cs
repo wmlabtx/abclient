@@ -17,7 +17,7 @@ namespace ABClient
                 try
                 {
                     _numberOfActiveThreads++;
-                    ShowActivity();
+                    //ShowActivity();
                 }
                 finally
                 {
@@ -37,7 +37,7 @@ namespace ABClient
                 try
                 {
                     _numberOfActiveThreads--;                    
-                    ShowActivity();
+                    //ShowActivity();
                 }
                 finally
                 {
@@ -52,7 +52,7 @@ namespace ABClient
                 ContactsManager.Pulse();
         }
 
-        private static void ShowActivity()
+       /* private static void ShowActivity()
         {
             try
             {
@@ -64,6 +64,6 @@ namespace ABClient
             catch (InvalidOperationException)
             {
             }
-        }
+        }*/
     }
 }

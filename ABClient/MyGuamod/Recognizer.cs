@@ -45,7 +45,7 @@ namespace ABClient.MyGuamod
             } 
             while (AppVars.CodePng == null);
 
-            try
+           /* try
             {
                 if (AppVars.MainForm != null)
                 {
@@ -57,7 +57,7 @@ namespace ABClient.MyGuamod
             catch (InvalidOperationException)
             {
             }
-
+           */
             neuro = new NeuroBase();
             var newresultOne = string.Empty;
             using (var ms = new MemoryStream(AppVars.CodePng))
@@ -75,7 +75,7 @@ namespace ABClient.MyGuamod
                 }
                 catch (ArgumentException)
                 {
-                    try
+                   /* try
                     {
                         if (AppVars.MainForm != null)
                         {
@@ -86,14 +86,14 @@ namespace ABClient.MyGuamod
                     }
                     catch (InvalidOperationException)
                     {
-                    }
+                    }*/
                 }
             }
 
             newresultOne = string.IsNullOrEmpty(newresultOne) ? "сбой" : newresultOne.Trim();
             if (!string.IsNullOrEmpty(newresultOne) && (newresultOne[0] != '0') && (newresultOne[0] != '1'))
             {
-                try
+                /*try
                 {
                     if (AppVars.MainForm != null)
                     {
@@ -104,7 +104,7 @@ namespace ABClient.MyGuamod
                 }
                 catch (InvalidOperationException)
                 {
-                }
+                }*/
 
                 AppVars.GuamodCode = newresultOne;
                 AppVars.CodePng = null;
@@ -133,7 +133,7 @@ namespace ABClient.MyGuamod
                 return;
             }
 
-            try
+           /* try
             {
                 if (AppVars.MainForm != null)
                 {
@@ -144,7 +144,7 @@ namespace ABClient.MyGuamod
             }
             catch (InvalidOperationException)
             {
-            }
+            }*/
 
             AppVars.FightLink = string.Empty;
             AppVars.Autoboi = AutoboiState.AutoboiOn;

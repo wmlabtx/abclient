@@ -119,6 +119,25 @@
                 }
             }
 
+            if (this.radioDrinkSets.Checked)
+            {
+                string text4 = this.textDrinkSetName.Text.Trim();
+                if (string.IsNullOrEmpty(text4))
+                {
+                    return;
+                }
+                appTimer.AutoDrink = text4;
+                if (string.IsNullOrEmpty(appTimer.Description))
+                {
+                    appTimer.Description = "сработает автоупивка";
+                }
+                appTimer.IsRecur = this.checkRecur.Checked;
+                if (appTimer.IsRecur)
+                {
+                    appTimer.EveryMinutes = triggerMin;
+                }
+            }
+
             AppTimerManager.AddAppTimer(appTimer);
         }
 
@@ -173,6 +192,14 @@
             if (radioComplect.Checked)
             {
                 textComplect.Enabled = true;
+            }
+
+            if (this.radioDrinkSets.Checked)
+            {
+                this.checkRecur.Enabled = true;
+                this.comboPotion.Enabled = false;
+                this.textDrinkCount.Enabled = false;
+                this.textDrinkSetName.Enabled = true;
             }
         }
     }

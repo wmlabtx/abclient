@@ -190,7 +190,7 @@
 
             if (string.IsNullOrEmpty(primid))
             {
-                try
+               /* try
                 {
                     if (AppVars.MainForm != null)
                     {
@@ -201,7 +201,7 @@
                 }
                 catch (InvalidOperationException)
                 {
-                }
+                }*/
 
                 return string.Empty;
             }
@@ -231,7 +231,7 @@
                 {
                     if (AppVars.MainForm != null && AppVars.MainForm.TrayIsDigitsWaitTooLong())
                     {
-                        try
+                       /* try
                         {
                             if (AppVars.MainForm != null)
                             {
@@ -242,7 +242,7 @@
                         }
                         catch (InvalidOperationException)
                         {
-                        }
+                        }*/
                     }
                     else
                     {
@@ -784,7 +784,7 @@
 
             AppVars.AutoFishNV += bal;
 
-            try
+           /* try
             {
                 if (AppVars.MainForm != null)
                 {
@@ -795,7 +795,7 @@
             }
             catch (InvalidOperationException)
             {
-            }
+            }*/
 
             sbr.Append("<tr><td bgcolor=#FCFAF3 nowrap class=nickname>&nbsp;");
             if (AppVars.AutoFishNV < 0)

@@ -96,7 +96,7 @@
         {
             var flag = false;
             var flag2 = false;
-            var flagsavedtrafic = false;
+            //var flagsavedtrafic = false;
             if ((Request != null) && (Response != null))
             {
                 if (!Request.ReadRequest())
@@ -150,7 +150,7 @@
                         goto afterresponse;
                     }
 
-                    flagsavedtrafic = true;
+                    //flagsavedtrafic = true;
                 }
 
                 Request.Headers.Remove("Cookie");
@@ -166,7 +166,7 @@
                     var data = Cache.Get(Url, AppVars.CacheRefresh);
                     if (data != null)
                     {
-                        if (flagsavedtrafic)
+                        /*if (flagsavedtrafic)
                         {
                             try
                             {
@@ -178,7 +178,7 @@
                             catch (InvalidOperationException)
                             {
                             }
-                        }
+                        }*/
 
                         flag = true;
                         Response = new ServerChatter(this, "HTTP/1.1 200 OK\r\nServer: Cache\r\n\r\n");

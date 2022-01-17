@@ -94,6 +94,77 @@ namespace ABClient.PostFilter
 
         private static string MainPhpFastTeleport(string html)
         {
+            int num = 0;
+            while (num != -1)
+            {
+                num = html.IndexOf("w28_form(", num, StringComparison.OrdinalIgnoreCase);
+                if (num == -1)
+                {
+                    break;
+                }
+                num += 9;
+                int num2 = html.IndexOf(")", num, StringComparison.OrdinalIgnoreCase);
+                if (num2 != -1)
+                {
+                    string text = html.Substring(num, num2 - num);
+                    if (!string.IsNullOrEmpty(text))
+                    {
+                        char[] separator = new char[]
+                        {
+                            ','
+                        };
+                        string[] array = text.Split(separator);
+                        if (array.Length >= 4)
+                        {
+                            char[] trimChars = new char[]
+                            {
+                                '\''
+                            };
+                            string text2 = array[0].Trim(trimChars);
+                            char[] trimChars2 = new char[]
+                            {
+                                '\''
+                            };
+                            string text3 = array[1].Trim(trimChars2);
+                            char[] trimChars3 = new char[]
+                            {
+                                '\''
+                            };
+                            string text4 = array[2].Trim(trimChars3);
+                            char[] trimChars4 = new char[]
+                            {
+                                '\''
+                            };
+                            string text5 = array[3].Trim(trimChars4);
+                            if (text4.Equals("22"))
+                            {
+                                int num3 = (AppVars.ExtendedTPTag != 0) ? AppVars.ExtendedTPTag : (Dice.Make(12) + 1);
+                                AppVars.ExtendedTPTag = 0;
+                                return string.Concat(new string[]
+                                {
+                                    HelperErrors.Head(),
+                                    "Используем телепорт...<form action=main.php method=POST name=ff><input name=post_id type=hidden value=\"25\"><input name=vcode type=hidden value=\"",
+                                    text2,
+                                    "\"><input name=wuid type=hidden value=\"",
+                                    text3,
+                                    "\"><input name=wsubid type=hidden value=\"",
+                                    text4,
+                                    "\"><input name=wsolid type=hidden value=\"",
+                                    text5,
+                                    "\"><input name=wtelid type=hidden value=\"",
+                                    num3.ToString(),
+                                    "\"></form><script language=\"JavaScript\">document.ff.submit();</script></body></html>"
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
+        /*private static string MainPhpFastTeleport(string html)
+        {
             /*
                 onclick="w28_form('74549bbe6688b515f8ac796b39d47035','72451012',22,'1')" 
              * 
@@ -120,9 +191,9 @@ namespace ABClient.PostFilter
              *      <OPTION VALUE=11>Окрестности Кенджии, Телепорт</OPTION>
              *      <OPTION VALUE=12>Ущелье Эль-Тэр, Телепорт</OPTION></SELECT>
              *      <INPUT type=submit value="Применить" class=lbut name=agree>              
-             */
+            
 
-            const string patternW28Form = "w28_form(";
+        const string patternW28Form = "w28_form(";
             int p1 = 0;
             while (p1 != -1)
             {
@@ -195,7 +266,7 @@ namespace ABClient.PostFilter
             }
 
             return null;
-        }
+        }*/
 
         private static string MainPhpFastPotion(string html)
         {
@@ -445,6 +516,10 @@ namespace ABClient.PostFilter
 
         private static string MainPhpFastIsland(string html)
         {
+            if (html.IndexOf("Остров Туротор") == -1) {
+                AppVars.MainForm.WriteChatMsgSafe("Нет нужных свитков, телепортация отменена.");
+                return null;
+            }
             const string str = "Использовать Свиток Телепорта сейчас?";
             var startIndex1 = html.IndexOf(str, StringComparison.CurrentCultureIgnoreCase);
             if (startIndex1 != -1)

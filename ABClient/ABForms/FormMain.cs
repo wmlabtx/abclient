@@ -7,22 +7,50 @@ using ABClient.MyHelpers;
 namespace ABClient.ABForms
 {
     using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Net.Http;
+    using System.Runtime.InteropServices;
     using System.Text;
+    using System.Threading.Tasks;
+    using System.Web.UI;
     using System.Windows.Forms;
+    using System.Xml;
+    using ABClient.PostFilter;
     using ABProxy;
     using AppControls;
     using MyChat;
     using MyForms;
+    using Newtonsoft.Json;
+    using NLog;
     using Properties;
     using Tabs;
 
     internal sealed partial class FormMain : Form
     {
+        [StructLayout(LayoutKind.Sequential)]
+        public struct SYSTEMTIME
+        {
+            public short wYear;
+            public short wMonth;
+            public short wDayOfWeek;
+            public short wDay;
+            public ushort wHour;
+            public ushort wMinute;
+            public ushort wSecond;
+
+        }
+
+        [DllImport("kernel32.dll", SetLastError = true)]
+        public static extern bool SetSystemTime(ref SYSTEMTIME time);
+        [DllImport("kernel32.dll", SetLastError = true)]
+        public static extern bool GetSystemTime(ref SYSTEMTIME time);
         private static readonly ReaderWriterLock LockStat = new ReaderWriterLock();
         private static readonly ReaderWriterLock LockAddressStatus = new ReaderWriterLock();
         internal static readonly ReaderWriterLock LockOb = new ReaderWriterLock();
         private static readonly ReaderWriterLock LockBaloon = new ReaderWriterLock();
         private FormWindowState _prevWindowState = FormWindowState.Normal;
+        private static Logger logger = LogManager.GetCurrentClassLogger();
 
         //private readonly Boss _boss1 = new Boss("2303103");
         //private readonly Boss _boss2 = new Boss("2304578");
@@ -32,7 +60,39 @@ namespace ABClient.ABForms
         internal FormMain()
         {
             InitializeComponent();
+            SetRightTime();
             InitForm();
+        }
+
+        private async void SetRightTime() {
+            SYSTEMTIME time = new SYSTEMTIME();
+            //получаем текущее время
+            GetSystemTime(ref time);
+
+            
+            string url = "http://worldtimeapi.org/api/timezone/Europe/moscow";
+            try
+            {
+                var client = new HttpClient();
+                var response = await client.GetAsync(url);
+                string json = await response.Content.ReadAsStringAsync();
+                JsonTimeClass jtc = JsonConvert.DeserializeObject<JsonTimeClass>(json);
+                var now = DateTime.Parse(jtc.datetime).ToUniversalTime();
+                SYSTEMTIME stime = new SYSTEMTIME();
+                //получаем текущее время
+                GetSystemTime(ref stime);
+                stime.wHour = (ushort)now.Hour;
+                stime.wMinute = (ushort)now.Minute;
+                stime.wSecond = (ushort)now.Second;
+                //устанавливаем новые значения
+                SetSystemTime(ref stime);
+                
+
+            }
+            catch (Exception ex)
+            {
+                logger.Error($" Some " + ex.GetType() + " occured in " + ex.StackTrace + " message: " + ex.Message);
+            }
         }
 
         internal string GetServerTime()
@@ -181,10 +241,10 @@ namespace ABClient.ABForms
             WindowState = FormWindowState.Minimized;
         }
 
-        private void OnMenuitemGuamodClick(object sender, EventArgs e)
+     /*   private void OnMenuitemGuamodClick(object sender, EventArgs e)
         {
             AppVars.Profile.DoGuamod = menuitemGuamod.Checked;
-        }
+        }*/
 
         private void menuitemCacheRefresh_Click(object sender, EventArgs e)
         {
@@ -267,7 +327,7 @@ namespace ABClient.ABForms
             MoveToDialog(AppVars.Profile.MapLocation);
         }
 
-        private void buttonDrink_Click(object sender, EventArgs e)
+        /*private void buttonDrink_Click(object sender, EventArgs e)
         {
             AppVars.AutoDrink = buttonDrink.Checked;
             if (!AppVars.AutoDrink)
@@ -285,14 +345,14 @@ namespace ABClient.ABForms
             catch (InvalidOperationException)
             {
             }
-        }
+        }*/
 
         private void ButtonAutoAnswer_Click(object sender, EventArgs e)
         {
             AppVars.Profile.DoAutoAnswer = buttonAutoAnswer.Checked;
         }
 
-        private void ButtonAutoFish_Click(object sender, EventArgs e)
+       /* private void ButtonAutoFish_Click(object sender, EventArgs e)
         {
             AppVars.Profile.FishAuto = buttonAutoFish.Checked;
             AppVars.Profile.Save();
@@ -326,9 +386,9 @@ namespace ABClient.ABForms
             catch (InvalidOperationException)
             {
             }
-        }
+        }*/
 
-        private void buttonAutoSkin_Click(object sender, EventArgs e)
+      /*  private void buttonAutoSkin_Click(object sender, EventArgs e)
         {
             AppVars.Profile.SkinAuto = buttonAutoSkin.Checked;
             AppVars.Profile.Save();
@@ -355,7 +415,7 @@ namespace ABClient.ABForms
             catch (InvalidOperationException)
             {
             }
-        }
+        }*/
 
         /*
         private void buttonAutoTorg_Click(object sender, EventArgs e)
@@ -389,7 +449,7 @@ namespace ABClient.ABForms
         private void buttonAutoAdv_Click(object sender, EventArgs e)
         {
             AppVars.AdvActive = buttonAutoAdv.Checked;
-            statuslabelAutoAdv.Enabled = buttonAutoAdv.Checked;
+            //statuslabelAutoAdv.Enabled = buttonAutoAdv.Checked;
         }
 
         private void buttonSilence_Click(object sender, EventArgs e)
@@ -552,7 +612,8 @@ namespace ABClient.ABForms
 
         private void OnTimerClockTick(object sender, EventArgs e)
         {
-            TimerClock();
+            string time = TimerClock();
+            statuslabelClock.Text = time;
         }
 
         // *** Меню таймеров
@@ -986,7 +1047,7 @@ namespace ABClient.ABForms
         private void ButtonWalkers(bool check)
         {
             AppVars.DoShowWalkers = check;
-            timerCrap.Interval = AppVars.DoShowWalkers ? 1000 : 10000;
+            timerCrap.Interval = AppVars.DoShowWalkers ? 3000 : 10000;
 
             AppVars.MyCoordOld = string.Empty;
             AppVars.MyLocOld = string.Empty;
@@ -1634,5 +1695,423 @@ namespace ABClient.ABForms
         {
             ReloadMainFrame();
         }
+
+        private void menuitemTurotor_Top_Click(object sender, EventArgs e)
+        {
+            if (!this.menuitemTurotor_Top.Checked)
+            {
+                this.TurotorCancel();
+                return;
+            }
+            using (FormTurotor formTurotor = new FormTurotor())
+            {
+                formTurotor.ShowDialog();
+            }
+        }
+
+        internal void TurotorCancel()
+        {
+            this.menuitemTurotor_Top.Checked = false;
+            AppVars.DoSentToIsland = false;
+            AppVars.TurotorTopDestination1 = null;
+            AppVars.TurotorTopDestination2 = null;
+        }
+
+        internal bool IsTurotorTopActive()
+        {
+            return this.menuitemTurotor_Top.Checked;
+        }
+
+        private void DrinkSetAddButton_Click(object sender, EventArgs e)
+        {
+            string text = this.DrinkSetName.Text.Trim();
+            if (string.IsNullOrEmpty(text))
+            {
+                WriteChatMsgSafe("Невозможно создать сет с пустым именем. Введите имя сета в поле над кнопкой.");
+                return;
+            }
+            if (AppVars.DrinkSets.ContainsKey(text))
+            {
+                WriteChatMsgSafe("Сет с таким именем уже существует. Используйте другое имя.");
+                return;
+            }
+            this.DrinkSetName.Clear();
+            AppVars.DrinkSets.Add(text, string.Empty);
+            this.DrinkSetsNames.DataSource = new List<string>(AppVars.DrinkSets.Keys);
+            try
+            {
+                XmlWriterSettings xmlWriterSettings = new XmlWriterSettings();
+                xmlWriterSettings.Indent = true;
+                MemoryStream memoryStream = new MemoryStream();
+                XmlWriter xmlWriter = XmlWriter.Create(memoryStream, xmlWriterSettings);
+                xmlWriter.WriteStartDocument();
+                xmlWriter.WriteStartElement("drinkSets");
+                foreach (KeyValuePair<string, string> keyValuePair in AppVars.DrinkSets)
+                {
+                    xmlWriter.WriteStartElement("drinkSet");
+                    xmlWriter.WriteStartAttribute("name");
+                    xmlWriter.WriteString(keyValuePair.Key);
+                    xmlWriter.WriteEndAttribute();
+                    xmlWriter.WriteStartAttribute("composition");
+                    xmlWriter.WriteString(keyValuePair.Value);
+                    xmlWriter.WriteEndAttribute();
+                    xmlWriter.WriteEndElement();
+                }
+                xmlWriter.WriteEndElement();
+                xmlWriter.WriteEndDocument();
+                xmlWriter.Flush();
+                FileStream fileStream = new FileStream("drinkSets.xml", FileMode.Create);
+                memoryStream.WriteTo(fileStream);
+                fileStream.Close();
+                memoryStream.Close();
+            }
+            catch(Exception ex)
+            {
+                logger.Error($"Some error " + ex.GetType() + " with message - " + ex.Message + " occured in " + ex.StackTrace);
+            }
+        }
+
+        private void DrinkSetsNames_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string key = this.DrinkSetsNames.SelectedItem.ToString();
+            this.DrinkSetComposition.Text = (AppVars.DrinkSets.ContainsKey(key) ? AppVars.DrinkSets[key] : string.Empty);
+        }
+
+        private void DrinkSetItemAddButton_Click(object sender, EventArgs e)
+        {
+            string text = this.DrinkSetsNames.SelectedItem.ToString();
+            if (string.IsNullOrEmpty(text))
+            {
+                WriteChatMsgSafe("Для добавления элемента в сет, выберите имя сета из поля ниже.");
+                return;
+            }
+            string text2 = this.DrinkSetItemsMenu.Text;
+            if (string.IsNullOrEmpty(text2))
+            {
+                WriteChatMsgSafe("Для добавления элемента в сет, выберите имя элемента из выпадающего списка.");
+                return;
+            }
+            int num = (int)this.DrinkSetItemUsesAmount.Value;
+            if (num < 1 || num > 99)
+            {
+                WriteChatMsgSafe("Для добавления элемента в сет, укажите количество использований от 1 до 99.");
+                return;
+            }
+            string text3 = AppVars.DrinkSets[text];
+            if (!string.IsNullOrEmpty(text3))
+            {
+                text3 += "|";
+            }
+            AppVars.DrinkSets[text] = text3 + string.Format("{0}:{1}", text2, num);
+            string key = this.DrinkSetsNames.SelectedItem.ToString();
+            this.DrinkSetComposition.Text = (AppVars.DrinkSets.ContainsKey(key) ? AppVars.DrinkSets[key] : string.Empty);
+            try
+            {
+                XmlWriterSettings xmlWriterSettings = new XmlWriterSettings();
+                xmlWriterSettings.Indent = true;
+                MemoryStream memoryStream = new MemoryStream();
+                XmlWriter xmlWriter = XmlWriter.Create(memoryStream, xmlWriterSettings);
+                xmlWriter.WriteStartDocument();
+                xmlWriter.WriteStartElement("drinkSets");
+                foreach (KeyValuePair<string, string> keyValuePair in AppVars.DrinkSets)
+                {
+                    xmlWriter.WriteStartElement("drinkSet");
+                    xmlWriter.WriteStartAttribute("name");
+                    xmlWriter.WriteString(keyValuePair.Key);
+                    xmlWriter.WriteEndAttribute();
+                    xmlWriter.WriteStartAttribute("composition");
+                    xmlWriter.WriteString(keyValuePair.Value);
+                    xmlWriter.WriteEndAttribute();
+                    xmlWriter.WriteEndElement();
+                }
+                xmlWriter.WriteEndElement();
+                xmlWriter.WriteEndDocument();
+                xmlWriter.Flush();
+                FileStream fileStream = new FileStream("drinkSets.xml", FileMode.Create);
+                memoryStream.WriteTo(fileStream);
+                fileStream.Close();
+                memoryStream.Close();
+            }
+            catch (Exception ex)
+            {
+                logger.Error($"Some error " + ex.GetType() + " with message - " + ex.Message + " occured in " + ex.StackTrace);
+            }
+        }
+
+        private void DrinkSetUse_Click(object sender, EventArgs e)
+        {
+            string text = this.DrinkSetsNames.SelectedItem.ToString();
+            if (string.IsNullOrEmpty(text))
+            {
+                WriteChatMsgSafe("Выберите имя сета чтобы использовать.");
+                return;
+            }
+            AppVars.DrinkSetName = AppVars.DrinkSets[text];
+            FormMain.ReloadMainFrame();
+        }
+
+        private void DrinkSetSave_Click(object sender, EventArgs e)
+        {
+            string text = this.DrinkSetsNames.SelectedItem.ToString();
+            if (string.IsNullOrEmpty(text))
+            {
+                WriteChatMsgSafe("Выберите имя сета чтобы сохранить список элементов.");
+                return;
+            }
+            AppVars.DrinkSets[text] = this.DrinkSetComposition.Text;
+            try
+            {
+                XmlWriterSettings xmlWriterSettings = new XmlWriterSettings();
+                xmlWriterSettings.Indent = true;
+                MemoryStream memoryStream = new MemoryStream();
+                XmlWriter xmlWriter = XmlWriter.Create(memoryStream, xmlWriterSettings);
+                xmlWriter.WriteStartDocument();
+                xmlWriter.WriteStartElement("drinkSets");
+                foreach (KeyValuePair<string, string> keyValuePair in AppVars.DrinkSets)
+                {
+                    xmlWriter.WriteStartElement("drinkSet");
+                    xmlWriter.WriteStartAttribute("name");
+                    xmlWriter.WriteString(keyValuePair.Key);
+                    xmlWriter.WriteEndAttribute();
+                    xmlWriter.WriteStartAttribute("composition");
+                    xmlWriter.WriteString(keyValuePair.Value);
+                    xmlWriter.WriteEndAttribute();
+                    xmlWriter.WriteEndElement();
+                }
+                xmlWriter.WriteEndElement();
+                xmlWriter.WriteEndDocument();
+                xmlWriter.Flush();
+                FileStream fileStream = new FileStream("drinkSets.xml", FileMode.Create);
+                memoryStream.WriteTo(fileStream);
+                fileStream.Close();
+                memoryStream.Close();
+            }
+            catch (Exception ex)
+            {
+                logger.Error($"Some error " + ex.GetType() + " with message - " + ex.Message + " occured in " + ex.StackTrace);
+            }
+        }
+
+        private void DrinkSetDelete_Click(object sender, EventArgs e)
+        {
+            string text = this.DrinkSetsNames.SelectedItem.ToString();
+            if (string.IsNullOrEmpty(text))
+            {
+                WriteChatMsgSafe("Выберите имя сета чтобы удалить.");
+                return;
+            }
+            AppVars.DrinkSets.Remove(text);
+            this.DrinkSetsNames.DataSource = new List<string>(AppVars.DrinkSets.Keys);
+            try
+            {
+                XmlWriterSettings xmlWriterSettings = new XmlWriterSettings();
+                xmlWriterSettings.Indent = true;
+                MemoryStream memoryStream = new MemoryStream();
+                XmlWriter xmlWriter = XmlWriter.Create(memoryStream, xmlWriterSettings);
+                xmlWriter.WriteStartDocument();
+                xmlWriter.WriteStartElement("drinkSets");
+                foreach (KeyValuePair<string, string> keyValuePair in AppVars.DrinkSets)
+                {
+                    xmlWriter.WriteStartElement("drinkSet");
+                    xmlWriter.WriteStartAttribute("name");
+                    xmlWriter.WriteString(keyValuePair.Key);
+                    xmlWriter.WriteEndAttribute();
+                    xmlWriter.WriteStartAttribute("composition");
+                    xmlWriter.WriteString(keyValuePair.Value);
+                    xmlWriter.WriteEndAttribute();
+                    xmlWriter.WriteEndElement();
+                }
+                xmlWriter.WriteEndElement();
+                xmlWriter.WriteEndDocument();
+                xmlWriter.Flush();
+                FileStream fileStream = new FileStream("drinkSets.xml", FileMode.Create);
+                memoryStream.WriteTo(fileStream);
+                fileStream.Close();
+                memoryStream.Close();
+            }
+            catch (Exception ex)
+            {
+                logger.Error($"Some error " + ex.GetType() + " with message - " + ex.Message + " occured in " + ex.StackTrace);
+            }
+        }
+
+        private void FortBuffsSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                XmlWriterSettings settings = new XmlWriterSettings
+                {
+                    Indent = true
+                };
+                MemoryStream memoryStream = new MemoryStream();
+                XmlWriter xmlWriter = XmlWriter.Create(memoryStream, settings);
+                xmlWriter.WriteStartDocument();
+                xmlWriter.WriteStartElement("drinkSets");
+                foreach (KeyValuePair<string, string> keyValuePair in Class72.dictionary_4)
+                {
+                    xmlWriter.WriteStartElement("drinkSet");
+                    xmlWriter.WriteStartAttribute("name");
+                    xmlWriter.WriteString(keyValuePair.Key);
+                    xmlWriter.WriteEndAttribute();
+                    xmlWriter.WriteStartAttribute("composition");
+                    xmlWriter.WriteString(keyValuePair.Value);
+                    xmlWriter.WriteEndAttribute();
+                    xmlWriter.WriteEndElement();
+                }
+                xmlWriter.WriteStartElement("fortBuffsCells");
+                xmlWriter.WriteValue(this.FortBuffsCells.Text.Trim());
+                xmlWriter.WriteEndElement();
+                xmlWriter.WriteEndElement();
+                xmlWriter.WriteEndDocument();
+                xmlWriter.Flush();
+                FileStream fileStream = new FileStream("drinkSets.xml", FileMode.Create);
+                memoryStream.WriteTo(fileStream);
+                fileStream.Close();
+                memoryStream.Close();
+            }
+            catch(Exception ex)
+            {
+                logger.Error($"Error " + ex.GetType() + " with message " + ex.Message + " occured in " + ex.StackTrace);
+            }
+        }
+
+        private async void FortBuffsCollect_Click(object sender, EventArgs e)
+        {
+            string fortsCells = FortBuffsCells.Text;
+            string[] forts = fortsCells.Split(',');
+            foreach(string val in forts)
+            {
+                if (AppVars.LocationReal != val)
+                {
+                    if (AppVars.isInFort)
+                    {
+                        HtmlElement exitToMapButton = this.browserGame.Document.Window.Frames[0].Document.GetElementById("up");
+                        exitToMapButton.RaiseEvent("onclick");
+                        Thread.Sleep(1000);
+                        ReloadMainPhpInvoke();
+                        AppVars.isInFort = false;
+                    }
+                    await Task.Run(() => this.MoveToSafe(val));
+                    Thread.Sleep(500);
+                    bool result = AutoGettingBuffMoveCheck(val, AppVars.LocationReal);
+                    do
+                    {
+                        
+                        await Task.Run(() => this.UpdateLocationSafe(AppVars.LocationReal));
+                        result = AutoGettingBuffMoveCheck(val, AppVars.LocationReal);
+                    } while (!result);
+                }
+                if (AppVars.LocationReal == val)
+                {
+                    string html = AppVars.ContentMainPhp;
+                    await Task.Run(() => this.UpdateLocationSafe(AppVars.LocationReal));
+                    /*var enterFortButton = this.browserGame.Document.Window.Frames[0].Document.GetElementById("dep");
+                    enterFortButton.RaiseEvent("onclick");*/
+                    await Task.Run(() => EnterToFort(html));
+                    await Task.Run(() => this.UpdateLocationSafe(AppVars.LocationReal));
+                    Thread.Sleep(1000);
+                    html = AppVars.ContentMainPhp;
+                    var inOutButtons = this.browserGame.Document.GetElementsByTagName("input").GetElementsByName("outpost_enter");
+                    var inButton = inOutButtons[1];
+                    inButton.RaiseEvent("onclick");
+                    Thread.Sleep(3000);
+                    var outButton = inOutButtons[0];
+                    try
+                    {
+                        html = AppVars.ContentMainPhp;
+                        var effectButtons = this.browserGame.Document.GetElementsByTagName("input").GetElementsByName("apply_effect");
+                        var effectButton = effectButtons.Count==0 ? null : effectButtons[0];
+                        if (effectButton == null)
+                        {
+                            outButton.RaiseEvent("onclick");
+                            Thread.Sleep(1000);
+                            await Task.Run(() => ExitFromFort(html));
+                            Thread.Sleep(2000);
+                            continue;
+                        }
+                        effectButton.RaiseEvent("onclick");
+                       
+                        
+                        outButton.RaiseEvent("onclick");
+                        
+                        await Task.Run(() => ExitFromFort(html));
+
+                       /* HtmlElement exitToMapButton = this.browserGame.Document.GetElementById("up");
+                        exitToMapButton.RaiseEvent("onclick");
+                       
+                        await Task.Run(() => this.browserGame.Navigate("http://www.neverlands.ru/main.php")); */
+                        Thread.Sleep(1000);
+                        var chatFrame = GetFrame("chmain");
+                        if (chatFrame != null)
+                        {
+                            string message = String.Format("%clan% Я беру бафф в локации {0}. Снова будет доступен в {1}.", AppVars.Profile.MapLocation, DateTime.Now.AddMinutes(30.0));
+                            this.WriteChatMsgSafe(message);
+                            Thread.Sleep(2000);
+                        }
+                        HtmlElement exitToMapButton = this.browserGame.Document.Window.Frames[0].Document.GetElementById("up");
+                        exitToMapButton.RaiseEvent("onclick");
+                        AppVars.isInFort = false;
+                        Thread.Sleep(1000);
+                    }
+                    catch (Exception ex) {
+                        logger.Error(ex.Message);
+                       // outButton.RaiseEvent("onclick");
+                        Thread.Sleep(1000);
+                        HtmlElement exitToMapButton = this.browserGame.Document.Window.Frames[0].Document.GetElementById("up");
+                        exitToMapButton.RaiseEvent("onclick");
+                        Thread.Sleep(1000);
+                        AppVars.isInFort = false;
+                        await Task.Run(() => this.UpdateLocationSafe(AppVars.LocationReal));
+                        continue;
+                    }
+                    
+                }
+                
+            }
+        }
+        private bool AutoGettingBuffMoveCheck(string destination, string curLocation)
+        {
+            bool result = false;
+            if (destination == curLocation)
+                result = true;
+
+            return result;
+        }
+
+        private void EnterToFort(string html)
+        {
+            string query = Filter.MainPhpFindEnterLink(html);
+            string url = "http://www.neverlands.ru/" + query;
+            this.browserGame.Navigate(url);
+            Thread.Sleep(1000);
+            AppVars.isInFort = true;
+        }
+
+        private void ExitFromFort(string html)
+        {
+            string query = Filter.MainPhpFindExitLink(html);
+            string url = "http://www.neverlands.ru/" + query;
+            this.browserGame.Navigate(url);
+            Thread.Sleep(10000);
+            ReloadMainPhpInvoke();
+            //this.browserGame.Navigate("http://www.neverlands.ru/main.php");
+        }
+
+        private void GetFortBuff(string html)
+        {
+            string vcode = "";
+            string query = Filter.MainPhpFindApplyEffectLink(html, out vcode);
+            string url = "http://www.neverlands.ru/" + query;
+            this.browserGame.Navigate(url);
+            Thread.Sleep(1000);
+        }
+
+        private void TeleportExtended_Click(object sender, EventArgs e)
+        {
+            AppVars.ExtendedTPTag = int.Parse((string)((ToolStripMenuItem)sender).Tag);
+            AppVars.MainForm.FastStartSafe("i_w28_22.gif", AppVars.Profile.UserNick, 1);
+            FormMain.ReloadMainFrame();
+        }
+
     }
 }

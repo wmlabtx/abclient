@@ -1296,7 +1296,7 @@ namespace ABClient.Lez
                             {
                                 if (AppVars.MainForm != null && AppVars.MainForm.TrayIsDigitsWaitTooLong())
                                 {
-                                    try
+                                   /* try
                                     {
                                         if (AppVars.MainForm != null)
                                         {
@@ -1308,7 +1308,7 @@ namespace ABClient.Lez
                                     }
                                     catch (InvalidOperationException)
                                     {
-                                    }
+                                    }*/
                                 }
                                 else
                                 {

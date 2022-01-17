@@ -181,5 +181,14 @@
 
             return result;
         }
+
+        internal static bool Remaining()
+        {
+            int beginInterval = AppVars.BeginInterval;
+            int endInterval = AppVars.EndInterval;
+            int num = (AppVars.Profile.ServDiff == TimeSpan.MinValue) ? DateTime.Now.Hour : DateTime.Now.Subtract(AppVars.Profile.ServDiff).Hour;
+            bool flag = beginInterval > endInterval;
+            return (flag && (num >= beginInterval || num < endInterval)) || (!flag && num >= beginInterval && num < endInterval);
+        }
     }
 }

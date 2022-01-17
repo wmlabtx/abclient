@@ -85,11 +85,11 @@ namespace ABClient.MyForms
 
             checkShowMiniMap.Checked = AppVars.Profile.MapShowMiniMap;
 
-            numFishTiedHigh.Value = AppVars.Profile.FishTiedHigh;
+            /*numFishTiedHigh.Value = AppVars.Profile.FishTiedHigh;
 
             checkFishTiedZero.Checked = AppVars.Profile.FishTiedZero;
             
-            checkboxStopOverW.Checked = AppVars.Profile.FishStopOverWeight;
+            checkboxStopOverW.Checked = AppVars.Profile.FishStopOverWeight;*/
 
             checkUseSounds.Checked = AppVars.Profile.Sound.Enabled;
             checkDoPlayDigits.Checked = AppVars.Profile.Sound.DoPlayDigits;
@@ -103,7 +103,7 @@ namespace ABClient.MyForms
             numAdvSec.Value = AppVars.Profile.AutoAdv.Sec % 60;
             textPhraz.Text = AppVars.Profile.AutoAdv.Phraz;
 
-            checkFishAutoWear.Checked = AppVars.Profile.FishAutoWear;
+            /*checkFishAutoWear.Checked = AppVars.Profile.FishAutoWear;
             for (var i = 0; i < comboFishHand1.Items.Count; i++)
             {
                 if (!AppVars.Profile.FishHandOne.Equals((string)comboFishHand1.Items[i], StringComparison.OrdinalIgnoreCase))
@@ -148,13 +148,13 @@ namespace ABClient.MyForms
 
             checkboxFishChatReport.Checked = AppVars.Profile.FishChatReport;
             checkboxFishChatReportColor.Checked = AppVars.Profile.FishChatReportColor;
-
+*/
             checkAutoAnswer.Checked = AppVars.Profile.DoAutoAnswer;
             textAutoAnswer.Text = AppVars.Profile.AutoAnswer.Replace(AppConsts.Br, Environment.NewLine);
 
             checkLightForum.Checked = AppVars.Profile.LightForum;
 
-            textTorgTable.Text = AppVars.Profile.TorgTabl;
+            /*textTorgTable.Text = AppVars.Profile.TorgTabl;
             textTorgMessageAdv.Text = AppVars.Profile.TorgMessageAdv;
             textTorgAdvTime.Text = AppVars.Profile.TorgAdvTime.ToString(CultureInfo.InvariantCulture);
             textTorgMessageNoMoney.Text = AppVars.Profile.TorgMessageNoMoney;
@@ -164,7 +164,7 @@ namespace ABClient.MyForms
             checkTorgSliv.Checked = AppVars.Profile.TorgSliv;
             textTorgMinLevel.Text = AppVars.Profile.TorgMinLevel.ToString(CultureInfo.InvariantCulture);
             textTorgEx.Text = AppVars.Profile.TorgEx;
-            textTorgDeny.Text = AppVars.Profile.TorgDeny;
+            textTorgDeny.Text = AppVars.Profile.TorgDeny;*/
 
             checkDoInvPack.Checked = AppVars.Profile.DoInvPack;
             checkDoInvPackDolg.Checked = AppVars.Profile.DoInvPackDolg;
@@ -277,7 +277,7 @@ namespace ABClient.MyForms
             AppVars.Profile.MapMiniScale = (int)numMiniMapScale.Value;
             AppVars.Profile.MapShowMiniMap = checkShowMiniMap.Checked;
 
-            AppVars.Profile.FishStopOverWeight = checkboxStopOverW.Checked;
+           // AppVars.Profile.FishStopOverWeight = checkboxStopOverW.Checked;
 
             AppVars.Profile.Sound.Enabled = checkUseSounds.Checked;
             AppVars.Profile.Sound.DoPlayDigits = checkDoPlayDigits.Checked;
@@ -294,13 +294,13 @@ namespace ABClient.MyForms
                 AppVars.Profile.AutoAdv.Sec = 600;
             }
 
-            AppVars.Profile.FishAutoWear = checkFishAutoWear.Checked;
+            /*AppVars.Profile.FishAutoWear = checkFishAutoWear.Checked;
             AppVars.Profile.FishHandOne = (string)comboFishHand1.SelectedItem;
             AppVars.Profile.FishHandTwo = (string)comboFishHand2.SelectedItem;
 
             AppVars.Profile.FishTiedHigh = (int)numFishTiedHigh.Value;
             AppVars.Profile.FishTiedZero = checkFishTiedZero.Checked;
-
+            
             AppVars.Profile.FishEnabledPrims = 0;
             if (checkPrimBread.Checked)
             {
@@ -311,7 +311,7 @@ namespace ABClient.MyForms
             {
                 AppVars.Profile.FishEnabledPrims += (int) Prims.Worm;
             }
-
+            
             if (checkPrimBigWorm.Checked)
             {
                 AppVars.Profile.FishEnabledPrims += (int) Prims.BigWorm;
@@ -336,7 +336,7 @@ namespace ABClient.MyForms
             {
                 AppVars.Profile.FishEnabledPrims += (int) Prims.Donka;
             }
-
+            
             if (checkPrimMorm.Checked)
             {
                 AppVars.Profile.FishEnabledPrims += (int) Prims.Morm;
@@ -349,14 +349,14 @@ namespace ABClient.MyForms
 
             AppVars.Profile.FishChatReport = checkboxFishChatReport.Checked;
             AppVars.Profile.FishChatReportColor = checkboxFishChatReportColor.Checked;
-
+            */
             AppVars.Profile.DoAutoAnswer = checkAutoAnswer.Checked;
             AppVars.Profile.AutoAnswer = textAutoAnswer.Text.Trim().Replace(Environment.NewLine, AppConsts.Br);
             AutoAnswerMachine.SetAnswers(AppVars.Profile.AutoAnswer);
 
             AppVars.Profile.LightForum = checkLightForum.Checked;
 
-            AppVars.Profile.TorgTabl = textTorgTable.Text;
+            /*AppVars.Profile.TorgTabl = textTorgTable.Text;
             TorgList.Parse(textTorgTable.Text);
             AppVars.Profile.TorgMessageAdv = textTorgMessageAdv.Text;
 
@@ -380,7 +380,7 @@ namespace ABClient.MyForms
 
             AppVars.Profile.TorgEx = textTorgEx.Text;
             AppVars.Profile.TorgDeny = textTorgDeny.Text;
-
+*/
             AppVars.Profile.DoInvPack = checkDoInvPack.Checked;
             AppVars.Profile.DoInvPackDolg = checkDoInvPackDolg.Checked;
             AppVars.Profile.DoInvSort = checkDoInvSort.Checked;
@@ -438,7 +438,7 @@ namespace ABClient.MyForms
             }
         }
 
-        private void textTorgTable_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        /*private void textTorgTable_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (TorgList.Parse(textTorgTable.Text))
             {
@@ -449,7 +449,7 @@ namespace ABClient.MyForms
             textTorgTable.Text = AppVars.Profile.TorgTabl;
             errorTorg.SetError(textTorgTable, "Ошибка в таблице торга");
         }
-
+        
         private void textTorgTable_Validated(object sender, EventArgs e)
         {
             errorTorg.SetError(textTorgTable, string.Empty);
@@ -495,6 +495,6 @@ namespace ABClient.MyForms
             e.Cancel = true;
             textTorgMinLevel.SelectAll();
             errorTorg.SetError(textTorgMinLevel, "Уровень вещи - это целое число от 1 до 34, например, 10");
-        }
+        }*/
     }
 }

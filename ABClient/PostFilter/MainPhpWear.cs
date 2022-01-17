@@ -110,7 +110,7 @@ namespace ABClient.PostFilter
             */
 
 stopautofish:
-            try
+            /*try
             {
                 if (AppVars.MainForm != null)
                 {
@@ -121,7 +121,7 @@ stopautofish:
             catch (InvalidOperationException)
             {
             }
-
+            */
             return null;
         }
 

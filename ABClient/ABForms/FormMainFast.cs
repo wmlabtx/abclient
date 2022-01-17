@@ -4,6 +4,7 @@ using System.Threading;
 using System.Windows.Forms;
 using ABClient.MyHelpers;
 
+
 namespace ABClient.ABForms
 {
     internal sealed partial class FormMain
@@ -21,6 +22,11 @@ namespace ABClient.ABForms
                 BeginInvoke((MethodInvoker)(() => FastStartSafe(id, nick, count)));
                 return;
             }
+            /*bool flag = true;
+            StackTrace stackTrace = new StackTrace();
+            string caller = stackTrace.GetFrame(1).GetMethod().Name;
+            if (id == "i_w28_22.gif" && caller == "TeleportExtended_Click")
+                flag = false;*/
 
             AppVars.FastNeed = true;
             AppVars.FastId = id;

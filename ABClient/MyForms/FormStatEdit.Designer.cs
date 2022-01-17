@@ -42,7 +42,7 @@ namespace ABClient.Forms
             // 
             this.buttonReset.AutoSize = true;
             this.buttonReset.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonReset.Location = new System.Drawing.Point(108, 206);
+            this.buttonReset.Location = new System.Drawing.Point(108, 284);
             this.buttonReset.Name = "buttonReset";
             this.buttonReset.Size = new System.Drawing.Size(125, 23);
             this.buttonReset.TabIndex = 1007;
@@ -53,7 +53,7 @@ namespace ABClient.Forms
             // 
             this.buttonContinue.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonContinue.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonContinue.Location = new System.Drawing.Point(239, 206);
+            this.buttonContinue.Location = new System.Drawing.Point(239, 284);
             this.buttonContinue.Name = "buttonContinue";
             this.buttonContinue.Size = new System.Drawing.Size(107, 23);
             this.buttonContinue.TabIndex = 1008;
@@ -67,7 +67,7 @@ namespace ABClient.Forms
             this.textBox.Name = "textBox";
             this.textBox.ReadOnly = true;
             this.textBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox.Size = new System.Drawing.Size(333, 179);
+            this.textBox.Size = new System.Drawing.Size(333, 266);
             this.textBox.TabIndex = 1011;
             // 
             // FormStatEdit
@@ -75,7 +75,7 @@ namespace ABClient.Forms
             this.AcceptButton = this.buttonReset;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.buttonContinue;
-            this.ClientSize = new System.Drawing.Size(358, 237);
+            this.ClientSize = new System.Drawing.Size(359, 319);
             this.Controls.Add(this.textBox);
             this.Controls.Add(this.buttonReset);
             this.Controls.Add(this.buttonContinue);

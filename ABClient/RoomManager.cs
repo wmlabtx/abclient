@@ -11,6 +11,8 @@ using ABClient.ABProxy;
 using ABClient.MyHelpers;
 using ABClient.MySounds;
 using ABClient.Helpers;
+using NLog;
+using System.Net.Http;
 
 namespace ABClient
 {
@@ -21,8 +23,10 @@ namespace ABClient
         private static bool _doStop;
         private static string _oldRoom = string.Empty;
         private static readonly SortedList<string, DateTime> BlackList = new SortedList<string, DateTime>();
+        private static Logger logger = LogManager.GetCurrentClassLogger();
 
-        internal static List<string> MyLocation = new List<string>();
+        public static List<string> MyLocation = new List<string>();
+        private static ListBox twl = AppVars.MainForm.listBoxLocation;
 
         internal static void StartTracing()
         {
@@ -34,7 +38,8 @@ namespace ABClient
                 Name = "RoomAsync"
             };
 
-            _thread.Start();            
+            _thread.Start();           
+            //await RoomAsync();
         }
 
         internal static void StopTracing()
@@ -78,7 +83,7 @@ namespace ABClient
             return true;
         }
 
-        private static void RoomAsync(object stateInfo)
+        private static async void RoomAsync(object stateInfo)
         {
             while (!_doStop)
             {
@@ -87,13 +92,21 @@ namespace ABClient
                     try
                     {
                         IdleManager.AddActivity();
-                        var wr = (HttpWebRequest) WebRequest.Create("http://neverlands.ru/ch.php?lo=1&");
+                        string url = "http://neverlands.ru/ch.php?lo=1&";
+
+                        var client = new HttpClient();
+                       /* var wr = (HttpWebRequest) WebRequest.Create("http://neverlands.ru/ch.php?lo=1&");
                         wr.Method = "GET";
-                        wr.Proxy = AppVars.LocalProxy;
+                        wr.Proxy = AppVars.LocalProxy;*/
                         var cookies = CookiesManager.Obtain("www.neverlands.ru");
-                        wr.Headers.Add("Cookie", cookies);
-                        var resp = wr.GetResponse();
-                        var webstream = resp.GetResponseStream();
+                        client.DefaultRequestHeaders.Add("Cookie", cookies);
+                        var resp = await client.GetAsync(url);//wr.GetResponse();
+                        if ((int)resp.StatusCode > 500)
+                        {
+                            logger.Log(LogLevel.Error, "Server response is:" + resp.StatusCode + " " + resp.ReasonPhrase);
+                            continue;
+                        }
+                        var webstream = await resp.Content.ReadAsStreamAsync();// GetResponseStream();
                         if (webstream != null)
                         {
                             using (var reader = new StreamReader(webstream, AppVars.Codepage))
@@ -113,9 +126,10 @@ namespace ABClient
                                         {
                                             if (AppVars.MainForm != null)
                                             {
+                                                Thread.Sleep(250);
                                                 AppVars.MainForm.BeginInvoke(
                                                     new ReloadChPhpInvokeDelegate(AppVars.MainForm.ReloadChPhpInvoke),
-                                                    new object[] {});
+                                                    new object[] { });
                                             }
                                         }
                                         catch (InvalidOperationException)
@@ -126,8 +140,10 @@ namespace ABClient
                             }
                         }
                     }
-                    catch (WebException)
+                    catch (WebException webEx)
                     {
+                        logger.Error("error message:"+webEx.Message+" occured in \n" +webEx.StackTrace + " " + webEx.Response);
+                        continue;
                     }
                     catch (IOException)
                     {
@@ -139,7 +155,7 @@ namespace ABClient
 
                 }
 
-                Event.WaitOne(100, false);
+                Event.WaitOne(500, false);
             }
         }
 
@@ -330,6 +346,7 @@ namespace ABClient
             var sbt = new StringBuilder();
             var nt = new int[4];
 
+            twl.DataBindings.Clear();
             MyLocation.Clear();
 
             for (var i = 0; i < par.Length; i++)
@@ -749,6 +766,9 @@ namespace ABClient
 
                 trlist.Add(trmi);
             }
+
+            twl.DataSource = MyLocation;
+            twl.Refresh();
 
             if (trlist.Count > 0)
             {

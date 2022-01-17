@@ -10,6 +10,7 @@
         Log = 5, 
         Room = 6,
         TodayChat = 7,
+        Location = 8,
         Other = 100,
         Notepad = 200
     }

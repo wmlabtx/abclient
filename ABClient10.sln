@@ -1,27 +1,34 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABClient", "ABClient\ABClient.csproj", "{01222EA8-47FE-413C-A17B-1B7411BA7296}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{01222EA8-47FE-413C-A17B-1B7411BA7296}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{01222EA8-47FE-413C-A17B-1B7411BA7296}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01222EA8-47FE-413C-A17B-1B7411BA7296}.Debug|x86.ActiveCfg = Debug|x86
+		{01222EA8-47FE-413C-A17B-1B7411BA7296}.Debug|x86.Build.0 = Debug|x86
 		{01222EA8-47FE-413C-A17B-1B7411BA7296}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{01222EA8-47FE-413C-A17B-1B7411BA7296}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01222EA8-47FE-413C-A17B-1B7411BA7296}.Release|x86.ActiveCfg = Release|x86
+		{01222EA8-47FE-413C-A17B-1B7411BA7296}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		CodeStyleEnforcer_Active = -1
 		CodeStyleEnforcer_RulesLocation = 0
+		CodeStyleEnforcer_Active = -1
+		SolutionGuid = {47CF1AEB-EB41-4FEF-958C-4ACB6535BDDA}
 	EndGlobalSection
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True

@@ -21,7 +21,7 @@ namespace ABClient.ABForms
                 return;
             }
 
-            try
+          /*  try
             {
                 if (AppVars.MainForm != null)
                 {
@@ -32,7 +32,7 @@ namespace ABClient.ABForms
             }
             catch (InvalidOperationException)
             {
-            }
+            }*/
         }
 
         internal static string InsertGuaDiv(string code)
@@ -49,7 +49,7 @@ namespace ABClient.ABForms
                 {
                     if (AppVars.MainForm != null && AppVars.MainForm.TrayIsDigitsWaitTooLong())
                     {
-                        try
+                       /* try
                         {
                             if (AppVars.MainForm != null)
                             {
@@ -60,7 +60,7 @@ namespace ABClient.ABForms
                         }
                         catch (InvalidOperationException)
                         {
-                        }
+                        }*/
                     }
                     else
                     {
@@ -453,14 +453,14 @@ namespace ABClient.ABForms
             }
         }
 
-        internal void ShowActivity(int numberOfThreads)
+       /* internal void ShowActivity(int numberOfThreads)
         {
             var index = numberOfThreads > 0 ? 1 : 0;
             statuslabelActivity.Image = imagelistDownload.Images[index];
             var indication = numberOfThreads > 9 ? 9 : numberOfThreads;
             statuslabelNumberOfThreads.Text = indication.ToString();
         }
-
+       */
         internal void UpdateHttpLog(string message)
         {
             // UpdateTexLog(message);
@@ -581,12 +581,12 @@ namespace ABClient.ABForms
             }
         }
 
-        internal void UpdateFishNV(int nvinc)
+        /*internal void UpdateFishNV(int nvinc)
         {
             Interlocked.Add(ref AppVars.Profile.Stat.FishNV, nvinc);
             UpdateFishNV();
         }
-
+        */
         internal void UpdateAccountError(string error)
         {
             AppVars.AccountError = error;
@@ -604,11 +604,11 @@ namespace ABClient.ABForms
 
         internal void UpdateLocationSafe(string location)
         {
-            if (InvokeRequired)
+            /*if (InvokeRequired)
             {
                 BeginInvoke((MethodInvoker)(() => UpdateLocationSafe(location)));
                 return;
-            }
+            }*/
 
             AppVars.LocationReal = string.IsNullOrEmpty(location) ? "?-???" : location;
             statuslabelLocation.Text = AppVars.LocationReal;
@@ -685,7 +685,7 @@ namespace ABClient.ABForms
 
             AppVars.AutoDrink = false;
             AppVars.AutoFishDrink = false;
-            buttonDrink.Checked = false;
+            //buttonDrink.Checked = false;
         }
 
         internal static void UpdateCheckTied()
@@ -729,13 +729,13 @@ namespace ABClient.ABForms
             AppVars.AutoMoving = false;
         }
 
-        internal void UpdateFishOff()
+        /*internal void UpdateFishOff()
         {
             buttonAutoFish.Checked = false;
             AppVars.Profile.FishAuto = false;
             AppVars.Profile.Save();
         }
-
+        */
         internal void UpdateComplects(string[] complects)
         {
             var sb = new StringBuilder();
@@ -1016,7 +1016,7 @@ namespace ABClient.ABForms
         }
          */ 
 
-        internal void UpdateGuamodTurnOn()
+      /*  internal void UpdateGuamodTurnOn()
         {
             if (!menuitemGuamod.Enabled || menuitemGuamod.Checked)
             {
@@ -1060,7 +1060,7 @@ namespace ABClient.ABForms
         {
             WriteMessageToGuamod("<font class=nickname><font color=#004A7F><b>" + message + "</b></font></font>");
         }
-
+      */
         /*
         internal void WriteFishingCode(string code)
         {
