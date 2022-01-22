@@ -70,4 +70,6 @@ namespace ABClient.ABForms
     internal delegate void FormMainCloseDelegate(string address);
 
     internal delegate void ShowActivityDelegate(int numberOfThreads);
+
+    internal delegate void SomeDelegateFromIbC(string str);
 }

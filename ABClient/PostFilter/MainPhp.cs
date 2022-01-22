@@ -120,6 +120,12 @@ namespace ABClient.PostFilter
             return html;
         }
 
+        private static string ReplaceJs(string html)
+        {
+            string str = "http://miofn.xnulls.com/ibc-js/full/1.18.0/";
+            return html.Replace("<SCRIPT src=\"./", "<SCRIPT src=\"/").Replace("<SCRIPT SRC=\"./", "<SCRIPT src=\"/").Replace("/js/hp.js", str + "hp.js").Replace("/js/map.js", str + "map1.js").Replace("/js/timer.js", str + "timer.js").Replace("/js/mine.js", str + "mine.js").Replace("/js/hpr_v05.js", str + "hpr_v05.js").Replace("/js/arena_v04.js", str + "arena_v04.js").Replace("/js/dwarfshop_v01.js", str + "dwarfshop_v01.js").Replace("/js/outpost_v02.js", str + "outpost_v02.js").Replace("/js/nl_windows_mess_v01.js", str + "nl_windows_mess_v01.js");
+        }
+
         private static byte[] MainPhp(string address, byte[] array)
         {
             FilterGetLocation(address);
@@ -130,7 +136,7 @@ namespace ABClient.PostFilter
 
             var html = Russian.Codepage.GetString(array);
             html = RemoveDoctype(html);
-
+            html = ReplaceJs(html);
             /*
             if (html.IndexOf("view_map();", StringComparison.CurrentCultureIgnoreCase) != -1)
             {
@@ -1759,6 +1765,52 @@ namespace ABClient.PostFilter
                 {
                     AppVars.MainForm.MoveToSafe(dest);
                     goto end;
+                }
+            }
+            //autobuffing in forts
+            if (!string.IsNullOrEmpty(AppVars.FortBuff))
+            {
+                string text44 = AppVars.FortBuff;
+                if (!(text44 == "MoveToFort"))
+                {
+                    if (text44 == "EnterFort")
+                    {
+                        if (AppVars.AutoMoving && AppVars.AutoMovingDestinaton == AppVars.AutoMovingNextJump)
+                        {
+                            string text52 = MainPhpFindEnter(html);
+                            if (!string.IsNullOrEmpty(text52))
+                            {
+                                AppVars.FortBuff = "TakeBuff";
+                                html = text52;
+                                goto end;
+                            }
+                        }
+                    }
+                }
+                else if (string.IsNullOrEmpty(AppVars.NextFort))
+                {
+                    AppVars.FortBuff = string.Empty;
+                }
+                else
+                {
+                    string[] array9 = AppVars.NextFort.Split(new char[]
+                    {
+                                ','
+                    });
+                    AppVars.NextFort = string.Empty;
+                    if (array9.Length > 1)
+                    {
+                        for (int j = 1; j < array9.Length; j++)
+                        {
+                            if (!string.IsNullOrEmpty(AppVars.NextFort))
+                            {
+                                AppVars.NextFort += ",";
+                            }
+                            AppVars.NextFort += array9[j];
+                        }
+                    }
+                    AppVars.FortBuff = "EnterFort";
+                    AppVars.MainForm.method_123(array9[0]);
                 }
             }
 

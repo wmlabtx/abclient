@@ -1974,100 +1974,145 @@ namespace ABClient.ABForms
                 logger.Error($"Error " + ex.GetType() + " with message " + ex.Message + " occured in " + ex.StackTrace);
             }
         }
-
-        private async void FortBuffsCollect_Click(object sender, EventArgs e)
+        internal void method_123(string string_0)
         {
-            string fortsCells = FortBuffsCells.Text;
-            string[] forts = fortsCells.Split(',');
-            foreach(string val in forts)
+            FormMain.Class98 @class = new FormMain.Class98();
+            @class.formMain_0 = this;
+            @class.string_0 = string_0;
+            if (base.InvokeRequired)
             {
-                if (AppVars.LocationReal != val)
-                {
-                    if (AppVars.isInFort)
-                    {
-                        HtmlElement exitToMapButton = this.browserGame.Document.Window.Frames[0].Document.GetElementById("up");
-                        exitToMapButton.RaiseEvent("onclick");
-                        Thread.Sleep(1000);
-                        ReloadMainPhpInvoke();
-                        AppVars.isInFort = false;
-                    }
-                    await Task.Run(() => this.MoveToSafe(val));
-                    Thread.Sleep(500);
-                    bool result = AutoGettingBuffMoveCheck(val, AppVars.LocationReal);
-                    do
-                    {
-                        
-                        await Task.Run(() => this.UpdateLocationSafe(AppVars.LocationReal));
-                        result = AutoGettingBuffMoveCheck(val, AppVars.LocationReal);
-                    } while (!result);
-                }
-                if (AppVars.LocationReal == val)
-                {
-                    string html = AppVars.ContentMainPhp;
-                    await Task.Run(() => this.UpdateLocationSafe(AppVars.LocationReal));
-                    /*var enterFortButton = this.browserGame.Document.Window.Frames[0].Document.GetElementById("dep");
-                    enterFortButton.RaiseEvent("onclick");*/
-                    await Task.Run(() => EnterToFort(html));
-                    await Task.Run(() => this.UpdateLocationSafe(AppVars.LocationReal));
-                    Thread.Sleep(1000);
-                    html = AppVars.ContentMainPhp;
-                    var inOutButtons = this.browserGame.Document.GetElementsByTagName("input").GetElementsByName("outpost_enter");
-                    var inButton = inOutButtons[1];
-                    inButton.RaiseEvent("onclick");
-                    Thread.Sleep(3000);
-                    var outButton = inOutButtons[0];
-                    try
-                    {
-                        html = AppVars.ContentMainPhp;
-                        var effectButtons = this.browserGame.Document.GetElementsByTagName("input").GetElementsByName("apply_effect");
-                        var effectButton = effectButtons.Count==0 ? null : effectButtons[0];
-                        if (effectButton == null)
-                        {
-                            outButton.RaiseEvent("onclick");
-                            Thread.Sleep(1000);
-                            await Task.Run(() => ExitFromFort(html));
-                            Thread.Sleep(2000);
-                            continue;
-                        }
-                        effectButton.RaiseEvent("onclick");
-                       
-                        
-                        outButton.RaiseEvent("onclick");
-                        
-                        await Task.Run(() => ExitFromFort(html));
-
-                       /* HtmlElement exitToMapButton = this.browserGame.Document.GetElementById("up");
-                        exitToMapButton.RaiseEvent("onclick");
-                       
-                        await Task.Run(() => this.browserGame.Navigate("http://www.neverlands.ru/main.php")); */
-                        Thread.Sleep(1000);
-                        var chatFrame = GetFrame("chmain");
-                        if (chatFrame != null)
-                        {
-                            string message = String.Format("%clan% Я беру бафф в локации {0}. Снова будет доступен в {1}.", AppVars.Profile.MapLocation, DateTime.Now.AddMinutes(30.0));
-                            this.WriteChatMsgSafe(message);
-                            Thread.Sleep(2000);
-                        }
-                        HtmlElement exitToMapButton = this.browserGame.Document.Window.Frames[0].Document.GetElementById("up");
-                        exitToMapButton.RaiseEvent("onclick");
-                        AppVars.isInFort = false;
-                        Thread.Sleep(1000);
-                    }
-                    catch (Exception ex) {
-                        logger.Error(ex.Message);
-                       // outButton.RaiseEvent("onclick");
-                        Thread.Sleep(1000);
-                        HtmlElement exitToMapButton = this.browserGame.Document.Window.Frames[0].Document.GetElementById("up");
-                        exitToMapButton.RaiseEvent("onclick");
-                        Thread.Sleep(1000);
-                        AppVars.isInFort = false;
-                        await Task.Run(() => this.UpdateLocationSafe(AppVars.LocationReal));
-                        continue;
-                    }
-                    
-                }
-                
+                base.BeginInvoke(new MethodInvoker(@class.method_0));
+                return;
             }
+            this.method_124(@class.string_0);
+        }
+        private HtmlWindow method_106(string string_0)
+        {
+            HtmlWindow result;
+            try
+            {
+                ExtendedWebBrowser extendedWebBrowser = this.browserGame;
+                HtmlWindow htmlWindow;
+                if (extendedWebBrowser == null)
+                {
+                    htmlWindow = null;
+                }
+                else
+                {
+                    HtmlDocument document = extendedWebBrowser.Document;
+                    if (document == null)
+                    {
+                        htmlWindow = null;
+                    }
+                    else
+                    {
+                        HtmlWindow window = document.Window;
+                        if (window == null)
+                        {
+                            htmlWindow = null;
+                        }
+                        else
+                        {
+                            HtmlWindowCollection frames = window.Frames;
+                            htmlWindow = ((frames != null) ? frames[string_0] : null);
+                        }
+                    }
+                }
+                result = htmlWindow;
+            }
+            catch (ArgumentException)
+            {
+                result = null;
+            }
+            catch (Exception)
+            {
+                result = null;
+            }
+            return result;
+        }
+        internal void method_113(string string_0)
+		{
+			HtmlWindow htmlWindow = this.method_106("ch_buttons");
+			if (string.IsNullOrEmpty(string_0))
+			{
+				return;
+			}
+			try
+			{
+				HtmlElement htmlElement;
+				if (htmlWindow == null)
+				{
+					htmlElement = null;
+				}
+				else
+				{
+					HtmlDocument document = htmlWindow.Document;
+					htmlElement = ((document != null) ? document.GetElementById("text") : null);
+				}
+				HtmlElement htmlElement2 = htmlElement;
+				HtmlElement htmlElement3;
+				if (htmlWindow == null)
+				{
+					htmlElement3 = null;
+				}
+				else
+				{
+					HtmlDocument document2 = htmlWindow.Document;
+					htmlElement3 = ((document2 != null) ? document2.GetElementById("butinp") : null);
+				}
+				HtmlElement htmlElement4 = htmlElement3;
+				if (!(htmlElement2 == null) && !(htmlElement4 == null))
+				{
+					htmlElement2.SetAttribute("value", string_0);
+					htmlElement4.InvokeMember("onClick");
+					htmlElement2.SetAttribute("value", string.Empty);
+				}
+			}
+			catch
+			{
+			}
+		}
+        internal void method_124(string string_0)
+        {
+            this.buttonNavigator.Checked = true;
+            Class72.smethod_37(true);
+            Class72.smethod_41(string_0);
+            MapPath mapPath = new MapPath(AppVars.Profile.MapLocation, new string[]
+            {
+                string_0
+            });
+            if (!mapPath.PathExists)
+            {
+                this.buttonNavigator.Checked = false;
+                Class72.smethod_37(false);
+                AppVars.MainForm.WriteChatMsgSafe(string.Concat(new string[]
+                {
+                    "Невозможно построить маршрут от <b>",
+                    AppVars.Profile.MapLocation,
+                    "</b> до <b>",
+                    string_0,
+                    "</b>. Навигатор отключен."
+                }));
+                AppVars.MainForm.BeginInvoke(new ReloadMainPhpInvokeDelegate(ReloadMainPhpInvoke), new object[0]);
+            }
+            Class72.smethod_47(mapPath);
+            MoveToSafe(string_0);
+            try
+            {
+                if (Class72.formMain_0 != null)
+                {
+                    AppVars.MainForm.BeginInvoke(new ReloadMainPhpInvokeDelegate(ReloadMainPhpInvoke), new object[0]);
+                }
+            }
+            catch (InvalidOperationException)
+            {
+            }
+        }
+        private void FortBuffsCollect_Click(object sender, EventArgs e)
+        {
+            AppVars.NextFort = this.FortBuffsCells.Text.Trim();
+            AppVars.FortBuff = "MoveToFort";
+            AppVars.MainForm.BeginInvoke(new ReloadMainPhpInvokeDelegate(ReloadMainPhpInvoke), new object[0]);
         }
         private bool AutoGettingBuffMoveCheck(string destination, string curLocation)
         {
@@ -2112,6 +2157,19 @@ namespace ABClient.ABForms
             AppVars.MainForm.FastStartSafe("i_w28_22.gif", AppVars.Profile.UserNick, 1);
             FormMain.ReloadMainFrame();
         }
+        private sealed class Class98
+        {
+            // Token: 0x06000825 RID: 2085 RVA: 0x00009840 File Offset: 0x00007A40
+            internal void method_0()
+            {
+                this.formMain_0.method_123(this.string_0);
+            }
 
+            // Token: 0x040004E8 RID: 1256
+            public FormMain formMain_0;
+
+            // Token: 0x040004E9 RID: 1257
+            public string string_0;
+        }
     }
 }

@@ -632,5 +632,39 @@
                 return string.Empty;
             return str;
         }
+
+        public string GetFortBuffsState()
+        {
+            return AppVars.FortBuff;
+        }
+
+        // Token: 0x06000AAC RID: 2732 RVA: 0x0000B4F2 File Offset: 0x000096F2
+        public void LeaveFort()
+        {
+            AppVars.FortBuff = "LeaveFort";
+        }
+
+        // Token: 0x06000AAD RID: 2733 RVA: 0x0000B4FE File Offset: 0x000096FE
+        public void MoveToFort()
+        {
+            AppVars.FortBuff = "MoveToFort";
+        }
+
+        // Token: 0x06000AAE RID: 2734 RVA: 0x00063FB0 File Offset: 0x000621B0
+        public void TellBuffTaken()
+        {
+            string text = ((AppVars.Profile.ServDiff != TimeSpan.MinValue) ? DateTime.Now.Subtract(AppVars.Profile.ServDiff) : DateTime.Now).AddMinutes(30.0).ToString("HH:mm:ss");
+            string str = string.Concat(new string[]
+                {
+                    "%clan% Я беру бафф в локации ",
+                    AppVars.LocationName,
+                    ". Снова будет доступен в ",
+                    text,
+                    "."
+                });
+            AppVars.MainForm.BeginInvoke(new SomeDelegateFromIbC(AppVars.MainForm.method_113), new object[] { (str) });
+                
+            
+        }
     }
 }

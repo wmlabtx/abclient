@@ -404,6 +404,9 @@ namespace ABClient
         internal static int ExtendedTPTag = 0;
 
         internal static bool isInFort { get; set; }
+        public static string NextFort { get; internal set; }
+        public static string FortBuff { get; internal set; }
+
         static AppVars()
         {
             MyCharsOld = new Dictionary<string, string>();

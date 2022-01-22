@@ -243,8 +243,11 @@
     <Compile Include="BossMap.cs" />
     <Compile Include="ChatUser.cs" />
     <Compile Include="ChatUsersManager.cs" />
+    <Compile Include="Class12.cs" />
     <Compile Include="Class72.cs" />
     <Compile Include="DataManager.cs" />
+    <Compile Include="Delegate36.cs" />
+    <Compile Include="Delegate37.cs" />
     <Compile Include="ExtMap\AbcCell.cs" />
     <Compile Include="ExtMap\GroupCell.cs" />
     <Compile Include="ExtMap\MapPath.cs" />

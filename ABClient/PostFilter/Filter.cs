@@ -258,7 +258,22 @@ namespace ABClient.PostFilter
             {
                 return RouletteAjaxPhp(array);
             }
-            
+
+            if (address.StartsWith("http://www.neverlands.ru/gameplay/ajax/event.php", StringComparison.OrdinalIgnoreCase))
+            {
+                string text4 = Class12.smethod_1(html, "},\"m\":[\"", "\"]}");
+                if (!string.IsNullOrEmpty(text4) && text4.Contains("<br \\/>"))
+                {
+                    text4 = text4.Replace("<br \\/>", " ");
+                
+                    AppVars.MainForm.BeginInvoke(new Delegate36(AppVars.MainForm.WriteChatMsg), new object[]
+                    {
+                        text4
+                    });
+                }
+                return Russian.Codepage.GetBytes(html);
+            }
+
             if (address.StartsWith("http://www.neverlands.ru/ch.php?lo=", StringComparison.OrdinalIgnoreCase))
             {
                 return ChRoomPhp(array);
